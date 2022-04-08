@@ -6,5 +6,40 @@ The Virtual Assistant sample demonstrates how to use Riva AI Services, specifica
 
 You can find more information about the Riva Weather Chatbot and how to run it [here](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/samples/weather.html).
 
+---
+## Running the Virtual Assistant
+
+Setting up Riva services is a prerequisite as the various components of the application depends on the availability of those servies. The weather bot assumes the availablity of the following models at the Riva endpoint – ASR, TTS, NLP (weather domain intent & slot model). After you have the Riva services up and running, proceed with running this application.
+
+1. Create and enable a Python [virtual environment](https://virtualenv.pypa.io/en/latest/)
+```bash
+virtualenv -p python3 apps-env
+source apps-env/bin/activate
+```
+
+2. Install required dependencies using [pip](https://pip.pypa.io/en/stable/)
+```bash
+pip3 install -r requirements.txt
+```
+
+3. Edit the configuration file [config.py](./config.py), and set:
+    * The Riva speech server URL. This is the endpoint where the Riva services can be accessed. 
+    * The [weatherstack API access key](https://weatherstack.com/documentation). The VA uses weatherstack for weather fulfillment, that is when the weather intents are recognized, real-time weather information is fetched from weatherstack. Sign up to the free tier of [weatherstack](https://weatherstack.com/), and get your API access key. 
+
+The code snippet will look like the example below.
+```python3
+riva_config = {
+  "RIVA_SPEECH_API_URL": "<IP>:<PORT>", # Replace the IP & port with your hosted Riva endpoint
+   ...
+  "WEATHERSTACK_ACCESS_KEY": "<API_ACCESS_KEY>",  # Get your access key at - https://weatherstack.com/
+   ...
+}
+```
+
+4. Run the virtual assistant application
+```bash
+python3 main.py
+```
+---
 ## License
 [End User License Agreement](https://developer.download.nvidia.com/licenses/Riva_Pre-Release_Evaluation_License_23Jan2020.pdf) is included with the product. Licenses are also available along with the model application zip file. By pulling and using the Riva SDK container, downloading models, or using the sample applications, you accept the terms and conditions of these licenses.
