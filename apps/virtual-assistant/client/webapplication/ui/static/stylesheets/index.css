@@ -1,0 +1,324 @@
+/*
+# ==============================================================================
+# Copyright (c) 2020, NVIDIA CORPORATION. All rights reserved.
+#
+# The License information can be found under the "License" section of the
+# top-level README.md file.
+# ==============================================================================
+*/
+
+html,
+body {
+  margin: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+}
+
+#outer_div {
+  width: 100%;
+  height: 100%;
+}
+
+#outer_row {
+  width: 100%;
+  height: 100%;
+}
+
+#logo_div {
+  background-color: #000000;
+}
+
+#chat_div {
+  width: 100%;
+  background-color: #000000;
+}
+
+#empty_div {
+  background-color: black;
+}
+
+#mid_box_top {
+  height: 5%;
+  width: 100%;
+  background-color: #042c25;
+}
+
+#mid_box_mid {
+  width: 100%;
+  height: 85%;
+  background-color: #042c25;
+}
+
+#mid_box_bottom {
+  width: 100%;
+  height: 10%;
+  background-color: black;
+}
+
+#left_box_top {
+  height: 5%;
+  width: 100%;
+  background-color: black;
+}
+
+#left_box_mid {
+  height: 20%;
+  width: 100%;
+  background-color: black;
+}
+
+#left_box_bottom {
+  height: 75%;
+  width: 100%;
+  background-color: black;
+}
+
+#logo_image_div {
+  height: 50%;
+  width: 100%;
+  background-color: black;
+}
+
+#title_text_div {
+  height: 50%;
+  width: 100%;
+  background-color: black;
+}
+
+#nv_logo_div {
+  width: 32%;
+  height: 100%;
+}
+
+#nv_name_div {
+  width: 68%;
+  height: 100%;
+}
+
+.heavy {
+  font: bold sans-serif;
+  color: white;
+  font-size: 110%;
+  font-weight: 600;
+  font-stretch: expanded;
+}
+
+#riva_name_div {
+  margin-left: -1em;
+  width: 120%;
+  height: 100%;
+}
+
+#chart_parent {
+  width: 100%;
+  height: 100%;
+}
+
+#riva_status {
+  width: auto;
+  height: 100%;
+  background-color: #042c25;
+}
+
+#chat_box {
+  width: auto;
+  height: 100%;
+  background-color: #042c25;
+}
+
+#profile_div {
+  width: auto;
+  height: 100%;
+  background-color: #042c25;
+}
+
+#riva_box1 {
+  height: 5%;
+  width: 100%;
+  background-color: #042c25;
+}
+
+#riva_image {
+  height: 25%;
+  width: 100%;
+  background-color: #042c25;
+}
+
+#riva_live_status {
+  height: 10%;
+  width: 100%;
+  background-color: #042c25;
+  text-align: center;
+  font-size: 1.2vw;
+}
+
+#riva_buttons {
+  padding: 5%;
+  height: 40%;
+  width: 100%;
+  background-color: #042c25;
+  padding-top: 4%;
+}
+
+#audio_area {
+  padding: 5%;
+  height: 25%;
+  width: 100%;
+  background-color: #042c25;
+  padding-top: 4%;
+}
+
+#riva-box2 {
+  height: 5%;
+  width: 100%;
+  background-color: #042c25;
+}
+
+.status-buttons {
+  border: 1px solid #78bc04;
+  text-align: center;
+  color: white;
+  font-size: 0.7vw;
+  padding-top: 2%;
+  padding-bottom: 2%;
+}
+.riva_status_text1 {
+  color: #78bc04;
+}
+
+.riva_status_text2 {
+  color: #ffffff;
+}
+
+#riva_image_div {
+  margin-left: 5%;
+
+  height: 90%;
+  width: 90%;
+}
+
+a {
+  text-decoration: none !important;
+}
+
+label {
+  color: rgba(120, 144, 156, 1) !important;
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn.active:focus {
+  outline: none !important;
+  box-shadow: 0 0px 0px rgba(120, 144, 156, 1) inset,
+    0 0 0px rgba(120, 144, 156, 0.8);
+}
+
+textarea:focus,
+input[type="text"]:focus,
+input[type="password"]:focus,
+input[type="datetime"]:focus,
+input[type="datetime-local"]:focus,
+input[type="date"]:focus,
+input[type="month"]:focus,
+input[type="time"]:focus,
+input[type="week"]:focus,
+input[type="number"]:focus,
+input[type="email"]:focus,
+input[type="url"]:focus,
+input[type="search"]:focus,
+input[type="tel"]:focus,
+input[type="color"]:focus,
+.uneditable-input:focus {
+  border-color: rgba(120, 144, 156, 1);
+  color: rgba(120, 144, 156, 1);
+  opacity: 0.9;
+  box-shadow: 0 0px 0px rgba(120, 144, 156, 1) inset,
+    0 0 10px rgba(120, 144, 156, 0.3);
+  outline: 0 none;
+}
+
+.card::-webkit-scrollbar {
+  width: 0px;
+}
+
+::-webkit-scrollbar-thumb {
+  border-radius: 9px;
+  background: rgba(96, 125, 139, 0.99);
+}
+
+.balon1,
+.balon2 {
+  margin-top: 5px !important;
+  margin-bottom: 5px !important;
+}
+
+.balon1 a {
+  background: #ffffff;
+  color: #000000 !important;
+  border-radius: 20px 3px 20px 20px;
+  display: block;
+  max-width: 75%;
+  padding: 7px 13px 7px 13px;
+}
+
+.balon1:before {
+  content: attr(data-is);
+  position: absolute;
+  right: 15px;
+  bottom: -0.8em;
+  display: block;
+  font-size: 0.75rem;
+  color: rgba(84, 110, 122, 1);
+}
+
+.balon2 a {
+  background: #78bc04;
+  color: #ffffff !important;
+  border-radius: 3px 20px 20px 20px;
+  display: block;
+  max-width: 75%;
+  padding: 7px 13px 7px 13px;
+}
+
+.balon2:before {
+  content: attr(data-is);
+  position: absolute;
+  left: 13px;
+  bottom: -0.8em;
+  display: block;
+  font-size: 0.75rem;
+  color: rgba(84, 110, 122, 1);
+}
+
+.bg-sohbet:before {
+  content: "";
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  height: 100%;
+  background-color: #042c25;
+  position: absolute;
+}
+
+#target_div {
+  color: white;
+}
+
+#unmuteButton {
+  background-color: #78bc04;
+  color: white;
+}
+
+#submit {
+  background-color: #78bc04;
+}
+
+#input_field {
+  background-color: white;
+}
+
+#form {
+  width: 100%;
+}

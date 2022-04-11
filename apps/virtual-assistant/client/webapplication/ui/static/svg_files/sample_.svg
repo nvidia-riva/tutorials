@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg xmlns="http://www.w3.org/2000/svg" version="1.1" viewBox="0 0 758 278" width="758.0pt" height="278.0pt">
+<g>
+<!--clip-path="url(#clipPath1434)" id="g1430"-->
+  <g transform="translate(545.4915,737.2567)" id="g1436">
+    <path id="path1438" style="fill:none;stroke:#76b900;stroke-width:3.80800009;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" d="m 0,0 v 0 c -38.206,0 -69.178,30.972 -69.178,69.178 0,38.206 30.972,69.178 69.178,69.178 38.206,0 69.178,-30.972 69.178,-69.178 C 69.178,30.972 38.206,0 0,0 Z"/>
+  </g>
+  <g transform="translate(545.4915,745.6453)" id="g1440">
+    <path id="path1442" style="fill:none;stroke:#76b900;stroke-width:0.76200002;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:4.57;stroke-dashoffset:0;stroke-opacity:1" d="m 0,0 v 0 c -33.573,0 -60.79,27.216 -60.79,60.79 0,33.573 27.217,60.789 60.79,60.789 33.573,0 60.79,-27.216 60.79,-60.789 C 60.79,27.216 33.573,0 0,0 Z"/>
+  </g>
+  <g transform="translate(503.1477,810.2889)" id="g1444">
+    <path id="path1446" style="fill:none;stroke:#178217;stroke-width:0.92799997;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" d="M 0,0 C 15.066,0 11.419,7.531 22.514,7.531 33.608,7.531 30.68,0 46.021,0 61.086,0 57.44,7.531 68.534,7.531 79.628,7.531 76.701,0 92.041,0"/>
+  </g>
+  <g transform="translate(494.7356,810.2889)" id="g1448">
+    <path id="path1450" style="fill:none;stroke:#0095c9;stroke-width:0.92799997;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" d="M 0,0 C 9.662,0 7.323,7.531 14.437,7.531 21.551,7.531 19.674,0 29.511,0 39.172,0 36.834,7.531 43.948,7.531 51.063,7.531 49.185,0 59.022,0 H 59.013 C 68.674,0 66.336,7.531 73.45,7.531 80.564,7.531 78.687,0 88.524,0 c 9.662,0 7.323,7.531 14.437,7.531"/>
+  </g>
+  <g transform="translate(501.2673,802.8909)" id="g1452">
+    <path id="path1454" style="fill:none;stroke:#41bc00;stroke-width:0.92799997;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" d="M 0,0 C 8.659,0 6.563,22.327 12.939,22.327 19.315,22.327 17.632,0 26.449,0 35.108,0 33.012,22.327 39.388,22.327 45.764,22.327 44.082,0 52.898,0 H 52.89 C 61.548,0 59.453,22.327 65.829,22.327 72.205,22.327 70.522,0 79.338,0 c 8.66,0 6.563,22.327 12.94,22.327"/>
+  </g>
+  <g transform="translate(530.0012,477.8333)" id="g1474">
+    <path id="path1476" style="fill:none;stroke:#76b900;stroke-width:1.11300004;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:10;stroke-dasharray:none;stroke-opacity:1" d="M 0,0 H -68.234 V 23.604 H 38.097"/>
+  </g>
+</g>
+</svg>
