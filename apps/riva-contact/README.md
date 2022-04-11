@@ -17,6 +17,8 @@ You can use the default Riva models offered in the Quick Start configuration, or
 
 ## Installing the app
 
+From the top of the [https://github.com/nvidia-riva/samples](https://github.com/nvidia-riva/samples) repo:
+
 ```bash
 cd apps/riva-contact
 npm install
@@ -45,7 +47,3 @@ To call someone, you’ll need their ID. Yours is the 4-digit number in the Conn
 The transcripts for each speaker are marked with the user’s ID, or their display name if it has been set in the Connection box.
 
 4. To end the call, simply click the End button.
-
-## License
-
-[End User License Agreement](https://developer.download.nvidia.com/licenses/Riva_Pre-Release_Evaluation_License_23Jan2020.pdf) is included with the product. Licenses are also available along with the model application zip file. By pulling and using the Riva SDK container, downloading models, or using the sample applications, you accept the terms and conditions of these licenses.
