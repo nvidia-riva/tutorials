@@ -1,0 +1,44 @@
+.scroll {
+    max-height: 450px;
+    overflow-y: auto;
+}
+.center {
+    margin: 0 auto;
+    width: 400px;
+}
+
+.icon-mute{
+    background-image : url(mic_mute_white.png);
+    background-size: cover;
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+}
+
+.icon-video-off{
+    background-image : url(video_off_white.png);
+    background-size: cover;
+    display: inline-block;
+    height: 15px;
+    width: 15px;
+}
+
+.btn-group-xs > .btn, .btn-xs {
+    padding: .25rem .4rem;
+    font-size: .875rem;
+    line-height: .5;
+    border-radius: .2rem;
+}
+
+.toast-success {
+    background-color: var(--primary);
+}
+.toast-error {
+    background-color: var(--danger);
+}
+.toast-info {
+    background-color: var(--info);
+}
+.toast-warning {
+    background-color: var(--warning);
+}
