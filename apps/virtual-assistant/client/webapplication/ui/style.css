@@ -1,0 +1,247 @@
+/*
+# ==============================================================================
+# Copyright (c) 2020, NVIDIA CORPORATION. All rights reserved.
+#
+# The License information can be found under the "License" section of the
+# top-level README.md file.
+# ==============================================================================
+*/
+
+#info-text {
+    position: fixed;
+    width: 350px;
+    height: 250px;
+    top: 0;
+    right: 10px;
+    opacity: 0.8;
+    display: none;
+}
+
+.profile_picture_left {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+}
+
+.profile_picture_right {
+    width: 50px;
+    height: 50px;
+    margin-left: 10px;
+}
+
+.empty_space {
+    width: 70px;
+    height: 0px;
+}
+
+.btn:focus, .btn:active {
+    outline: none !important;
+}
+
+.button-main {
+    background-color: #009688;
+    color: #FFF;
+}
+
+.button-main:hover {
+    background-color: #00877a;
+    color: #FFF;
+}
+
+.button-main:focus, .button-main:active {
+    background-color: #00796d;
+    color: #FFF;
+}
+
+.button-slave {
+    background-color: #FFFFFF;
+}
+
+.button-slave:hover {
+    background-color: #e5e5e5;
+}
+
+.main-name {
+    color: #48ba2f;
+    text-decoration: none;
+}
+
+.main-name:hover {
+    color: #00877a;
+    text-decoration: none;
+}
+
+.main-name:focus, .button-main:active {
+    color: #00796d;
+    text-decoration: none;
+}
+
+.button {
+    margin: 0px 7px 8px 0px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+    border: none;
+    border-radius: 2px;
+}
+
+.checkboxes {
+    margin: 0px 15px 8px 0px;
+    font-weight: 400;
+}
+
+.checkbox-label {
+    margin: 0px 2px 0px 0px !important;
+}
+
+body {
+    margin-bottom: 20px;
+    background: #EEEEEE;
+    font-family: 'Roboto', sans-serif;
+    font-size: 17px;
+}
+
+.well {
+    background-color: white;
+    border: none;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+    border-radius: 2px;
+    margin-bottom: 0px;
+}
+
+.well.well_system {
+    background-color: #48ba2f;
+    color: white;
+}
+
+.message {
+    margin-bottom: 20px;
+}
+
+.message_user {
+    margin-left: auto;
+    margin-right: 0;
+}
+
+.arrow-left {
+    width: 0px;
+    border-width: 10px;
+    border-left-width: 0px;
+    border-color: transparent #48ba2f transparent transparent;
+    border-style: solid;
+    position: relative;
+    z-index: 1;
+    -webkit-filter: drop-shadow(-1.3px 0.5px 0.6px rgba(0, 0, 0, 0.09));
+    -moz-filter: drop-shadow(-1.3px 0.5px 0.6px rgba(0, 0, 0, 0.09));
+    -ms-filter: drop-shadow(-1.3px 0.5px 0.6px rgba(0, 0, 0, 0.09));
+    -o-filter: drop-shadow(-1.3px 0.5px 0.6px rgba(0, 0, 0, 0.09));
+    filter: drop-shadow(-1.3px 0.5px 0.6px rgba(0, 0, 0, 0.09));
+}
+
+.arrow-right {
+    width: 0px;
+    border-width: 10px;
+    border-right-width: 0px;
+    border-color: transparent transparent transparent white;
+    border-style: solid;
+    position: relative;
+    z-index: 1;
+    -webkit-filter: drop-shadow(1.3px 0.5px 0.6px rgba(0, 0, 0, 0.09));
+    -moz-filter: drop-shadow(1.3px 0.5px 0.6px rgba(0, 0, 0, 0.09));
+    -ms-filter: drop-shadow(1.3px 0.5px 0.6px rgba(0, 0, 0, 0.09));
+    -o-filter: drop-shadow(1.3px 0.5px 0.6px rgba(0, 0, 0, 0.09));
+    filter: drop-shadow(1.3px 0.5px 0.6px rgba(0, 0, 0, 0.09));
+}
+
+#input_field {
+    border: none;
+    box-shadow: none;
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+    display: none;
+}
+
+#submit {
+    background-color: #48ba2f;
+    color: #FFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+#submit:hover {
+    background-color: #3a9624;
+    color: #FFF;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+
+#submit:focus, .button-main:active {
+    background-color: #276618;
+    color: #FFF;
+}
+
+#back_buttons {
+    padding-left: 0px;
+}
+
+#sliders{
+    margin-top: 35px;
+    margin-bottom: 25px;
+}
+
+.noUi-tooltip {
+    font-size: 12px;
+    font-weight: bold;
+}
+
+@media (max-width: 993px) {
+    #back_buttons {
+        text-align: right !important;
+        margin-top: 10px;
+    }
+}
+
+@media (max-width: 770px) {
+    body {
+        font-size: 16px;
+    }
+
+    .profile_picture_left {
+        width: 40px;
+        height: 40px;
+        margin-right: 8px;
+    }
+
+    .profile_picture_right {
+        width: 40px;
+        height: 40px;
+        margin-left: 8px;
+    }
+
+    .empty_space {
+        width: 58px;
+        height: 0px;
+    }
+}
+
+@media (max-width: 600px) {
+    body {
+        font-size: 15px;
+    }
+
+    .profile_picture_left {
+        width: 30px;
+        height: 30px;
+        margin-right: 6px;
+    }
+
+    .profile_picture_right {
+        width: 30px;
+        height: 30px;
+        margin-left: 6px;
+    }
+
+    .empty_space {
+        width: 46px;
+        height: 0px;
+    }
+}
+
+audio { display:none;}
