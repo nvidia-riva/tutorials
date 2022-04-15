@@ -11,19 +11,32 @@ This directory contains tutorials for Riva Speech Skills.
 
 ## Requirements and Setup
 
-### Setup to run Jupyter Notebook
-pip3 install jupyter  
-jupyter notebook --ip=0.0.0.0 --allow-root --port 8888
+### Running the NVIDIA Riva Tutorials
+
+#### Requirement:
+1. Python 3
+
+#### Setup:
+1. Clone the NVIDIA Riva Tutorials repository  
+``git clone https://github.com/nvidia-riva/tutorials.git``
+
+2. Install and run Jupyter Notebooks server  
+``pip install jupyter``  
+``jupyter notebook --allow-root --port 8888``  
+If you have a browser installed on your machine, it should automatically open up. Else copy-paste the url from the command
 
 ### Riva Client:
 
 #### Requirement:
-Please follow the instructions from [Riva Skills Quick Start Guide](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/resources/riva_quickstart) to deploy the Riva Speech Skills server container before running these notebooks.
+1. Please follow the instructions from [Riva Skills Quick Start Guide](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/resources/riva_quickstart) to deploy the Riva Speech Skills server container before running these notebooks.
+2. ngc cli download
 
 #### Setup:
-ngc registry resource download-version "nvidia/riva/riva_quickstart:2.0.0"
-cd riva_quickstart_v2.0.0
-pip install riva_api-2.0.0-py3-none-any.whl
+1. Download Riva QSG
+``ngc registry resource download-version "nvidia/riva/riva_quickstart:2.0.0"``
+2. Install Riva Client Library
+``cd riva_quickstart_v2.0.0``
+``pip install riva_api-2.0.0-py3-none-any.whl``
 
 ### TAO:
 
