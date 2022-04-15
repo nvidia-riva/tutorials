@@ -14,11 +14,12 @@ This directory contains tutorials for Riva Speech Skills.
 ### Running the NVIDIA Riva Tutorials
 
 #### Requirement:
-1. Python 3
+1. You need to have Python3 installed 
 
 #### Setup:
 1. Clone the NVIDIA Riva Tutorials repository  
 ``git clone https://github.com/nvidia-riva/tutorials.git``
+``cd tutorials``
 
 2. Install and run Jupyter Notebooks server  
 ``pip install jupyter``  
@@ -28,24 +29,23 @@ If you have a browser installed on your machine, it should automatically open up
 ### Riva Client:
 
 #### Requirement:
-1. Please follow the instructions from [Riva Skills Quick Start Guide](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/resources/riva_quickstart) to deploy the Riva Speech Skills server container before running these notebooks.
-2. ngc cli download
+1. You have access and are logged into NVIDIA NGC. For step-by-step instructions, refer to the NGC Getting Started Guide.
+2. You need to have Python3 installed 
 
 #### Setup:
-1. Download Riva QSG
+1. Download Riva QSG (If not already done)
 ``ngc registry resource download-version "nvidia/riva/riva_quickstart:2.0.0"``
 2. Install Riva Client Library
 ``cd riva_quickstart_v2.0.0``
 ``pip install riva_api-2.0.0-py3-none-any.whl``
 
-### TAO:
+### TAO Toolkit:
 
 #### Requirement:
-https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#hardware  
-https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#software-requirements  
-https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#installing-the-pre-requisites
+1. Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#hardware) for Hardware requirements for TAO
+2. Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#software-requirements) for Software requirements for TAO. If you do not meet the software requirements, refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#installing-the-pre-requisites) for installing pre-requisites.
 
 #### Setup:
-https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#installing-tao-toolkit
+Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#installing-tao-toolkit) to install TAO Toolkit
 
 ## License
