@@ -34,7 +34,7 @@ If you have a browser installed on your machine, the notebook should automatical
 - [Python 3](https://www.python.org/download/releases/3.0/) 
 
 #### Setup
-1. Download Riva QSG (If not already done)
+1. Download the Riva Quick Start scripts, if not already done. 
 ``ngc registry resource download-version "nvidia/riva/riva_quickstart:2.0.0"``
 2. Install Riva Client Library
 ``cd riva_quickstart_v2.0.0``
