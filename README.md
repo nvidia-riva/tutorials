@@ -31,7 +31,7 @@ If you have a browser installed on your machine, the notebook should automatical
 
 #### Requirements
 - You have access and are logged into NVIDIA NGC. For step-by-step instructions, refer to the [NGC Getting Started Guide](https://docs.nvidia.com/ngc/ngc-overview/index.html#registering-activating-ngc-account).
-2. You need to have Python3 installed 
+- [Python 3](https://www.python.org/download/releases/3.0/) 
 
 #### Setup:
 1. Download Riva QSG (If not already done)
