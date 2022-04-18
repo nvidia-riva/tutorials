@@ -33,7 +33,7 @@ If you have a browser installed on your machine, the notebook should automatical
 - You have access and are logged into NVIDIA NGC. For step-by-step instructions, refer to the [NGC Getting Started Guide](https://docs.nvidia.com/ngc/ngc-overview/index.html#registering-activating-ngc-account).
 - [Python 3](https://www.python.org/download/releases/3.0/) 
 
-#### Setup:
+#### Setup
 1. Download Riva QSG (If not already done)
 ``ngc registry resource download-version "nvidia/riva/riva_quickstart:2.0.0"``
 2. Install Riva Client Library
