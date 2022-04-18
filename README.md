@@ -40,7 +40,7 @@ If you have a browser installed on your machine, the notebook should automatical
 ``cd riva_quickstart_v2.0.0``
 ``pip install riva_api-2.0.0-py3-none-any.whl``
 
-### TAO Toolkit:
+### Installing NVIDIA TAO Toolkit
 
 #### Requirements
 - Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#hardware) for hardware requirements for TAO Toolkit.
