@@ -36,7 +36,7 @@ If you have a browser installed on your machine, the notebook should automatical
 #### Setup
 1. Download the Riva Quick Start scripts, if not already done. 
 ``ngc registry resource download-version "nvidia/riva/riva_quickstart:2.0.0"``
-2. Install Riva Client Library
+2. Install the Riva client library.
 ``cd riva_quickstart_v2.0.0``
 ``pip install riva_api-2.0.0-py3-none-any.whl``
 
