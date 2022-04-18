@@ -27,7 +27,7 @@ Before you try running the NVIDIA Riva tutorials, ensure you meet the following 
 ``jupyter notebook --allow-root --port 8888``  
 If you have a browser installed on your machine, the notebook should automatically open. If you do not have a browser, copy/paste the URL from the command.
 
-### Riva Client:
+### Running the Riva Client
 
 #### Requirement:
 1. You have access and are logged into NVIDIA NGC. For step-by-step instructions, refer to the NGC Getting Started Guide.
