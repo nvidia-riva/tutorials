@@ -22,7 +22,7 @@ Before you try running the NVIDIA Riva tutorials, ensure you meet the following 
 ``git clone https://github.com/nvidia-riva/tutorials.git``
 ``cd tutorials``
 
-2. Install and run Jupyter Notebooks server  
+2. Install and run the Jupyter notebooks server.  
 ``pip install jupyter``  
 ``jupyter notebook --allow-root --port 8888``  
 If you have a browser installed on your machine, it should automatically open up. Else copy-paste the url from the command
