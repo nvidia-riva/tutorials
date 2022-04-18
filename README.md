@@ -14,7 +14,8 @@ This directory contains tutorials for Riva Speech Skills.
 ### Running the NVIDIA Riva Tutorials
 
 #### Requirements
-1. You need to have Python3 installed 
+Before you try running the NVIDIA Riva tutorials, ensure you meet the following requirements: 
+- [Python 3](https://www.python.org/download/releases/3.0/) 
 
 #### Setup:
 1. Clone the NVIDIA Riva Tutorials repository  
