@@ -13,7 +13,7 @@ This directory contains tutorials for Riva Speech Skills.
 
 ### Running the NVIDIA Riva Tutorials
 
-#### Requirement:
+#### Requirements
 1. You need to have Python3 installed 
 
 #### Setup:
