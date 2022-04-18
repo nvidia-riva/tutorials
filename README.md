@@ -47,6 +47,6 @@ If you have a browser installed on your machine, the notebook should automatical
 - Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#software-requirements) for software requirements for TAO Toolkit. If you do not meet the software requirements, refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#installing-the-pre-requisites) for installing the prerequisites.
 
 #### Setup:
-Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#installing-tao-toolkit) to install TAO Toolkit
+Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#installing-tao-toolkit) to install TAO Toolkit.
 
 ## License
