@@ -18,7 +18,7 @@ Before you try running the NVIDIA Riva tutorials, ensure you meet the following 
 - [Python 3](https://www.python.org/download/releases/3.0/) 
 
 #### Setup:
-1. Clone the NVIDIA Riva Tutorials repository  
+1. Clone the NVIDIA Riva tutorials repository.  
 ``git clone https://github.com/nvidia-riva/tutorials.git``
 ``cd tutorials``
 
