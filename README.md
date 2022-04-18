@@ -25,7 +25,7 @@ Before you try running the NVIDIA Riva tutorials, ensure you meet the following 
 2. Install and run the Jupyter notebooks server.  
 ``pip install jupyter``  
 ``jupyter notebook --allow-root --port 8888``  
-If you have a browser installed on your machine, it should automatically open up. Else copy-paste the url from the command
+If you have a browser installed on your machine, the notebook should automatically open. If you do not have a browser, copy/paste the URL from the command.
 
 ### Riva Client:
 
