@@ -29,7 +29,7 @@ If you have a browser installed on your machine, the notebook should automatical
 
 ### Running the Riva Client
 
-#### Requirement:
+#### Requirements
 1. You have access and are logged into NVIDIA NGC. For step-by-step instructions, refer to the NGC Getting Started Guide.
 2. You need to have Python3 installed 
 
