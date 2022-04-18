@@ -17,7 +17,7 @@ This directory contains tutorials for Riva Speech Skills.
 Before you try running the NVIDIA Riva tutorials, ensure you meet the following requirements: 
 - [Python 3](https://www.python.org/download/releases/3.0/) 
 
-#### Setup:
+#### Setup
 1. Clone the NVIDIA Riva tutorials repository.  
 ``git clone https://github.com/nvidia-riva/tutorials.git``
 ``cd tutorials``
