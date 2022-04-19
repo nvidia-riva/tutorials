@@ -11,28 +11,42 @@ This directory contains tutorials for Riva Speech Skills.
 
 ## Requirements and Setup
 
-### Setup to run Jupyter Notebook
-pip3 install jupyter  
-jupyter notebook --ip=0.0.0.0 --allow-root --port 8888
+### Running the NVIDIA Riva Tutorials
 
-### Riva Client:
+#### Requirements
+Before you try running the NVIDIA Riva tutorials, ensure you meet the following requirements: 
+- [Python 3](https://www.python.org/download/releases/3.0/) 
 
-#### Requirement:
-Please follow the instructions from [Riva Skills Quick Start Guide](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/resources/riva_quickstart) to deploy the Riva Speech Skills server container before running these notebooks.
+#### Setup
+1. Clone the NVIDIA Riva tutorials repository.  
+``git clone https://github.com/nvidia-riva/tutorials.git``
+``cd tutorials``
 
-#### Setup:
-ngc registry resource download-version "nvidia/riva/riva_quickstart:2.0.0"
-cd riva_quickstart_v2.0.0
-pip install riva_api-2.0.0-py3-none-any.whl
+2. Install and run the Jupyter notebooks server.  
+``pip install jupyter``  
+``jupyter notebook --allow-root --port 8888``  
+If you have a browser installed on your machine, the notebook should automatically open. If you do not have a browser, copy/paste the URL from the command.
 
-### TAO:
+### Running the Riva Client
 
-#### Requirement:
-https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#hardware  
-https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#software-requirements  
-https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#installing-the-pre-requisites
+#### Requirements
+- You have access and are logged into NVIDIA NGC. For step-by-step instructions, refer to the [NGC Getting Started Guide](https://docs.nvidia.com/ngc/ngc-overview/index.html#registering-activating-ngc-account).
+- [Python 3](https://www.python.org/download/releases/3.0/) 
 
-#### Setup:
-https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#installing-tao-toolkit
+#### Setup
+1. Download the Riva Quick Start scripts, if not already done. 
+``ngc registry resource download-version "nvidia/riva/riva_quickstart:2.0.0"``
+2. Install the Riva client library.
+``cd riva_quickstart_v2.0.0``
+``pip install riva_api-2.0.0-py3-none-any.whl``
+
+### Installing NVIDIA TAO Toolkit
+
+#### Requirements
+- Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#hardware) for hardware requirements for TAO Toolkit.
+- Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#software-requirements) for software requirements for TAO Toolkit. If you do not meet the software requirements, refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#installing-the-pre-requisites) for installing the prerequisites.
+
+#### Setup
+Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#installing-tao-toolkit) to install TAO Toolkit.
 
 ## License
