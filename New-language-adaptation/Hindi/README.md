@@ -1,20 +1,3 @@
-```python
-# Copyright 2022 NVIDIA Corporation. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ==============================================================================
-```
-
 <img src="http://developer.download.nvidia.com/compute/machine-learning/frameworks/nvidia_logo.png" style="width: 90px; float: right;">
 
 # The Making of RIVA Hindi ASR Service
@@ -25,7 +8,7 @@ This notebook walks you through the end-to-end process that NVIDIA engineers and
 
 The following diagram provides a high-level overview of the end-to-end engineering workflow required to realize the Riva Hindi ASR service.
 
-![png](Hindi-workflow.png)
+![png](images/Hindi-workflow.png)
 
 Beyond the data collection phase, the Riva new language workflow is divided into 5 major stages:
 - Data collection
@@ -122,7 +105,7 @@ We started the training of the Hindi Conformer-CTC medium model from a [NeMo En 
 
 While training the previous models, Conformer-Medium converged the best. Conformer-Large also converged but started to overfit after 100k steps. Unfortunately, Citrinet-1024 didn't converge in our experiments.
 
-![png](transfer-learning.png)
+![png](images/transfer-learning.png)
 
 **Training script**:\
 We leveraged the NeMo training [scripts](https://github.com/NVIDIA/NeMo/blob/v1.7.2/examples/asr/speech_to_text.py). Feel free to check-out the configuration files for [Citrinet](https://github.com/NVIDIA/NeMo/blob/v1.7.2/examples/asr/conf/citrinet/citrinet_1024.yaml) and [Conformer](https://github.com/NVIDIA/NeMo/blob/v1.7.2/examples/asr/conf/conformer/conformer_ctc_bpe.yaml).
@@ -164,14 +147,19 @@ With all the models trained, now it's the time to deploy the Riva service.
 
 ### Bring your own Hindi models
 
-Now that we have the final `.nemo` model, here are the steps to deploy on Riva:
+Given the final `.nemo` models that you have trained upon completing the previous training step, here are the steps that need to be done to deploy on Riva:
 
-1. Download the Riva Quick Start scripts. The scripts provide `nemo2riva`, `servicemaker`, `riva-speech-server` and `riva-speech-client` images.
-* Build `.riva` assets: using `nemo2riva` command in the `servicemaker` container. See examples of build command for different models and for offline and online ASR pipelines in the [Riva build documentation page](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html#streaming-offline-recognition).
+- Download RIVA Quickstart scripts (see [instructions](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/quick-start-guide.html#local-deployment-using-quick-start-scripts)) – it provides `nemo2riva` conversion tool, and scripts (`riva_init.sh`, `riva_start.sh` and `riva_start_client.sh`) to download the `servicemaker`, `riva-speech-server` and `riva-speech-client` Docker images.
 
-3. Build `RMIR` assets. Use the `riva-build` tool in the `servicemaker` container.
+- Build `.riva` assets: using `nemo2riva` command in the `servicemaker` container. 
 
-4. Deploy the model and start the server.
+- Build `RMIR` assets: use the `riva-build` tool in the `servicemaker` container. See examples of build commands for different models and for offline and online ASR pipelines in the [Riva build documentation page](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html).
+
+- Deploy the model in `.rmir` format with `riva-deploy`.
+
+- Start the server with `riva-start.sh`.
+
+After the server successfully starts up, you can query the service, measuring accuracy, latency and throughput.
 
 ### Riva pretrained Hindi models on NGC
 
