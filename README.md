@@ -21,7 +21,7 @@ Before you try running the NVIDIA Riva tutorials, ensure you meet the following 
 
 #### Setup
 1. Clone the NVIDIA Riva tutorials repository.  
-``git clone https://github.com/nvidia-riva/tutorials.git``
+``git clone https://github.com/nvidia-riva/tutorials.git``  
 ``cd tutorials``
 
 2. Install and run the Jupyter notebooks server.  
