@@ -6,8 +6,10 @@ This directory contains tutorials for Riva Speech Skills.
 
 - [Riva ASR - How to use Riva ASR APIs (with OOTB models)](asr-python-basics.ipynb)
 - [Riva ASR - How to boost specific words at run-time - Ex: Contact List, Meeting participants](asr-python-advanced-wordboosting.ipynb)
+- [Riva ASR - How to improve recognition for specific words](asr-how-to-improve-recognition-for-specific-words.md)
 - [Riva TTS - How to use Riva TTS APIs (with OOTB models)](tts-python-basics.ipynb)
 - [Riva TTS - How to customize TTS audio output with SSML](tts-python-advanced-customizationwithssml.ipynb)
+
 
 ## Requirements and Setup
 
