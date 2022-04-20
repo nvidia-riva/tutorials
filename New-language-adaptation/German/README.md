@@ -1,20 +1,3 @@
-```python
-# Copyright 2022 NVIDIA Corporation. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ==============================================================================
-```
-
 <img src="http://developer.download.nvidia.com/compute/machine-learning/frameworks/nvidia_logo.png" style="width: 90px; float: right;">
 
 # The Making of RIVA German ASR Service
@@ -25,7 +8,7 @@ This tutorial walks you through the step-by-step, end-to-end process that NVIDIA
 
 The below diagram provides a high-level overview of the end-to-end engineering workflow required to realize the Riva German ASR service.
   
-![png](german-workflow.PNG)
+![png](./imgs/german-workflow.PNG)
 
 Beyond the data collection phase, the Riva new language workflow is divided into 3 major stages:
 - Data preparation
@@ -118,7 +101,7 @@ Conformer-CTC is a CTC-based variant of the Conformer model introduced in this [
 We started the training of the final model from a [Nemo DE Conformer-CTC large model](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_de_conformer_ctc_large) (trained on MCV7.0 567 hours, MLS 1524 hours and VoxPopuli 214 hours), which itself was trained using an [English Conformer model](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_enes_conformer_ctc_large) as initialization. The process is illustrated as in the below figure.
 
 
-![png](transfer-learning.PNG)
+![png](./imgs/transfer-learning.PNG)
 
 
 **Training script**: We leverage NeMo training [scripts](https://github.com/NVIDIA/NeMo/blob/v1.0.2/examples/asr/speech_to_text.py). You may find the example config files of Conformer-CTC model with character-based encoding at `<NeMo_git_root>/examples/asr/conf/conformer/conformer_ctc_char.yaml` and with sub-word encoding at `<NeMo_git_root>/examples/asr/conf/conformer/conformer_ctc_bpe.yaml`.
@@ -181,9 +164,9 @@ With all the models trained, now it's the time to deploy the Riva service.
 
 ### BYO German models
 
-Given the final `.nemo` model, here are the steps that need to be done to deploy on Riva:
+Given the final `.nemo` models that you have trained upon completing the previous training step, here are the steps that need to be done to deploy on Riva:
 
-- Download RIVA Quickstart scripts – it provides `nemo2riva` conversion tool, and scripts to download the `servicemaker`, `riva-speech-server` and `riva-speech-client` Docker images.
+- Download RIVA Quickstart scripts (see [instructions](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/quick-start-guide.html#local-deployment-using-quick-start-scripts)) – it provides `nemo2riva` conversion tool, and scripts (`riva_init.sh`, `riva_start.sh` and `riva_start_client.sh`) to download the `servicemaker`, `riva-speech-server` and `riva-speech-client` Docker images.
 
 - Build `.riva` assets: using `nemo2riva` command in the `servicemaker` container. 
 
@@ -191,7 +174,7 @@ Given the final `.nemo` model, here are the steps that need to be done to deploy
 
 - Deploy the model in `.rmir` format with `riva-deploy`.
 
-- Start the server.
+- Start the server with `riva-start.sh`.
 
 After the server successfully starts up, you can query the service, measuring accuracy, latency and throughput.
 
