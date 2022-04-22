@@ -131,9 +131,14 @@ After the server successfully starts up, you can query the service, measuring ac
 
 You can use the NGC pretrained Mandarin models as starting points for your development.
 
+**Acoustic models**:
+
 - [STT Zh Citrinet 1024 Gamma 0.25](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_zh_citrinet_1024_gamma_0_25) Citrinet-1024 model with kernel scaling factor (gamma) of 25%, which has been trained on the open source Aishell-2 Mandarin Chinese corpus. 
 - [RIVA Citrinet ASR Mandarin](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_zh_cn_citrinet) Citrinet-1024 model which has been trained on the ASR dataset with over 2600 hours of Mandarin (zh-CN) speech.
-    
+ 
+**Language model**: 
+
+- [Riva ASR Mandarin LM](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_zh_cn_lm) These models are simple 4-gram language models trained with Kneser-Ney smoothing using [KenLM](https://github.com/kpu/kenlm).
 
 # Conclusion
 
