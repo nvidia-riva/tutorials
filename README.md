@@ -24,10 +24,22 @@ Before you try running the NVIDIA Riva tutorials, ensure you meet the following 
 ``git clone https://github.com/nvidia-riva/tutorials.git``  
 ``cd tutorials``
 
-2. Install and run the Jupyter notebooks server.  
-``pip install jupyter``  
+2. Create a Python virtual environment - We will be using this virtual environment to install all the depencies needed for Riva tutorials.  
+``python3 -m venv venv-riva-tutorials``
+
+3. Activate the Python virtual environment we just created.  
+``. venv-riva-tutorials/bin/activate``
+
+4. Install Jupyter notebook.  
+``pip3 install jupyter``  
+
+5. Create an IPython kernel - The Riva tutorials Jupyter notebooks will be using this kernel in the next step.  
+``ipython kernel install --user --name=venv-riva-tutorials``
+
+6. Start the Jupyter notebooks server.  
 ``jupyter notebook --allow-root --port 8888``  
-If you have a browser installed on your machine, the notebook should automatically open. If you do not have a browser, copy/paste the URL from the command.
+If you have a browser installed on your machine, the notebook should automatically open. If you do not have a browser, copy/paste the URL from the command.  
+Once you open a Riva tutorial notebook on a browser, choose the `venv-riva-tutorials` kernel by `Kernel` -> `Change kernel` -> `venv-riva-tutorials`
 
 ### Running the Riva Client
 
@@ -36,10 +48,14 @@ If you have a browser installed on your machine, the notebook should automatical
 - [Python 3](https://www.python.org/download/releases/3.0/) 
 
 #### Setup
-1. Download the Riva Quick Start scripts, if not already done. 
+1. Download the Riva Quick Start scripts, if not already done.  
 ``ngc registry resource download-version "nvidia/riva/riva_quickstart:2.0.0"``
-2. Install the Riva client library.
-``cd riva_quickstart_v2.0.0``
+
+2. [Optional] If using the `venv-riva-tutorials` (or another) Python virtual environment, activate it.  
+``. <Python virtual environment directory location>/venv-riva-tutorials/bin/activate``
+
+3. Install the Riva client library.  
+``cd riva_quickstart_v2.0.0``  
 ``pip install riva_api-2.0.0-py3-none-any.whl``
 
 ### Installing NVIDIA TAO Toolkit
