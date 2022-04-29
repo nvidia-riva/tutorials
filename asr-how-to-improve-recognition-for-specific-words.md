@@ -22,11 +22,11 @@ To improve the recognition of specific words, use the following customizations. 
 
 |              Techniques              |    Difficulty   |                                                  What it does                                                  |                                         When to use                                        |       How to use       |
 |:------------------------------------:|:---------------:|:--------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------:|:----------------------:|
-| 1. Word boosting                        | Quick and easy  | Temporarily extend the vocabulary while increasing the chance of recognition for a provided list of words.              | When you know that certain words or phrases are important.                                 | [link to notebook TBD] |
-| 2. Custom vocabulary                    | Easy            | Permanently extend the default vocabulary to cover novel words of interest.                                             | When the default model vocabulary does not sufficiently cover the domain of interest.      | [Notebook](https://github.com/nvidia-riva/samples/blob/vinhn-custom-lexicon-notebook/notebooks/Riva_ASR_custom_vocabulary_and_lexicon.ipynb) |
-| 3. Custom pronunciation (Lexicon mapping)                      | Easy            | Explicitly guide the decoder to map one or more pronunciations (sequences of tokens) to a specific word                                          | When you know a word can have one or several pronunciations.                            | [Notebook](https://github.com/nvidia-riva/samples/blob/vinhn-custom-lexicon-notebook/notebooks/Riva_ASR_custom_vocabulary_and_lexicon.ipynb) |
-| 4. Retrain language model               | Moderate        | Train a new language model for the application domain to improve the recognition of domain specific terms.     | When domain text data is available.                        | [link to notebook TBD] |
-| 5. Fine tune an existing acoustic model | Moderately hard | Fine tune an existing acoustic model using a small amount of domain data to better suit the domain. | When transcribed domain audio data is available (10h-100h), and other easier approaches fall short.   | [link to notebook TBD] |
+| 1. Word boosting                        | Quick and easy  | Temporarily extend the vocabulary while increasing the chance of recognition for a provided list of words.              | When you know that certain words or phrases are important.                                 | [Notebook](https://github.com/nvidia-riva/tutorials/tree/stable/asr-python-advanced-wordboosting.ipynb) |
+| 2. Custom vocabulary                    | Easy            | Permanently extend the default vocabulary to cover novel words of interest.                                             | When the default model vocabulary does not sufficiently cover the domain of interest.      | [Notebook](https://github.com/nvidia-riva/tutorials/tree/stable/asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) |
+| 3. Custom pronunciation (Lexicon mapping)                      | Easy            | Explicitly guide the decoder to map one or more pronunciations (sequences of tokens) to a specific word                                          | When you know a word can have one or several pronunciations.                            | [Notebook](https://github.com/nvidia-riva/tutorials/tree/stable/asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) |
+| 4. Retrain language model               | Moderate        | Train a new language model for the application domain to improve the recognition of domain specific terms.     | When domain text data is available.                        | [Notebook](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/resources/ngram_lm_notebook) |
+| 5. Fine tune an existing acoustic model | Moderately hard | Fine tune an existing acoustic model using a small amount of domain data to better suit the domain. | When transcribed domain audio data is available (10h-100h), and other easier approaches fall short.   | [Citrinet Notebook](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/resources/speechtotext_citrinet_notebook), [Jasper and Quartznet](https://ngc.nvidia.com/catalog/resources/nvidia:tlt-riva:speechtotext_notebook) |
 
 In the next section, we will give a more detailed discussions of each technique. For a how-to step-by-step guide, consult the notebooks linked in the table.
 
@@ -79,7 +79,7 @@ Modifying the lexicon file serves two purposes:
 - Extend the vocabulary.
 - Provide one or more explicit custom pronunciations for a specific word.
 
-See the [notebook on lexicon mapping]() for a step-by-step procedure and case studies.
+See the [notebook on lexicon mapping](https://github.com/nvidia-riva/tutorials/tree/stable/asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) for a step-by-step procedure and case studies.
 
 
 ## 4. Retrain language model
