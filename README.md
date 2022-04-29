@@ -1,6 +1,6 @@
 # Riva Speech Skills Tutorials
 
-This directory contains tutorials for Riva Speech Skills.
+The best way to get started with Riva is to start with the tutorials.
 
 ## Tutorials  
 
