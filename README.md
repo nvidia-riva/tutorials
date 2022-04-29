@@ -1,4 +1,4 @@
-# WIP - Riva Speech Skills Tutorials
+# Riva Speech Skills Tutorials
 
 This directory contains tutorials for Riva Speech Skills.
 
@@ -44,6 +44,7 @@ Once you open a Riva tutorial notebook on a browser, choose the `venv-riva-tutor
 ### Running the Riva Client
 
 #### Requirements
+Before you try running the Riva client, ensure you meet the following requirements: 
 - You have access and are logged into NVIDIA NGC. For step-by-step instructions, refer to the [NGC Getting Started Guide](https://docs.nvidia.com/ngc/ngc-overview/index.html#registering-activating-ngc-account).
 - [Python 3](https://www.python.org/download/releases/3.0/) 
 
@@ -58,27 +59,7 @@ Once you open a Riva tutorial notebook on a browser, choose the `venv-riva-tutor
 ``cd riva_quickstart_v2.0.0``  
 ``pip install riva_api-2.0.0-py3-none-any.whl``
 
-### Installing NVIDIA TAO Toolkit
+## Copyright and License
+Copyright 2022 NVIDIA Corporation. All Rights Reserved.
 
-#### Requirements
-- Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#hardware) for hardware requirements for TAO Toolkit.
-- Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#software-requirements) for software requirements for TAO Toolkit. If you do not meet the software requirements, refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#installing-the-pre-requisites) for installing the prerequisites.
-
-#### Setup
-Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#installing-tao-toolkit) to install TAO Toolkit.
-
-## License
-# Copyright 2022 NVIDIA Corporation. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ==============================================================================
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0). Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
