@@ -1,23 +1,6 @@
-```python
-# Copyright 2022 NVIDIA Corporation. All Rights Reserved.
-#
-# Licensed under the Apache License, Version 2.0 (the "License");
-# you may not use this file except in compliance with the License.
-# You may obtain a copy of the License at
-#
-#     http://www.apache.org/licenses/LICENSE-2.0
-#
-# Unless required by applicable law or agreed to in writing, software
-# distributed under the License is distributed on an "AS IS" BASIS,
-# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-# See the License for the specific language governing permissions and
-# limitations under the License.
-# ==============================================================================
-```
-
 <img src="http://developer.download.nvidia.com/compute/machine-learning/frameworks/nvidia_logo.png" style="width: 90px; float: right;">
 
-# How to Improve Riva Recognition of Specific Words
+# How to Improve Recognition of Specific Words
 
 In this tutorial, let's explore the customization techniques that can improve the recognition of specific words in Riva, such as:
 
@@ -31,17 +14,19 @@ Various customization techniques can assist when out-of-the-box Riva models fall
 
 The following flow diagram shows the Riva speech recognition pipeline along with the possible customizations. 
 
-![alt text](Riva-customizations.PNG "Title")
+Raw temporal audio signals first pass through a feature extraction block, which segments the data into blocks (say, of 80 ms each), then converts the blocks from temporal domain to frequency domain (MFCC). This data is then fed into an acoustic model, which outputs probabilities over text tokens at each time step. A decoder converts this matrix of probabilities into a sequence of text tokens, which is then `detokenized` into an actual sentence (or character sequence). An advanced decoder can also do beam search and score multiple possible hypotheses (i.e. sentences) in conjunction with a language model. The decoder output comes without punctuation and capitalization, which is the job of the Punctuation and Capitalization model. Finally, Inverse Text Normalization (ITN) rules are applied to transform the text in verbal format into a desired written format.
+
+![alt text](./imgs/Riva-customizations.PNG "Title")
 
 To improve the recognition of specific words, use the following customizations. These customizations are listed in increasing order of difficulty and efforts:
 
 |              Techniques              |    Difficulty   |                                                  What it does                                                  |                                         When to use                                        |       How to use       |
 |:------------------------------------:|:---------------:|:--------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------:|:----------------------:|
-| 1. Word boosting                        | Quick and easy  | Temporarily extend the vocabulary while increasing the chance of recognition for a provided list of words.              | When you know that certain words or phrases are important.                                 | [link to notebook TBD] |
-| 2. Custom vocabulary                    | Easy            | Permanently extend the default vocabulary to cover novel words of interest.                                             | When the default model vocabulary does not sufficiently cover the domain of interest.      | [Notebook](https://github.com/nvidia-riva/samples/blob/vinhn-custom-lexicon-notebook/notebooks/Riva_ASR_custom_vocabulary_and_lexicon.ipynb) |
-| 3. Custom pronunciation (Lexicon mapping)                      | Easy            | Explicitly guide the decoder to map one or more pronunciations (sequences of tokens) to a specific word                                          | When you know a word can have one or several pronunciations.                            | [Notebook](https://github.com/nvidia-riva/samples/blob/vinhn-custom-lexicon-notebook/notebooks/Riva_ASR_custom_vocabulary_and_lexicon.ipynb) |
-| 4. Retrain language model               | Moderate        | Train a new language model for the application domain to improve the recognition of domain specific terms.     | When domain text data is available.                        | [link to notebook TBD] |
-| 5. Fine tune an existing acoustic model | Moderately hard | Fine tune an existing acoustic model using a small amount of domain data to better suit the domain. | When transcribed domain audio data is available (10h-100h), and other easier approaches fall short.   | [link to notebook TBD] |
+| 1. Word boosting                        | Quick and easy  | Temporarily extend the vocabulary while increasing the chance of recognition for a provided list of words.              | When you know that certain words or phrases are important.                                 | [Tutorial](https://github.com/nvidia-riva/tutorials/tree/stable/asr-python-advanced-wordboosting.ipynb) |
+| 2. Custom vocabulary                    | Easy            | Permanently extend the default vocabulary to cover novel words of interest.                                             | When the default model vocabulary does not sufficiently cover the domain of interest.      | [Tutorial](https://github.com/nvidia-riva/tutorials/tree/stable/asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) |
+| 3. Custom pronunciation (Lexicon mapping)                      | Easy            | Explicitly guide the decoder to map one or more pronunciations (sequences of tokens) to a specific word                                          | When you know a word can have one or several pronunciations.                            | [Tutorial](https://github.com/nvidia-riva/tutorials/tree/stable/asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) |
+| 4. Retrain language model               | Moderate        | Train a new language model for the application domain to improve the recognition of domain specific terms.     | When domain text data is available.                        | [Notebook](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/resources/ngram_lm_notebook) |
+| 5. Fine tune an existing acoustic model | Moderately hard | Fine tune an existing acoustic model using a small amount of domain data to better suit the domain. | When transcribed domain audio data is available (10h-100h), and other easier approaches fall short.   | [Citrinet Notebook](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/resources/speechtotext_citrinet_notebook), [Jasper and Quartznet](https://ngc.nvidia.com/catalog/resources/nvidia:tlt-riva:speechtotext_notebook) |
 
 In the next section, we will give a more detailed discussions of each technique. For a how-to step-by-step guide, consult the notebooks linked in the table.
 
@@ -62,7 +47,8 @@ config.speech_contexts.append(speech_context)
 # Creating StreamingRecognitionConfig instance with config
 streaming_config = rasr.StreamingRecognitionConfig(config=config, interim_results=True)
 ```
-Word boosting provides a quick and temporary, on the spot adaptation for the model to cope with new scenarios, such as recognizing proper names and products, new or domain specific terminologies. For OOV words, the word boosting functionality will extend the vocabulary at the same time. 
+Word boosting provides a quick and temporary, on-the-spot adaptation for the model to cope with new scenarios, such as recognizing proper names and products, or domain specific terminologies. Word boosting also supports out-of-vocabulary (OOV) words, in such cases, it temporarily extends the vocabulary and provide boosting for the new words. 
+
 You will have to explicitly specify the list of boosted words at every request. Other adaptation methods such as custom vocabulary and lexicon mapping provide a more permanent solution, which affects every subsequent request. 
 
 Pay attention to the followings while implementing word boosting:
@@ -71,16 +57,19 @@ Pay attention to the followings while implementing word boosting:
 
 
 ## 2. Custom vocabulary
+There are two decoders supported in Riva. 
 
-The Flashlight decoder, deployed by default in Riva, is a lexicon-based decoder and only emits words that are present in the provided vocabulary file. That means, domain specific words that are not present in the vocabulary file will have no chance of being generated. 
+- The greedy decoder (available during the riva-build process under the flag `--decoder_type=greedy`) is a simple decoder, that simply outputs the token with the largest probability at each time step. It is not vocabulary based and hence can produce any character sequence or word.
 
-There are two ways to expand the decoder vocabulary:
+- The Flashlight decoder, deployed by default in Riva, is a more advanced decoder, that can perform beam search. It is a lexicon-based decoder and only emits words that are present in the provided vocabulary file. That means, domain specific words that are not present in the vocabulary file will have no chance of being generated. 
+
+For the default Flashlight decoder, there are two ways to expand the decoder vocabulary:
 - At Riva build time: When building a custom model. Passing the extended vocabulary file to the `--decoding_vocab=<vocabulary_file>` parameter of the `riva-build` command.
 Out of the box vocabulary files  for Riva languages can be found on NGC, for example, for English, the vocabulary file named `flashlight_decoder_vocab.txt` can be found at this [link](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_en_us_lm/files?version=deployable_v1.1).
 
 - After deployment: For a production Riva system, the lexicon file can be modified, extended and will take effect after a server restart. See the next section. 
 
-It is noted that the greedy decoder (available during the riva-build process under the flag `--decoder_type=greedy`) is not vocabulary based and hence can produce any character sequence.
+
 
 ## 3. Custom pronunciation (Lexicon mapping)
 
@@ -90,19 +79,17 @@ Modifying the lexicon file serves two purposes:
 - Extend the vocabulary.
 - Provide one or more explicit custom pronunciations for a specific word.
 
-See the [notebook on lexicon mapping]() for a step-by-step procedure and case studies.
+See the [notebook on lexicon mapping](https://github.com/nvidia-riva/tutorials/tree/stable/asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) for a step-by-step procedure and case studies.
 
 
 ## 4. Retrain language model
+A language model (LM) estimates the likelihood of observing a text sequence in the text corpus it is trained on. Introducing a new language model to an existing ASR pipeline is another approach to improve accuracy for niche settings. Riva supports n-gram language models trained and exported from either NVIDIA TAO Toolkit or KenLM. See Riva [documentation](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html#training-language-models) for details.
 
-Introducing a new language model to an existing ASR pipeline is another approach to improve accuracy for niche settings. Riva supports n-gram language models trained and exported from either NVIDIA TAO Toolkit or KenLM. See Riva [documentation](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html#training-language-models) for details.
+An n-gram language model estimates the probability distribution over groups of n or less consecutive words. By altering or biasing the data on which a language model is trained on, and thus the distribution it is estimating, it can be used to predict different transcriptions as more likely, and thus alter the prediction without changing the acoustic model. A language model must be used in conjunction with an advanced decoder, like Flashlight, which inspects multiple hypotheses and use the language model score in conjunction with the acoustic model score to weight these hypotheses.
 
-An n-gram language model estimates the probability distribution over groups of n or less consecutive words. By altering or biasing the data on which a language model is trained on, and thus the distribution it is estimating, it can be used to predict different transcriptions as more likely, and thus alter the prediction without changing the acoustic model. 
-
-Note that currently Nemo and TAO only trains LM from scratch, as such, you should ensure a substantial amount of domain text is available for training. In addition, when the text belongs to a narrow, niche domain, there might be an impact to the overall ASR pipeline in recognizing general domain language, as a trade-off. Therefore, you should experiment with mixing domain text with general text for a more balanced representation.
+Note that currently TAO and Nemo only trains LM from scratch, as such, you should ensure a substantial amount of domain text is available for training. In addition, when the text belongs to a narrow, niche domain, there might be an impact to the overall ASR pipeline in recognizing general domain language, as a trade-off. Therefore, you should experiment with mixing domain text with general text for a more balanced representation.
 
 You should limit vocabulary size if using scraped text. Many online sources contain typos or ancillary pronouns and uncommon words. Removing these can improve the language model.
-
 
 
 ## 5. Fine tune the acoustic model

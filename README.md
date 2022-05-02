@@ -1,13 +1,21 @@
-# WIP - Riva Speech Skills Tutorials
+# Riva Speech Skills Tutorials
 
-This directory contains tutorials for Riva Speech Skills.
+The best way to get started with Riva is to start with the tutorials.
 
-## Tutorials
+## Tutorials  
 
-- [Riva ASR - How to use Riva ASR APIs (with OOTB models)](asr-python-basics.ipynb)
-- [Riva ASR - How to boost specific words at run-time - Ex: Contact List, Meeting participants](asr-python-advanced-wordboosting.ipynb)
-- [Riva TTS - How to use Riva TTS APIs (with OOTB models)](tts-python-basics.ipynb)
-- [Riva TTS - How to customize TTS audio output with SSML](tts-python-advanced-customizationwithssml.ipynb)
+| Domain | Tutorial | Key Words | Github URL |
+|--------|----------|-----------|------------|
+| ASR | How do I use Riva ASR APIs with out-of-the-box models? | ASR, API Basics | [Riva ASR - API Basics](asr-python-basics.ipynb) |
+| ASR | How to Improve Recognition of Specific Words | ASR, Customization | [Riva ASR - Customization Overview](asr-how-to-improve-recognition-for-specific-words.md) |
+| ASR | How do I boost specific words at runtime with word boosting? | ASR, Customization, Word Boosting | [Riva ASR - Customization - Word Boosting](asr-python-advanced-wordboosting.ipynb) |
+| ASR | How to Customize Riva ASR Vocabulary and Pronunciation with Lexicon Mapping | ASR, Customization, Custom Vocab, Lexicon Mapping | [Riva ASR - Customization - Vocab and Lexicon Mapping](asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) |
+| ASR | The Making of RIVA German ASR Service | ASR, New Language Adaptation, German | [Riva ASR - German](New-language-adaptation/German) | 
+| ASR | The Making of RIVA Hindi ASR Service | ASR, New Language Adaptation, Hindi | [Riva ASR - Hindi](New-language-adaptation/Hindi) | 
+| ASR | The Making of RIVA Mandarin ASR Service | ASR, New Language Adaptation, Mandarin | [Riva ASR - Mandarin](New-language-adaptation/Mandarin) | 
+| Deploy | How to Deploy Riva at Scale on AWS with EKS | Deploy, AWS EKS | [Riva - Deploy - AWS EKS](deploy-eks.md) |
+| TTS | How do I use Riva TTS APIs with out-of-the-box models? | TTS, API Basics | [Riva TTS - API Basics](tts-python-basics.ipynb) |
+| TTS | How do I customize Riva TTS audio output with SSML? | TTS, Customization, SSML, Pitch, Rate, Pronunciation | [Riva TTS - Customization with SSML](tts-python-advanced-customizationwithssml.ipynb) |
 
 ## Requirements and Setup
 
@@ -19,34 +27,45 @@ Before you try running the NVIDIA Riva tutorials, ensure you meet the following 
 
 #### Setup
 1. Clone the NVIDIA Riva tutorials repository.  
-``git clone https://github.com/nvidia-riva/tutorials.git``
+``git clone https://github.com/nvidia-riva/tutorials.git``  
 ``cd tutorials``
 
-2. Install and run the Jupyter notebooks server.  
-``pip install jupyter``  
+2. Create a Python virtual environment - We will be using this virtual environment to install all the depencies needed for Riva tutorials.  
+``python3 -m venv venv-riva-tutorials``
+
+3. Activate the Python virtual environment we just created.  
+``. venv-riva-tutorials/bin/activate``
+
+4. Install Jupyter notebook.  
+``pip3 install jupyter``  
+
+5. Create an IPython kernel - The Riva tutorials Jupyter notebooks will be using this kernel in the next step.  
+``ipython kernel install --user --name=venv-riva-tutorials``
+
+6. Start the Jupyter notebooks server.  
 ``jupyter notebook --allow-root --port 8888``  
-If you have a browser installed on your machine, the notebook should automatically open. If you do not have a browser, copy/paste the URL from the command.
+If you have a browser installed on your machine, the notebook should automatically open. If you do not have a browser, copy/paste the URL from the command.  
+Once you open a Riva tutorial notebook on a browser, choose the `venv-riva-tutorials` kernel by `Kernel` -> `Change kernel` -> `venv-riva-tutorials`
 
 ### Running the Riva Client
 
 #### Requirements
+Before you try running the Riva client, ensure you meet the following requirements: 
 - You have access and are logged into NVIDIA NGC. For step-by-step instructions, refer to the [NGC Getting Started Guide](https://docs.nvidia.com/ngc/ngc-overview/index.html#registering-activating-ngc-account).
 - [Python 3](https://www.python.org/download/releases/3.0/) 
 
 #### Setup
-1. Download the Riva Quick Start scripts, if not already done. 
+1. Download the Riva Quick Start scripts, if not already done.  
 ``ngc registry resource download-version "nvidia/riva/riva_quickstart:2.0.0"``
-2. Install the Riva client library.
-``cd riva_quickstart_v2.0.0``
+
+2. [Optional] If using the `venv-riva-tutorials` (or another) Python virtual environment, activate it.  
+``. <Python virtual environment directory location>/venv-riva-tutorials/bin/activate``
+
+3. Install the Riva client library.  
+``cd riva_quickstart_v2.0.0``  
 ``pip install riva_api-2.0.0-py3-none-any.whl``
 
-### Installing NVIDIA TAO Toolkit
+## Copyright and License
+Copyright 2022 NVIDIA Corporation. All Rights Reserved.
 
-#### Requirements
-- Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#hardware) for hardware requirements for TAO Toolkit.
-- Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#software-requirements) for software requirements for TAO Toolkit. If you do not meet the software requirements, refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#installing-the-pre-requisites) for installing the prerequisites.
-
-#### Setup
-Refer to [this page](https://docs.nvidia.com/tao/tao-toolkit/text/tao_toolkit_quick_start_guide.html#installing-tao-toolkit) to install TAO Toolkit.
-
-## License
+Licensed under the Apache License, Version 2.0 (the "License"); you may not use this file except in compliance with the License. You may obtain a copy of the License at [http://www.apache.org/licenses/LICENSE-2.0](http://www.apache.org/licenses/LICENSE-2.0). Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.
