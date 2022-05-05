@@ -29,7 +29,7 @@ For Hindi, we can readily leverage the [Hindi-Labelled ULCA-asr-dataset-corpus](
 * Swayamprabha (80 hours)
 * Multiple Sources (1627 hours)
 
-The datasets amount to ~2400 hours (~5Gb) of transcribed Hindi speech audio data. The audio samples belong to the following genders:
+The datasets amount to ~2400 hours of transcribed Hindi speech audio data. The audio samples belong to the following genders:
 * Male: ~207k samples
 * Female: ~207k samples
 * Non-specified: ~1.3M samples
