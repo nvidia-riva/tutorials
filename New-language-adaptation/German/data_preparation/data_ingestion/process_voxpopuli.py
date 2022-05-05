@@ -84,15 +84,12 @@ def process(args):
         fin = open(os.path.join(base_dir,f"asr_{t}.tsv"),'r',encoding="utf-8")
         lines = [(idx,line,args) for idx,line in enumerate(fin) if line.split()!='' and idx!=0]
         result = list(tqdm.tqdm(pool.imap(create_utt, lines),total=len(lines)))
-        #manifest_entries.extend(result)
         manifest_entries = result
     
         with codecs.open(os.path.join(args.out_dir,f"voxpopuli_{t}_manifest.json"), 'w', encoding='utf-8') as fout:
             for m in manifest_entries:
                 fout.write(json.dumps(m, ensure_ascii=False) + '\n')
         fout.close()
-
-    
 
 if __name__ == '__main__':
     args = parse_arguments()
