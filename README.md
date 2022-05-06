@@ -56,17 +56,22 @@ Once you open a Riva tutorial notebook on a browser, choose the `venv-riva-tutor
 Before you try running this NVIDIA Riva tutorials, ensure you meet the following requirements: 
 - docker 
 
-#### Setup
-1. Clone NVIDIA NeMo repository.
-``git clone https://github.com/NVIDIA/NeMo.git``
+#### Setup  
+1. Clone NVIDIA NeMo repository.  
+``git clone -b main https://github.com/NVIDIA/NeMo.git``
 
-2. Pull and run NVIDIA NeMo container.
-``docker run --gpus all -it --rm -v <nemo_github_folder>:/NeMo --shm-size=8g -p 8888:8888 -p 6006:6006 --ulimit memlock=-1 --ulimit stack=67108864 --device=/dev/snd nvcr.io/nvidia/pytorch:22.04-py3``
+2. Clone the NVIDIA Riva tutorials repository.  
+``git clone https://github.com/nvidia-riva/tutorials.git``  
+``cd tutorials``  
 
-3. Install Jupyter notebook.  
-``pip3 install jupyter``  
+3. Pull and run NVIDIA NeMo container.  
+``docker run -it --rm -v <nemo_github_folder>:/NeMo -v $PWD:/tutorials --net=host nvcr.io/nvidia/pytorch:22.04-py3``  
+``cd /tutorials``  
 
-4. Start the Jupyter notebooks server.  
+4. Install ffmpeg library.  
+``apt-get update && apt-get install -y ffmpeg``  
+
+5. Start the Jupyter notebooks server.  
 ``jupyter notebook --allow-root --port 8888``  
 If you have a browser installed on your machine, the notebook should automatically open. If you do not have a browser, copy/paste the URL from the command.  
 
