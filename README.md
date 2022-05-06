@@ -1,19 +1,28 @@
 # Riva Speech Skills Tutorials
 
-This directory contains tutorials for Riva Speech Skills.
+The best way to get started with Riva is to start with the tutorials.
 
-## Tutorials
+## Tutorials  
 
-- [Riva ASR - How to use Riva ASR APIs (with OOTB models)](asr-python-basics.ipynb)
-- [Riva ASR - How to boost specific words at run-time - Ex: Contact List, Meeting participants](asr-python-advanced-wordboosting.ipynb)
-- [Riva ASR - How to improve recognition for specific words](asr-how-to-improve-recognition-for-specific-words.md)
-- [Riva TTS - How to use Riva TTS APIs (with OOTB models)](tts-python-basics.ipynb)
-- [Riva TTS - How to customize TTS audio output with SSML](tts-python-advanced-customizationwithssml.ipynb)
-
+| Domain | Tutorial | Key Words | Github URL |
+|--------|----------|-----------|------------|
+| ASR | How do I use Riva ASR APIs with out-of-the-box models? | ASR, API Basics | [Riva ASR - API Basics](asr-python-basics.ipynb) |
+| ASR | How to Improve Recognition of Specific Words | ASR, Customization | [Riva ASR - Customization Overview](asr-how-to-improve-recognition-for-specific-words.md) |
+| ASR | How do I boost specific words at runtime with word boosting? | ASR, Customization, Word Boosting | [Riva ASR - Customization - Word Boosting](asr-python-advanced-wordboosting.ipynb) |
+| ASR | How to Customize Riva ASR Vocabulary and Pronunciation with Lexicon Mapping | ASR, Customization, Custom Vocab, Lexicon Mapping | [Riva ASR - Customization - Vocab and Lexicon Mapping](asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) |
+| ASR | The Making of RIVA German ASR Service | ASR, New Language Adaptation, German | [Riva ASR - German](New-language-adaptation/German) | 
+| ASR | The Making of RIVA Hindi ASR Service | ASR, New Language Adaptation, Hindi | [Riva ASR - Hindi](New-language-adaptation/Hindi) | 
+| ASR | The Making of RIVA Mandarin ASR Service | ASR, New Language Adaptation, Mandarin | [Riva ASR - Mandarin](New-language-adaptation/Mandarin) | 
+| Deploy | How to Deploy Riva at Scale on AWS with EKS | Deploy, AWS EKS | [Riva - Deploy - AWS EKS](deploy-eks.md) |
+| TTS | How do I use Riva TTS APIs with out-of-the-box models? | TTS, API Basics | [Riva TTS - API Basics](tts-python-basics.ipynb) |
+| TTS | How do I customize Riva TTS audio output with SSML? | TTS, Customization, SSML, Pitch, Rate, Pronunciation | [Riva TTS - Customization with SSML](tts-python-advanced-customizationwithssml.ipynb) |
 
 ## Requirements and Setup
 
 ### Running the NVIDIA Riva Tutorials
+This section covers the Requirements and Setup needed to run all Riva Tutorials, except:  
+1. [How to improve accuracy on specific speech patterns by fine-tuning the Acoustic Model (Citrinet) in the Riva ASR pipeline](asr-python-advanced-finetune-am-citrinet-for-noisy-audio-withtao.ipynb): For the Requirements and Setup of this tutorial, please refer to this section.  
+
 
 #### Requirements
 Before you try running the NVIDIA Riva tutorials, ensure you meet the following requirements: 
@@ -40,6 +49,32 @@ Before you try running the NVIDIA Riva tutorials, ensure you meet the following 
 ``jupyter notebook --allow-root --port 8888``  
 If you have a browser installed on your machine, the notebook should automatically open. If you do not have a browser, copy/paste the URL from the command.  
 Once you open a Riva tutorial notebook on a browser, choose the `venv-riva-tutorials` kernel by `Kernel` -> `Change kernel` -> `venv-riva-tutorials`
+
+### Running the NVIDIA Riva Tutorial "How to improve accuracy on specific speech patterns by fine-tuning the Acoustic Model (Citrinet) in the Riva ASR pipeline"
+
+#### Requirements  
+Before you try running this NVIDIA Riva tutorials, ensure you meet the following requirements: 
+- docker 
+
+#### Setup  
+1. Clone NVIDIA NeMo repository.  
+``git clone -b main https://github.com/NVIDIA/NeMo.git``
+
+2. Clone the NVIDIA Riva tutorials repository.  
+``git clone https://github.com/nvidia-riva/tutorials.git``  
+``cd tutorials``  
+
+3. Pull and run NVIDIA NeMo container.  
+``docker run -it --rm -v <nemo_github_folder>:/NeMo -v $PWD:/tutorials --net=host nvcr.io/nvidia/pytorch:22.04-py3``  
+``cd /tutorials``  
+
+4. Install ffmpeg library.  
+``apt-get update && apt-get install -y ffmpeg``  
+
+5. Start the Jupyter notebooks server.  
+``jupyter notebook --allow-root --port 8888``  
+If you have a browser installed on your machine, the notebook should automatically open. If you do not have a browser, copy/paste the URL from the command.  
+
 
 ### Running the Riva Client
 
