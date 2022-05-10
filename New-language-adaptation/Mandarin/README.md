@@ -33,7 +33,7 @@ Proprietary datasets:
 - 4 speech datasets: 1018 hours.
 - 3 speech datasets: 510 hours.
 
-In total, we have 2707 hours of Mandarin speech audio data.
+In total, we have 2707 hours (320GB) of Mandarin speech audio data.
 
 ## 2. Data preparation
 
