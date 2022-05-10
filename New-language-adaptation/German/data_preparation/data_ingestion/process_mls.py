@@ -61,7 +61,6 @@ def tsv_to_manifest(args):
     g_gender[line[0]] = line[1]
 
   manifests = []
-<<<<<<< HEAD
   dirs = ['dev', 'test', 'train']
   manifest_file = args.out_dir + '/manifest.json'
 
@@ -69,12 +68,6 @@ def tsv_to_manifest(args):
     manifests = []
     manifest_file = args.out_dir + f'/mls_{dir}_manifest.json'
     
-=======
-  dirs = ['train', 'dev', 'test']
-  manifest_file = args.out_dir + '/manifest.json'
-
-  for dir in dirs:
->>>>>>> e0cda1531d8dcc008af2ff5c913595990adbbec3
     logging.info('Processing: {0}'.format(dir))
     dt = open(os.path.join(args.dataset_root, dir, 'transcripts.txt'), encoding='utf8')
     g_data = dt.readlines()
@@ -90,7 +83,6 @@ def tsv_to_manifest(args):
     results_multi = proc_pool.map(proc_tvs_to_manifest, index)
 
     for i in results_multi:
-<<<<<<< HEAD
         if len(i)>0:
           manifests.extend(i)
 
@@ -98,14 +90,6 @@ def tsv_to_manifest(args):
        for m in manifests:
           fout.write(json.dumps(m, ensure_ascii=False) + '\n')
     fout.close()
-=======
-      manifests.extend(i)
-
-  with codecs.open(manifest_file, 'w', encoding='utf-8') as fout:
-    for m in manifests:
-      fout.write(json.dumps(m, ensure_ascii=False) + '\n')
-  fout.close()
->>>>>>> e0cda1531d8dcc008af2ff5c913595990adbbec3
 
 def proc_tvs_to_manifest(tup):
   start_indx, size, args, data_type = tup
@@ -143,12 +127,7 @@ def proc_tvs_to_manifest(tup):
         os.remove(meta_file)
     except Exception as e:
       logging.error(f"Error {e} returned.")
-<<<<<<< HEAD
       return {} #return empty manifest
-      #exit()
-=======
-      exit()
->>>>>>> e0cda1531d8dcc008af2ff5c913595990adbbec3
   return manifests
 
 def main():

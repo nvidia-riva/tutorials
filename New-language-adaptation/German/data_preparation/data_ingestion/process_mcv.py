@@ -46,14 +46,13 @@ from typing import List
 import sox
 from sox import Transformer
 from tqdm import tqdm
-import pdb
 
 parser = argparse.ArgumentParser(description='Downloads and processes Mozilla Common Voice dataset.')
 parser.add_argument("--data_root", default='./data/raw/mcv/', type=str, help="Directory to store the dataset.")
 parser.add_argument("--data_temp", default=None, type=str, required=True, help="Directory to store intermediate the dataset.")
 parser.add_argument("--data_out", default=None, type=str, required=True, help="Directory to store the final dataset.")
 parser.add_argument('--manifest_dir', default='./', type=str, help='Output directory for manifests')
-parser.add_argument("--save_meta", default=False, type=bool, help='Flag to save metadata in manifests')
+parser.add_argument("--save_meta", default=True, type=bool, help='Flag to save metadata in manifests')
 parser.add_argument("--save_relative_path", default=False, type=bool, help='Flag to save relative path in manifests')
 parser.add_argument("--num_workers", default=multiprocessing.cpu_count(), type=int, help="Workers to process dataset.")
 parser.add_argument('--sample_rate', default=16000, type=int, help='Sample rate')
@@ -87,7 +86,6 @@ def create_manifest(data: List[tuple], output_name: str, manifest_path: str, dat
     output_file.parent.mkdir(exist_ok=True, parents=True)
 
     with output_file.open(mode='w') as f:
-        #pdb.set_trace()
         for row in tqdm(data, total=len(data)):            
             if save_meta:
                 f.write(
