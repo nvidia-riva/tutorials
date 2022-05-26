@@ -1,5 +1,5 @@
 
-<img src="http://developer.download.nvidia.com/compute/machine-learning/frameworks/nvidia_logo.png" style="width: 90px; float: right;">
+<img src="http://developer.download.nvidia.com/notebooks/dlsw-notebooks/riva_asr_new-language-adaptation-mandarin-readme/nvidia_logo.png" style="width: 90px; float: right;">
 
 # The Making of the Riva Mandarin ASR Service
 
@@ -33,7 +33,7 @@ Proprietary datasets:
 - 4 speech datasets: 1018 hours.
 - 3 speech datasets: 510 hours.
 
-In total, we have 2707 hours of Mandarin speech audio data.
+In total, we have 2707 hours (320GB) of Mandarin speech audio data.
 
 ## 2. Data preparation
 
