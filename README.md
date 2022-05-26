@@ -12,12 +12,18 @@ The best way to get started with Riva is to start with the tutorials.
 | ASR | How to Improve Recognition of Specific Words | ASR, Customization | [Riva ASR - Customization Overview](asr-how-to-improve-recognition-for-specific-words.md) |
 | ASR | How do I boost specific words at runtime with word boosting? | ASR, Customization, Word Boosting | [Riva ASR - Customization - Word Boosting](asr-python-advanced-wordboosting.ipynb) |
 | ASR | How to Customize Riva ASR Vocabulary and Pronunciation with Lexicon Mapping | ASR, Customization, Custom Vocab, Lexicon Mapping | [Riva ASR - Customization - Vocab and Lexicon Mapping](asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) |
+| ASR | How to fine-tune a Riva ASR Acoustic Model (Citrinet) with TAO Toolkit | ASR, Customization, Acoustic Model fine-tuning, Citrinet, TAO Toolkit | [Riva ASR - Customization - Acoustic Model (Citrinet) fine-tuning with TAO Toolkit](asr-python-advanced-finetune-am-citrinet-tao-finetuning.ipynb) |
+| ASR | How to deploy custom Acoustic Model (Citrinet) trained with TAO Toolkit on Riva | ASR, Customization, Acoustic Model deployment, Citrinet | [Riva ASR - Customization - Acoustic Model (Citrinet) deployment on Riva](asr-python-advanced-finetune-am-citrinet-tao-deployment.ipynb) |
+| ASR | How to pretrain a Riva ASR Language Modeling (n-gram) with TAO Toolkit | ASR, Customization, Language Model pretraining, n-gram, TAO Toolkit | [Riva ASR - Customization - Language Model (n-gram) pretraining with TAO Toolkit](asr-python-advanced-tao-ngram-pretrain.ipynb) |
+| ASR | How to improve accuracy on specific speech patterns by fine-tuning the Acoustic Model (Citrinet) in the Riva ASR pipeline | ASR, Customization, Acoustic Model fine-tuning, Citrinet, Background noise, TAO Toolkit | [Riva ASR - Customization - Acoustic Model (Citrinet) fine-tuning for specific speech pattern](asr-python-advanced-finetune-am-citrinet-for-noisy-audio-withtao.ipynb) |
 | ASR | The Making of RIVA German ASR Service | ASR, New Language Adaptation, German | [Riva ASR - German](New-language-adaptation/German) | 
 | ASR | The Making of RIVA Hindi ASR Service | ASR, New Language Adaptation, Hindi | [Riva ASR - Hindi](New-language-adaptation/Hindi) | 
 | ASR | The Making of RIVA Mandarin ASR Service | ASR, New Language Adaptation, Mandarin | [Riva ASR - Mandarin](New-language-adaptation/Mandarin) | 
-| Deploy | How to Deploy Riva at Scale on AWS with EKS | Deploy, AWS EKS | [Riva - Deploy - AWS EKS](deploy-eks.md) |
 | TTS | How do I use Riva TTS APIs with out-of-the-box models? | TTS, API Basics | [Riva TTS - API Basics](tts-python-basics.ipynb) |
-| TTS | How do I customize Riva TTS audio output with SSML? | TTS, Customization, SSML, Pitch, Rate, Pronunciation | [Riva TTS - Customization with SSML](tts-python-advanced-customizationwithssml.ipynb) |
+| TTS | How do I customize Riva TTS audio output with SSML? | TTS, Customization, SSML, Pitch, Rate, Pronunciation | [Riva TTS - Customization - Customization with SSML](tts-python-advanced-customizationwithssml.ipynb) |
+| TTS | How to train Riva TTS models (FastPitch and HiFiGAN) with TAO Toolkit | TTS, Customization, FastPitch, HiFiGAN, Training, TAO Toolkit | [Riva TTS - Customization - FastPitch and HiFiGAN training with TAO Toolkit](tts-python-advanced-pretrain-tts-tao-training.ipynb) |
+| TTS | How to Deploy a custom TTS Models (FastPitch and HiFi-GAN) trained with TAO Toolkit Riva | TTS, Customization, FastPitch, HiFiGAN, Deployment | [Riva TTS - Customization - FastPitch and HiFiGAN deployment on Riva](tts-python-advanced-pretrain-tts-tao-deployment.ipynb) |
+| Deploy | How to Deploy Riva at Scale on AWS with EKS | Deploy, AWS EKS | [Riva - Deploy - AWS EKS](deploy-eks.md) |
 
 ## Requirements and Setup
 
