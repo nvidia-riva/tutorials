@@ -1,3 +1,5 @@
+<img src="http://developer.download.nvidia.com/notebooks/dlsw-notebooks/riva_asr_deploy-eks/nvidia_logo.png" style="width: 90px; float: right;">
+
 # How to Deploy Riva at Scale on AWS with EKS
 
 This is an example of deploying and scaling Riva Speech Skills on Amazon Web Services (AWS) Elastic Kubernetes Service (EKS)
