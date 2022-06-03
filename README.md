@@ -29,7 +29,7 @@ The best way to get started with Riva is to start with the tutorials.
 
 ### Running the NVIDIA Riva Tutorials
 This section covers the Requirements and Setup needed to run all Riva Tutorials, except:  
-1. [How to improve accuracy on specific speech patterns by fine-tuning the Acoustic Model (Citrinet) in the Riva ASR pipeline](asr-python-advanced-finetune-am-citrinet-for-noisy-audio-withtao.ipynb): For the Requirements and Setup of this tutorial, please refer to this section.  
+1. [How to improve accuracy on specific speech patterns by fine-tuning the Acoustic Model (Citrinet) in the Riva ASR pipeline](asr-python-advanced-finetune-am-citrinet-for-noisy-audio-withtao.ipynb): For the Requirements and Setup of this tutorial, please refer to [this section](#running-the-nvidia-riva-tutorial-how-to-improve-accuracy-on-specific-speech-patterns-by-fine-tuning-the-acoustic-model-citrinet-in-the-riva-asr-pipeline).  
 
 
 #### Requirements
