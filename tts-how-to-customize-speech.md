@@ -20,7 +20,7 @@ This pipeline forms a text-to-speech system that enables us to synthesize natura
 
 The below flow diagram shows the Riva speech synthesis pipeline along with the possible customizations.
 
-![RIVA TTS pipeline](./imgs/riva-tts-customizations.png, "RIVA TTS Pipeline")
+![RIVA TTS pipeline](./imgs/riva-tts-customizations.png "RIVA TTS Pipeline")
 
 The following customizations can help to control and improve the synthesized speech. These customizations are listed in increasing order of difficulty and efforts.:
 
