@@ -10,19 +10,19 @@ Various customization techniques can assist when out-of-the-box Riva models fall
 
 ## Overview of Riva TTS customization techniques
 
-The following flow diagram shows the Riva speech synthesis pipeline along with the possible customizations.
-
 The text-to-speech service in Riva is based on a two-stage pipeline. Riva first generates mel spectrograms for the input text using a spectrogram generator neural network, and then uses these spectrograms to generate speech using the vocoder model. 
 
-The spectrogram generation model (FastPitch) consists mainly of two feed-forward Transformer (FFTr) stacks. The first one operates in the resolution of input tokens, the second one in the resolution of the output frames.  The first FFTr stack produces the hidden representation `h`. The hidden representation `h` is used to make predictions about the duration and average pitch of every character with a 1-D CNN. The pitch is projected to match the dimensionality of the hidden representation `h` and added to it. The resulting sum is discretely upsampled and passed to the output FFTr which produces the output mel-spectrogram sequence.
+[FastPitch](https://arxiv.org/pdf/2006.06873.pdf) is a mel-spectrogram generator, designed to be used as the first part of a neural text-to-speech system in conjunction with a neural vocoder. FastPitch is a fully-parallel text-to-speech model based on FastSpeech, conditioned on fundamental frequency contours. The model predicts pitch contours during inference. By altering these predictions, the generated speech can be more expressive, better match the semantic of the utterance, and in the end more engaging to the listener. FastPitch is based on a fully-parallel Transformer architecture, with much higher real-time factor than Tacotron2 for mel-spectrogram synthesis of a typical utterance.
 
-The vocoder model (HiFiGAN) consists of one generator and two discriminators. The generator is a CNN which uses mel-spectrogram as input and upsamples it through transposed convolutions until the length of the output sequence matches the temporal resolution of raw waveforms. Every transposed convolution is followed by a multi-receptive field fusion module which observes patterns of various lengths in parallel and returns the sum of outputs from multiple residual blocks. The discriminators are used to identify long-term dependencies to modeling realistic speech audio.  
+[HifiGAN](https://arxiv.org/pdf/2010.05646.pdf) is a neural vocoder model for text-to-speech applications. It is intended as the second part of a two-stage speech synthesis pipeline, with a mel-spectrogram generator such as FastPitch as the first stage. HifiGAN is a neural vocoder based on a generative adversarial network framework. During training, the model uses a powerful discriminator consisting of small sub-discriminators, each one focusing on specific periodic parts of a raw waveform. The generator is very fast and has a small footprint, while producing high quality speech. 
 
 This pipeline forms a text-to-speech system that enables us to synthesize natural sounding speech from raw transcripts without any additional information such as patterns or rhythms of speech.
 
-![RIVA TTS pipeline](https://developer.nvidia.com/sites/default/files/akamai/riva/convai-riva-and-nemo-custom-voice-tts-diagram_0.svg "RIVA TTS Pipeline")
+The below flow diagram shows the Riva speech synthesis pipeline along with the possible customizations.
 
-To improve the recognition of specific words, use the following customizations. These customizations are listed in increasing order of difficulty and efforts:
+![RIVA TTS pipeline](./imgs/riva-tts-customizations.PNG, "RIVA TTS Pipeline")
+
+The following customizations can help to control and improve the synthesized speech. These customizations are listed in increasing order of difficulty and efforts.:
 
 | Techniques                        | Difficulty      | What it does                                              | When to use                                                                    | How to use                                                                                                                                                                                 |
 |-----------------------------------|-----------------|-----------------------------------------------------------|--------------------------------------------------------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
@@ -56,10 +56,8 @@ For this reason, we only recommend training models from scratch where several hu
 
 While you collect the text dataset for TTS, you need to remember that TTS models learn to map n-grams to sounds. Thus, you should ensure that the text data isn't archaic and it should have sufficient phoneme coverage.
 
-
 **Note:** Finetuning TTS models is a [recent advancement](https://paarthneekhara.github.io/tlfortts/) in the field of audio synthesis and is usually used to adapt the pre-trained TTS models for a different accent.
 NVIDIA offers pre-trained [FastPitch](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechsynthesis_hifigan) and [HiFiGAN](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechsynthesis_hifigan) models, trained on 25+ hours of LJSpeech dataset, which can be used for finetuning. Though finetuning is out of scope for this lab, we would be covering it in the next release. Stay tuned!
-
 
 # Conclusion
 
