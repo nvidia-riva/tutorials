@@ -1,4 +1,5 @@
-# How to customize the output of RIVA Text-to-speech
+# How to Customize the Output of Riva Text-To-Speech (TTS)
+
 
 In this tutorial, let's explore the customization techniques that can improve the quality of the voice synthesized by Riva, such as:
 
