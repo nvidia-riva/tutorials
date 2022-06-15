@@ -4,7 +4,8 @@
 In this tutorial, we will explore the customization techniques that can improve the quality of the voice synthesized by Riva, such as:
 
 
-- Controlling the pitch, rate and pronunciation.
+- Controlling the pitch, rate, and pronunciation.
+
 - Adding a speaker's accent: British English, American English
 - Speaker's voice: your own voice, different language
 
