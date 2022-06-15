@@ -1,7 +1,8 @@
 # How to Customize the Output of Riva Text-To-Speech (TTS)
 
 
-In this tutorial, let's explore the customization techniques that can improve the quality of the voice synthesized by Riva, such as:
+In this tutorial, we will explore the customization techniques that can improve the quality of the voice synthesized by Riva, such as:
+
 
 - Controlling the pitch, rate and pronunciation.
 - Adding a speaker's accent: British English, American English
