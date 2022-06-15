@@ -74,7 +74,7 @@ While you collect the text dataset for TTS, you need to remember that TTS models
 
 **Note:** Fine-tuning TTS models is a [recent advancement](https://paarthneekhara.github.io/tlfortts/) in the field of audio synthesis and is usually used to adapt the pre-trained TTS models for a different accent.
 
-NVIDIA offers pre-trained [FastPitch](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechsynthesis_hifigan) and [HiFiGAN](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechsynthesis_hifigan) models, trained on 25+ hours of LJSpeech dataset, which can be used for finetuning. Though finetuning is out of scope for this lab, we would be covering it in the next release. Stay tuned!
+NVIDIA offers pre-trained [FastPitch](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechsynthesis_english_fastpitch) and [HiFiGAN](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechsynthesis_hifigan) models, trained on 25+ hours of LJSpeech dataset, which can be used for finetuning. Though finetuning is out of scope for this lab, we would be covering it in the next release. Stay tuned!
 
 # Conclusion
 
