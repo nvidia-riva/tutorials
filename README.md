@@ -15,7 +15,6 @@ The best way to get started with Riva is to start with the tutorials.
 | ASR | How to fine-tune a Riva ASR Acoustic Model (Citrinet) with TAO Toolkit | ASR, Customization, Acoustic Model fine-tuning, Citrinet, TAO Toolkit | [Riva ASR - Customization - Acoustic Model (Citrinet) fine-tuning with TAO Toolkit](asr-python-advanced-finetune-am-citrinet-tao-finetuning.ipynb) |
 | ASR | How to deploy custom Acoustic Model (Citrinet) trained with TAO Toolkit on Riva | ASR, Customization, Acoustic Model deployment, Citrinet | [Riva ASR - Customization - Acoustic Model (Citrinet) deployment on Riva](asr-python-advanced-finetune-am-citrinet-tao-deployment.ipynb) |
 | ASR | How to pretrain a Riva ASR Language Modeling (n-gram) with TAO Toolkit | ASR, Customization, Language Model pretraining, n-gram, TAO Toolkit | [Riva ASR - Customization - Language Model (n-gram) pretraining with TAO Toolkit](asr-python-advanced-tao-ngram-pretrain.ipynb) |
-| ASR | How to improve accuracy on specific speech patterns by fine-tuning the Acoustic Model (Citrinet) in the Riva ASR pipeline | ASR, Customization, Acoustic Model fine-tuning, Citrinet, Background noise, TAO Toolkit | [Riva ASR - Customization - Acoustic Model (Citrinet) fine-tuning for specific speech pattern](asr-python-advanced-finetune-am-citrinet-for-noisy-audio-withtao.ipynb) |
 | ASR | The Making of RIVA German ASR Service | ASR, New Language Adaptation, German | [Riva ASR - German](New-language-adaptation/German) | 
 | ASR | The Making of RIVA Hindi ASR Service | ASR, New Language Adaptation, Hindi | [Riva ASR - Hindi](New-language-adaptation/Hindi) | 
 | ASR | The Making of RIVA Mandarin ASR Service | ASR, New Language Adaptation, Mandarin | [Riva ASR - Mandarin](New-language-adaptation/Mandarin) | 
@@ -28,9 +27,7 @@ The best way to get started with Riva is to start with the tutorials.
 ## Requirements and Setup
 
 ### Running the NVIDIA Riva Tutorials
-This section covers the Requirements and Setup needed to run all Riva Tutorials, except:  
-1. [How to improve accuracy on specific speech patterns by fine-tuning the Acoustic Model (Citrinet) in the Riva ASR pipeline](asr-python-advanced-finetune-am-citrinet-for-noisy-audio-withtao.ipynb): For the Requirements and Setup of this tutorial, please refer to [this section](#running-the-nvidia-riva-tutorial-how-to-improve-accuracy-on-specific-speech-patterns-by-fine-tuning-the-acoustic-model-citrinet-in-the-riva-asr-pipeline).  
-
+This section covers the Requirements and Setup needed to run all Riva Tutorials.
 
 #### Requirements
 Before you try running the NVIDIA Riva tutorials, ensure you meet the following requirements: 
@@ -57,32 +54,6 @@ Before you try running the NVIDIA Riva tutorials, ensure you meet the following 
 ``jupyter notebook --allow-root --port 8888``  
 If you have a browser installed on your machine, the notebook should automatically open. If you do not have a browser, copy/paste the URL from the command.  
 Once you open a Riva tutorial notebook on a browser, choose the `venv-riva-tutorials` kernel by `Kernel` -> `Change kernel` -> `venv-riva-tutorials`
-
-### Running the NVIDIA Riva Tutorial "How to improve accuracy on specific speech patterns by fine-tuning the Acoustic Model (Citrinet) in the Riva ASR pipeline"
-
-#### Requirements  
-Before you try running this NVIDIA Riva tutorials, ensure you meet the following requirements: 
-- docker 
-
-#### Setup  
-1. Clone NVIDIA NeMo repository.  
-``git clone -b main https://github.com/NVIDIA/NeMo.git``
-
-2. Clone the NVIDIA Riva tutorials repository.  
-``git clone https://github.com/nvidia-riva/tutorials.git``  
-``cd tutorials``  
-
-3. Pull and run NVIDIA NeMo container.  
-``docker run -it --rm -v <nemo_github_folder>:/NeMo -v $PWD:/tutorials --net=host nvcr.io/nvidia/pytorch:22.04-py3``  
-``cd /tutorials``  
-
-4. Install ffmpeg library.  
-``apt-get update && apt-get install -y ffmpeg``  
-
-5. Start the Jupyter notebooks server.  
-``jupyter notebook --allow-root --port 8888``  
-If you have a browser installed on your machine, the notebook should automatically open. If you do not have a browser, copy/paste the URL from the command.  
-
 
 ### Running the Riva Client
 
