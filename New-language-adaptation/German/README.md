@@ -1,4 +1,4 @@
-<img src="http://developer.download.nvidia.com/compute/machine-learning/frameworks/nvidia_logo.png" style="width: 90px; float: right;">
+<img src="http://developer.download.nvidia.com/notebooks/dlsw-notebooks/riva_asr_new-language-adaptation-german-readme/nvidia_logo.png" style="width: 90px; float: right;">
 
 # The Making of RIVA German ASR Service
 
@@ -22,9 +22,9 @@ When adapting Riva to a whole new language, a large amount of high-quality trans
 
 For German, there are several significant sources of public datasets that we can readily leverage:
 
-- [Mozila Common Voice](https://commonvoice.mozilla.org/en/datasets) (MCV) corpus 7.0, `DE` subset: 571 hours 
-- [Multilingual LibriSpeech](http://www.openslr.org/94/) (MLS), `DE` subset: 1918 hours
-- [Voxpopuli](https://ai.facebook.com/blog/voxpopuli-the-largest-open-multilingual-speech-corpus-for-ai-translation-and-more/), `DE` subset: 214 hours
+- [Mozila Common Voice](https://commonvoice.mozilla.org/en/datasets) (MCV) corpus 7.0, `DE` subset: 571 hours, ~ 26 Gbs.
+- [Multilingual LibriSpeech](http://www.openslr.org/94/) (MLS), `DE` subset: 1918 hours, ~115 GBs.
+- [Voxpopuli](https://ai.facebook.com/blog/voxpopuli-the-largest-open-multilingual-speech-corpus-for-ai-translation-and-more/), `DE` subset: 214 hours, 4.6 Gbs.
 
 The total amount of public datasets is thus ~2700 hours of transcribed German speech audio data. 
 
@@ -58,7 +58,7 @@ Preparation of the tokenizer is made simple by the [process_asr_text_tokenizer.p
 
 This step is carried out to filter out some outlying samples in the datasets. 
 
-- Samples that are too long, too short or empty are filtered out.
+- Samples that are too long (>20 s), too short (<0.1 s) or empty are filtered out.
 
 - In addition, we also filter out samples that are considered 'noisy', that is, samples having very high WER (word error rate) or CER (character error rate) w.r.t. a previously trained German models. 
 

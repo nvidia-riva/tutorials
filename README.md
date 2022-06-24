@@ -1,3 +1,5 @@
+<img src="http://developer.download.nvidia.com/notebooks/dlsw-notebooks/riva_all_tutorials-readme/nvidia_logo.png" style="width: 90px; float: right;">
+
 # Riva Speech Skills Tutorials
 
 The best way to get started with Riva is to start with the tutorials.
@@ -10,16 +12,22 @@ The best way to get started with Riva is to start with the tutorials.
 | ASR | How to Improve Recognition of Specific Words | ASR, Customization | [Riva ASR - Customization Overview](asr-how-to-improve-recognition-for-specific-words.md) |
 | ASR | How do I boost specific words at runtime with word boosting? | ASR, Customization, Word Boosting | [Riva ASR - Customization - Word Boosting](asr-python-advanced-wordboosting.ipynb) |
 | ASR | How to Customize Riva ASR Vocabulary and Pronunciation with Lexicon Mapping | ASR, Customization, Custom Vocab, Lexicon Mapping | [Riva ASR - Customization - Vocab and Lexicon Mapping](asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) |
+| ASR | How to pretrain a Riva ASR Language Modeling (n-gram) with TAO Toolkit | ASR, Customization, Language Model pretraining, n-gram, TAO Toolkit | [Riva ASR - Customization - Language Model (n-gram) pretraining with TAO Toolkit](asr-python-advanced-tao-ngram-pretrain.ipynb) |
+| ASR | How to fine-tune a Riva ASR Acoustic Model (Citrinet) with TAO Toolkit | ASR, Customization, Acoustic Model fine-tuning, Citrinet, TAO Toolkit | [Riva ASR - Customization - Acoustic Model (Citrinet) fine-tuning with TAO Toolkit](asr-python-advanced-finetune-am-citrinet-tao-finetuning.ipynb) |
+| ASR | How to deploy custom Acoustic Model (Citrinet) trained with TAO Toolkit on Riva | ASR, Customization, Acoustic Model deployment, Citrinet | [Riva ASR - Customization - Acoustic Model (Citrinet) deployment on Riva](asr-python-advanced-finetune-am-citrinet-tao-deployment.ipynb) |
 | ASR | The Making of RIVA German ASR Service | ASR, New Language Adaptation, German | [Riva ASR - German](New-language-adaptation/German) | 
 | ASR | The Making of RIVA Hindi ASR Service | ASR, New Language Adaptation, Hindi | [Riva ASR - Hindi](New-language-adaptation/Hindi) | 
 | ASR | The Making of RIVA Mandarin ASR Service | ASR, New Language Adaptation, Mandarin | [Riva ASR - Mandarin](New-language-adaptation/Mandarin) | 
-| Deploy | How to Deploy Riva at Scale on AWS with EKS | Deploy, AWS EKS | [Riva - Deploy - AWS EKS](deploy-eks.md) |
 | TTS | How do I use Riva TTS APIs with out-of-the-box models? | TTS, API Basics | [Riva TTS - API Basics](tts-python-basics.ipynb) |
-| TTS | How do I customize Riva TTS audio output with SSML? | TTS, Customization, SSML, Pitch, Rate, Pronunciation | [Riva TTS - Customization with SSML](tts-python-advanced-customizationwithssml.ipynb) |
+| TTS | How do I customize Riva TTS audio output with SSML? | TTS, Customization, SSML, Pitch, Rate, Pronunciation | [Riva TTS - Customization - Customization with SSML](tts-python-advanced-customizationwithssml.ipynb) |
+| TTS | How to train Riva TTS models (FastPitch and HiFiGAN) with TAO Toolkit | TTS, Customization, FastPitch, HiFiGAN, Training, TAO Toolkit | [Riva TTS - Customization - FastPitch and HiFiGAN training with TAO Toolkit](tts-python-advanced-pretrain-tts-tao-training.ipynb) |
+| TTS | How to Deploy a custom TTS Models (FastPitch and HiFi-GAN) trained with TAO Toolkit Riva | TTS, Customization, FastPitch, HiFiGAN, Deployment | [Riva TTS - Customization - FastPitch and HiFiGAN deployment on Riva](tts-python-advanced-pretrain-tts-tao-deployment.ipynb) |
+| Deploy | How to Deploy Riva at Scale on AWS with EKS | Deploy, AWS EKS | [Riva - Deploy - AWS EKS](deploy-eks.md) |
 
 ## Requirements and Setup
 
 ### Running the NVIDIA Riva Tutorials
+This section covers the Requirements and Setup needed to run all Riva Tutorials.
 
 #### Requirements
 Before you try running the NVIDIA Riva tutorials, ensure you meet the following requirements: 
@@ -55,15 +63,15 @@ Before you try running the Riva client, ensure you meet the following requiremen
 - [Python 3](https://www.python.org/download/releases/3.0/) 
 
 #### Setup
-1. Download the Riva Quick Start scripts, if not already done.  
-``ngc registry resource download-version "nvidia/riva/riva_quickstart:2.0.0"``
+1. Download the Riva Quick Start scripts, if not already done. `x.y.z` is the Riva Speech Skills version number - The latest Riva version number can be found in the [Riva Quick Start Guide](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/quick-start-guide.html#)'s [Local Deploymnent using Quick Start Scripts section](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/quick-start-guide.html#local-deployment-using-quick-start-scripts)
+``ngc registry resource download-version "nvidia/riva/riva_quickstart:<x.y.z>"``
 
 2. [Optional] If using the `venv-riva-tutorials` (or another) Python virtual environment, activate it.  
 ``. <Python virtual environment directory location>/venv-riva-tutorials/bin/activate``
 
 3. Install the Riva client library.  
-``cd riva_quickstart_v2.0.0``  
-``pip install riva_api-2.0.0-py3-none-any.whl``
+``cd riva_quickstart_v<x.y.z>``  
+``pip install riva_api-<x.y.z>-py3-none-any.whl``
 
 ## Copyright and License
 Copyright 2022 NVIDIA Corporation. All Rights Reserved.
