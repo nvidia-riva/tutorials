@@ -64,6 +64,10 @@ Before you try running the Riva client, ensure you meet the following requiremen
 
 #### Setup
 
+1. [Optional] If using the `venv-riva-tutorials` (or another) Python virtual environment, activate it.  
+``. <Python virtual environment directory location>/venv-riva-tutorials/bin/activate``
+
+2. Install `nvidia-riva-client` using `pip`.
 ```bash
 pip install nvidia-riva-client
 ```
