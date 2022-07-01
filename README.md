@@ -63,15 +63,16 @@ Before you try running the Riva client, ensure you meet the following requiremen
 - [Python 3](https://www.python.org/download/releases/3.0/) 
 
 #### Setup
-1. Download the Riva Quick Start scripts, if not already done. `x.y.z` is the Riva Speech Skills version number - The latest Riva version number can be found in the [Riva Quick Start Guide](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/quick-start-guide.html#)'s [Local Deploymnent using Quick Start Scripts section](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/quick-start-guide.html#local-deployment-using-quick-start-scripts)
-``ngc registry resource download-version "nvidia/riva/riva_quickstart:<x.y.z>"``
 
-2. [Optional] If using the `venv-riva-tutorials` (or another) Python virtual environment, activate it.  
+1. [Optional] If using the `venv-riva-tutorials` (or another) Python virtual environment, activate it.  
 ``. <Python virtual environment directory location>/venv-riva-tutorials/bin/activate``
 
-3. Install the Riva client library.  
-``cd riva_quickstart_v<x.y.z>``  
-``pip install riva_api-<x.y.z>-py3-none-any.whl``
+2. Install `nvidia-riva-client` using `pip`.
+```bash
+pip install nvidia-riva-client
+```
+
+Alternatively, you can install from source [nvidia-riva/python-clients](https://github.com/nvidia-riva/python-clients).
 
 ## Copyright and License
 Copyright 2022 NVIDIA Corporation. All Rights Reserved.
