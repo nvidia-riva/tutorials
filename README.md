@@ -72,7 +72,7 @@ Before you try running the Riva client, ensure you meet the following requiremen
 pip install nvidia-riva-client
 ```
 
-Alternatively, you can install from source [here](https://github.com/nvidia-riva/python-clients).
+Alternatively, you can install from source [nvidia-riva/python-clients](https://github.com/nvidia-riva/python-clients).
 
 ## Copyright and License
 Copyright 2022 NVIDIA Corporation. All Rights Reserved.
