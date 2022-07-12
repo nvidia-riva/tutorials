@@ -1,4 +1,4 @@
-<img src="http://developer.download.nvidia.com/notebooks/dlsw-notebooks/riva_asr_new-language-adaptation-german-readme/nvidia_logo.png" style="width: 90px; float: right;">
+<img src="http://developer.download.nvidia.com/compute/machine-learning/frameworks/nvidia_logo.png" style="width: 90px; float: right;">
 
 # The Making of RIVA German ASR Service
 
@@ -22,9 +22,9 @@ When adapting Riva to a whole new language, a large amount of high-quality trans
 
 For German, there are several significant sources of public datasets that we can readily leverage:
 
-- [Mozila Common Voice](https://commonvoice.mozilla.org/en/datasets) (MCV) corpus 7.0, `DE` subset: 571 hours, ~ 26 Gbs.
-- [Multilingual LibriSpeech](http://www.openslr.org/94/) (MLS), `DE` subset: 1918 hours, ~115 GBs.
-- [Voxpopuli](https://ai.facebook.com/blog/voxpopuli-the-largest-open-multilingual-speech-corpus-for-ai-translation-and-more/), `DE` subset: 214 hours, 4.6 Gbs.
+- [Mozila Common Voice](https://commonvoice.mozilla.org/en/datasets) (MCV) corpus 7.0, `DE` subset: 571 hours 
+- [Multilingual LibriSpeech](http://www.openslr.org/94/) (MLS), `DE` subset: 1918 hours
+- [Voxpopuli](https://ai.facebook.com/blog/voxpopuli-the-largest-open-multilingual-speech-corpus-for-ai-translation-and-more/), `DE` subset: 214 hours
 
 The total amount of public datasets is thus ~2700 hours of transcribed German speech audio data. 
 
@@ -58,7 +58,7 @@ Preparation of the tokenizer is made simple by the [process_asr_text_tokenizer.p
 
 This step is carried out to filter out some outlying samples in the datasets. 
 
-- Samples that are too long (>20 s), too short (<0.1 s) or empty are filtered out.
+- Samples that are too long, too short or empty are filtered out.
 
 - In addition, we also filter out samples that are considered 'noisy', that is, samples having very high WER (word error rate) or CER (character error rate) w.r.t. a previously trained German models. 
 
@@ -98,7 +98,7 @@ Conformer-CTC is a CTC-based variant of the Conformer model introduced in this [
 
 **Training from scratch vs. cross-language transfer learning:** Cross-language transfer learning is especially helpful when training new models for low-resource languages. But even when a substantial amount of data is available, cross-language transfer learning can help boost the performance further. It is based on the idea that phoneme representation can be shared across different languages. See this [notebook](https://github.com/NVIDIA/NeMo/blob/main/tutorials/asr/ASR_CTC_Language_Finetuning.ipynb) for an example of cross-language transfer learning.
 
-We started the training of the final model from a [Nemo DE Conformer-CTC large model](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_de_conformer_ctc_large) (trained on MCV7.0 567 hours, MLS 1524 hours and VoxPopuli 214 hours), which itself was trained using an [English Conformer model](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_enes_conformer_ctc_large) as initialization. The process is illustrated as in the below figure.
+We started the training of the final model from a [Nemo DE Conformer-CTC large model](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_de_conformer_ctc_large) (trained on MCV7.0 567 hours, MLS 1524 hours and VoxPopuli 214 hours), which itself was trained using an [English Conformer model](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_en_conformer_ctc_large) as initialization. The process is illustrated as in the below figure.
 
 
 ![png](./imgs/transfer-learning.PNG)
