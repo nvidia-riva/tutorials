@@ -227,7 +227,7 @@ Riva provides a container with a set of pre-built sample clients to test the Riv
       selector:
         matchLabels:
           app: "rivaasrclient"
-    template:
+      template:
         metadata:
           labels:
             app: "rivaasrclient"
