@@ -119,7 +119,7 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
             eks.amazonaws.com/nodegroup: gpu-linux-workers
           ```
 
-3. Install the GPU operator into the cluster.
+3. Enable the cluster to run containers needing NVIDIA GPUs using the nvidia device plugin:
 
     ```bash
     helm repo add nvdp https://nvidia.github.io/k8s-device-plugin
