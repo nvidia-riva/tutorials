@@ -5,10 +5,10 @@
 # README.md file.
 # ==============================================================================
 
-from riva.chatbot.stateDM.state import State
-from riva.nlp.nlp import get_entities
-from riva.chatbot.stateDM.state_data import intent_transitions
-from riva.chatbot.stateDM.Weather import Weather
+from riva_local.chatbot.stateDM.state import State
+from riva_local.nlp.nlp import get_entities
+from riva_local.chatbot.stateDM.state_data import intent_transitions
+from riva_local.chatbot.stateDM.Weather import Weather
 import sys
 from config import riva_config
 

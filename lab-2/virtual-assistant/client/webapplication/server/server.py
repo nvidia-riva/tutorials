@@ -18,7 +18,7 @@ from os import listdir
 from config import client_config
 from engineio.payload import Payload
 
-from riva.chatbot.chatbots_multiconversations_management import create_chatbot, get_new_user_conversation_index, get_chatbot
+from riva_local.chatbot.chatbots_multiconversations_management import create_chatbot, get_new_user_conversation_index, get_chatbot
 
 ''' Flask Initialization 
 '''

@@ -7,12 +7,12 @@
 
 import time
 
-from riva.asr.asr import ASRPipe
-# from riva.tts.tts import TTSPipe
-from riva.tts.tts_stream import TTSPipe
+from riva_local.asr.asr import ASRPipe
+# from riva_local.tts.tts import TTSPipe
+from riva_local.tts.tts_stream import TTSPipe
 
-from riva.chatbot.stateDM.state_machine import StateMachine
-from riva.chatbot.stateDM.states import initialState
+from riva_local.chatbot.stateDM.state_machine import StateMachine
+from riva_local.chatbot.stateDM.states import initialState
 
 class ChatBot(object):
     """ Class Implementing all the features of the chatbot"""
