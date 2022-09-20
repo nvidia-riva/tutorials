@@ -5,8 +5,12 @@
 # README.md file.
 # ==============================================================================
 
-import riva_api.riva_nlp_pb2 as rnlp
-import riva_api.riva_nlp_pb2_grpc as rnlp_srv
+import riva.client
+from riva.client.proto.riva_nlp_pb2 import (
+    AnalyzeIntentResponse,
+    NaturalQueryResponse,
+    TokenClassResponse
+)
 
 import grpc
 from config import riva_config, nlp_config
@@ -18,8 +22,8 @@ QA_API_ENDPOINT = nlp_config["QA_API_ENDPOINT"]
 enable_qa = riva_config["ENABLE_QA"]
 verbose = riva_config["VERBOSE"]
 
-channel = grpc.insecure_channel(riva_config["RIVA_SPEECH_API_URL"])
-riva_nlp = rnlp_srv.RivaLanguageUnderstandingStub(channel)
+auth = riva.client.Auth(uri=riva_config["RIVA_SPEECH_API_URL"])
+riva_nlp = riva.client.NLPService(auth)
 
 
 def get_qa_answer(context, question, p_threshold):
@@ -99,18 +103,17 @@ def get_slots(resp, entities):
 
 
 def get_riva_output(text):
-    # Submit an AnalyzeIntentRequest. We do not provide a domain with the query, so a domain
+    # Submit an AnalyzeIntent request. We do not provide a domain with the query, so a domain
     # classifier is run first, and based on the inferred value from the domain classifier,
     # the query is run through the appropriate intent/slot classifier
     # Note: the detected domain is also returned in the response.
     try:
-        req = rnlp.AnalyzeIntentRequest()
-        req.query = str(text)
         # The <domain_name> is appended to "riva_intent_" to look for a model "riva_intent_<domain_name>"
         # So the model "riva_intent_<domain_name>" needs to be preloaded in riva server.
         # In this case the domain is weather and the model being used is "riva_intent_weather-misc".
-        req.options.domain = "weather"
-        resp = riva_nlp.AnalyzeIntent(req)
+        options = riva.client.AnalyzeIntentOptions(lang='en-US', domain='weather')
+        
+        resp : AnalyzeIntentResponse = riva_nlp.AnalyzeIntent(text, options)
     except Exception as inst:
         # An exception occurred
         print("[Riva NLU] Error during NLU request")
@@ -123,10 +126,8 @@ def get_riva_output(text):
             print(f"[Riva NLU] Did not find any location in the string: {text}\n"
                     "[Riva NLU] Checking again using NER model")
         try:
-            req = rnlp.TokenClassRequest()
-            req.model.model_name = "riva_ner"
-            req.text.append(text)
-            resp_ner = riva_nlp.ClassifyTokens(req)
+            model_name = "riva_ner"
+            resp_ner: TokenClassResponse = riva_nlp.classify_tokens(text, model_name)
         except Exception as inst:
             # An exception occurred
             print("[Riva NLU] Error during NLU request (riva_ner)")

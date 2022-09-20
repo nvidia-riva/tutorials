@@ -69,24 +69,14 @@ class TTSPipe(object):
                     text = self._buff.get(block=False, timeout=0)
                     if self.verbose:
                         print('[Riva TTS] Pronounced Text: ', text)
-                    
-                    responses = riva_tts.synthesize(
-                    text = text,
-                    language_code = self.language_code,
-                    encoding = riva.client.AudioEncoding.LINEAR_PCM,
-                    sample_rate_hz = self.sample_rate,
-                    voice_name = self.voice_name
-                    ) 
-)
 
-                    # TODO - update the exercise code per new API
                     if self.verbose:
                         print('[Riva TTS] Starting TTS streaming')
                     duration = 0
                     self.current_tts_duration = 0
 
                     # <---------- EXERCISE: Fill-in the line of code below ----------->
-                    # responses = self.tts_client.xx ?
+                    # responses = self.self.riva_tts.synthesize(xx) ?
 
                     for resp in responses:
                         datalen = len(resp.audio) // 2

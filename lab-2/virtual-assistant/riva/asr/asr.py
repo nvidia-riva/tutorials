@@ -163,16 +163,11 @@ class ASRPipe(object):
 
         self.request_generator = self.build_request_generator()
 
-        responses = self.riva_asr.streaming_response_generator(audio_chunks=self.request_generator, streaming_config=streaming_config)
-
-        ## TODO - update with exercise code per new API
-        #streaming_recognize_input = build_generator(streaming_config, requests)
-
         if self.verbose:
             print("[Riva ASR] StreamingRecognize Start")
 
         # <------------ EXERCISE: Fill in the line of code below ------------->
-        # responses = self.asr_client.xx ?
+        # responses = self.riva_asr.streaming_response_generator(xx) ?
 
         # Now, put the transcription responses to use.
         self.listen_print_loop(responses)
