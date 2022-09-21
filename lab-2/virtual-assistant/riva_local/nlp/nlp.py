@@ -113,7 +113,8 @@ def get_riva_output(text):
         # In this case the domain is weather and the model being used is "riva_intent_weather-misc".
         options = riva.client.AnalyzeIntentOptions(lang='en-US', domain='weather')
         
-        resp : AnalyzeIntentResponse = riva_nlp.AnalyzeIntent(text, options)
+        resp: AnalyzeIntentResponse = riva_nlp.analyze_intent(text, options)
+    
     except Exception as inst:
         # An exception occurred
         print("[Riva NLU] Error during NLU request")

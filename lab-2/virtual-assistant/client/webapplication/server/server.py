@@ -24,8 +24,8 @@ from riva_local.chatbot.chatbots_multiconversations_management import create_cha
 '''
 app = Flask(__name__)
 cors = CORS(app)
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
+log = logging.logging.getLogger('werkzeug')
+log.setLevel(logging.logging.ERROR)
 Payload.max_decode_packets = 500  # https://github.com/miguelgrinberg/python-engineio/issues/142
 sio = SocketIO(app, logger=False)
 verbose = client_config['VERBOSE']
