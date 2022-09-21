@@ -6,7 +6,7 @@
 # ==============================================================================
 
 import copy
-from riva.chatbot.stateDM.states import userInput, userLocationInput
+from riva_local.chatbot.stateDM.states import userInput, userLocationInput
 from config import riva_config
 
 verbose = riva_config["VERBOSE"]

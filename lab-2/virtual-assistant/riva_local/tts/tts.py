@@ -6,9 +6,7 @@
 # ==============================================================================
 
 import grpc
-import riva_api.riva_audio_pb2 as ra
-import riva_api.riva_tts_pb2 as rtts
-import riva_api.riva_tts_pb2_grpc as rtts_srv
+import riva.client
 from six.moves import queue
 from config import riva_config, tts_config
 import numpy as np
@@ -38,8 +36,8 @@ class TTSPipe(object):
     def start(self):
         if self.verbose:
             print('[Riva TTS] Creating Stream TTS channel: {}'.format(riva_config["RIVA_SPEECH_API_URL"]))
-        self.channel = grpc.insecure_channel(riva_config["RIVA_SPEECH_API_URL"])
-        self.tts_client = rtts_srv.RivaSpeechSynthesisStub(self.channel)
+        self.auth = riva.client.Auth(uri=riva_config["RIVA_SPEECH_API_URL"])
+        self.riva_tts = riva.client.SpeechSynthesisService(self.auth)
         
     def reset_current_tts_duration(self):
         self.current_tts_duration = 0
@@ -70,13 +68,13 @@ class TTSPipe(object):
                     text = self._buff.get(block=False, timeout=0)
                     if self.verbose:
                         print('[Riva TTS] Pronounced Text: ', text)
-                    req = rtts.SynthesizeSpeechRequest()
-                    req.text = text
-                    req.language_code = self.language_code
-                    req.encoding = self.audio_encoding
-                    req.sample_rate_hz = self.sample_rate
-                    req.voice_name = self.voice_name
-                    resp = self.tts_client.Synthesize(req)
+                    responses = self.riva_tts.synthesize(
+                    text = text,
+                    language_code = self.language_code,
+                    encoding = riva.client.AudioEncoding.LINEAR_PCM,
+                    sample_rate_hz = self.sample_rate,
+                    voice_name = self.voice_name
+                    )
                     datalen = len(resp.audio) // 2
                     data16 = np.ndarray(buffer=resp.audio, dtype=np.int16, shape=(datalen, 1))
                     speech = bytes(data16.data)

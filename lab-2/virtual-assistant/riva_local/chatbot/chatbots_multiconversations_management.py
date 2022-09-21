@@ -5,7 +5,7 @@
 # README.md file.
 # ==============================================================================
 
-from riva.chatbot.chatbot import ChatBot
+from riva_local.chatbot.chatbot import ChatBot
 
 userbots = {}
 user_conversation_cnt = 0

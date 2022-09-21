@@ -6,9 +6,7 @@
 # ==============================================================================
 
 import grpc
-import riva_api.riva_audio_pb2 as ra
-import riva_api.riva_tts_pb2 as rtts
-import riva_api.riva_tts_pb2_grpc as rtts_srv
+import riva.client
 
 from six.moves import queue
 from config import riva_config, tts_config
@@ -30,7 +28,7 @@ class TTSPipe(object):
         self.sample_rate = tts_config["SAMPLE_RATE"] if "SAMPLE_RATE" in tts_config else SAMPLE_RATE
         self.language_code = tts_config["LANGUAGE_CODE"] if "LANGUAGE_CODE" in tts_config else LANGUAGE_CODE
         self.voice_name = tts_config["VOICE_NAME"] if "VOICE_NAME" in tts_config else VOICE_NAME
-        self.audio_encoding = ra.AudioEncoding.LINEAR_PCM
+        self.audio_encoding = riva.client.AudioEncoding.LINEAR_PCM
         self._buff = queue.Queue()
         self.closed = False
         self._flusher = bytes(np.zeros(dtype=np.int16, shape=(self.sample_rate, 1)))  # Silence audio
@@ -39,8 +37,8 @@ class TTSPipe(object):
     def start(self):
         if self.verbose:
             print('[Riva TTS] Creating Stream TTS channel: {}'.format(riva_config["RIVA_SPEECH_API_URL"]))
-        self.channel = grpc.insecure_channel(riva_config["RIVA_SPEECH_API_URL"])
-        self.tts_client = rtts_srv.RivaSpeechSynthesisStub(self.channel)
+        self.auth = riva.client.Auth(uri=riva_config["RIVA_SPEECH_API_URL"])
+        self.riva_tts = riva.client.SpeechSynthesisService(self.auth)
 
     def reset_current_tts_duration(self):
         self.current_tts_duration = 0
@@ -72,20 +70,13 @@ class TTSPipe(object):
                     if self.verbose:
                         print('[Riva TTS] Pronounced Text: ', text)
 
-                    req = rtts.SynthesizeSpeechRequest()
-                    req.text = text
-                    req.language_code = self.language_code
-                    req.encoding = self.audio_encoding
-                    req.sample_rate_hz = self.sample_rate
-                    req.voice_name = self.voice_name
-
                     if self.verbose:
                         print('[Riva TTS] Starting TTS streaming')
                     duration = 0
                     self.current_tts_duration = 0
 
                     # <---------- EXERCISE: Fill-in the line of code below ----------->
-                    # responses = self.tts_client.xx ?
+                    # responses = self.self.riva_tts.synthesize(xx) ?
 
                     for resp in responses:
                         datalen = len(resp.audio) // 2
