@@ -108,7 +108,7 @@ While training the previous models, Conformer-Medium converged the best. Conform
 ![png](images/transfer-learning.png)
 
 **Training script**:\
-We leveraged the NeMo training [scripts](https://github.com/NVIDIA/NeMo/blob/v1.7.2/examples/asr/speech_to_text.py). Feel free to check-out the configuration files for [Citrinet](https://github.com/NVIDIA/NeMo/blob/v1.7.2/examples/asr/conf/citrinet/citrinet_1024.yaml) and [Conformer](https://github.com/NVIDIA/NeMo/blob/v1.7.2/examples/asr/conf/conformer/conformer_ctc_bpe.yaml).
+We leveraged the NeMo training [scripts](https://github.com/NVIDIA/NeMo/blob/v1.7.2/examples/asr/speech_to_text_eval.py). Feel free to check-out the configuration files for [Citrinet](https://github.com/NVIDIA/NeMo/blob/v1.7.2/examples/asr/conf/citrinet/citrinet_1024.yaml) and [Conformer](https://github.com/NVIDIA/NeMo/blob/v1.7.2/examples/asr/conf/conformer/conformer_ctc_bpe.yaml).
 
 **Hyper-parameter setting**:\
 For model fine-tuning, we employed an Adam optimizer with learning rate 5.0 and spec augmentation time 5.0. 
