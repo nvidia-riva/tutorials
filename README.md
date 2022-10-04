@@ -21,7 +21,7 @@ The best way to get started with Riva is to start with the tutorials.
 | TTS | How do I use Riva TTS APIs with out-of-the-box models? | TTS, API Basics | [Riva TTS - API Basics](tts-python-basics.ipynb) |
 | TTS | How do I customize Riva TTS audio output with SSML? | TTS, Customization, SSML, Pitch, Rate, Pronunciation | [Riva TTS - Customization - Customization with SSML](tts-python-advanced-customization-with-ssml.ipynb) |
 | TTS | How to train Riva TTS models (FastPitch and HiFiGAN) with TAO Toolkit | TTS, Customization, FastPitch, HiFiGAN, Training, TAO Toolkit | [Riva TTS - Customization - FastPitch and HiFiGAN training with TAO Toolkit](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/resources/texttospeech_notebook/files) |
-| TTS | How to Deploy a custom TTS Models (FastPitch and HiFi-GAN) trained with TAO Toolkit Riva | TTS, Customization, FastPitch, HiFiGAN, Deployment | [Riva TTS - Customization - FastPitch and HiFiGAN deployment on Riva](tts-python-advanced-pretrain-tts-tao-deployment.ipynb) |
+| TTS | How to Deploy a custom TTS Models (FastPitch and HiFi-GAN) trained with TAO Toolkit Riva | TTS, Customization, FastPitch, HiFiGAN, Deployment | [Riva TTS - Customization - FastPitch and HiFiGAN deployment on Riva](tts-python-tao-deployment.ipynb) |
 | Deploy | How to Deploy Riva at Scale on AWS with EKS | Deploy, AWS EKS | [Riva - Deploy - AWS EKS](deploy-eks.md) |
 
 ## Requirements and Setup
