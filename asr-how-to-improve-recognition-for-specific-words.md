@@ -26,7 +26,7 @@ To improve the recognition of specific words, use the following customizations. 
 | 2. Custom vocabulary                    | Easy            | Permanently extend the default vocabulary to cover novel words of interest.                                             | When the default model vocabulary does not sufficiently cover the domain of interest.      | [Tutorial](asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) |
 | 3. Custom pronunciation (Lexicon mapping)                      | Easy            | Explicitly guide the decoder to map one or more pronunciations (sequences of tokens) to a specific word                                          | When you know a word can have one or several pronunciations.                            | [Tutorial](asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) |
 | 4. Retrain language model               | Moderate        | Train a new language model for the application domain to improve the recognition of domain specific terms.     | When domain text data is available.                        | [Training Tutorial](asr-python-advanced-tao-ngram-pretrain.ipynb) |
-| 5. Fine tune an existing acoustic model | Moderately hard | Fine tune an existing acoustic model using a small amount of domain data to better suit the domain. | When transcribed domain audio data is available (10h-100h), and other easier approaches fall short.   | [Citrinet - Training Tutorial](asr-python-advanced-finetune-am-citrinet-tao-finetuning.ipynb), [Citrinet - Deployment Tutorial](asr-python-advanced-finetune-am-citrinet-tao-deployment.ipynb),<br> [Jasper and Quartznet](https://ngc.nvidia.com/catalog/resources/nvidia:tlt-riva:speechtotext_notebook) |
+| 5. Fine tune an existing acoustic model | Moderately hard | Fine tune an existing acoustic model using a small amount of domain data to better suit the domain. | When transcribed domain audio data is available (10h-100h), and other easier approaches fall short.   | [Citrinet - Training Tutorial](asr-python-advanced-finetune-am-citrinet-tao-finetuning.ipynb), [Citrinet - Deployment Tutorial](asr-python-advanced-finetune-am-citrinet-tao-deployment.ipynb),<br> [Jasper and Quartznet](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/resources/speechtotext_notebook) |
 
 In the next section, we will give a more detailed discussions of each technique. For a how-to step-by-step guide, consult the notebooks linked in the table.
 
@@ -103,7 +103,7 @@ In case of smaller datasets, such as ~10 hours, appropriate precautions should b
 
 If fine-tuning is completed on a small dataset, mix it with other larger datasets (“base”).  For English for example, Nemo has a list of [public datasets](https://github.com/NVIDIA/NeMo/blob/main/docs/source/asr/datasets.rst) that it can be mixed with.
 
-If using NeMo to fine-tune ASR models, refer to this Nemo [tutorial](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tlt-riva/resources/punctuationcapitalization_notebook). 
+If using NeMo to fine-tune ASR models, refer to this Nemo [tutorial](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/resources/punctuationcapitalization_notebook). 
 
 ### Data quality and augmentation
 
