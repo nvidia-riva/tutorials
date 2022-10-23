@@ -2,9 +2,9 @@
 
 # German ASR Pipeline Deployment
 
-In this tutorial, we are going through the steps to deploy a German ASR pipeline into production. Refer to the [deployment.ipynb](deployment.ipynb) notebook for an interactive version of this guide.
+In this tutorial, we go through the steps to deploy a German ASR pipeline into production. Refer to the [deployment.ipynb](deployment.ipynb) tutorial for an interactive version of this guide.
 
-## Model checklist
+## Model Checklist
 This tutorial assumes that you have the following models ready:
 
 - An acoustic model
@@ -12,11 +12,11 @@ This tutorial assumes that you have the following models ready:
 - An inverse text normalization model (optional)
 - A punctuation and capitalization model (optional)
 
-## Pre requisite
+## Prerequisites
 
-- Make sure you have access to [NGC](https://ngc.nvidia.com) to download models with the [NGC CLI tool](https://docs.ngc.nvidia.com/cli).  
+- Ensure you have access to [NGC](https://ngc.nvidia.com) to download models with the [NGC CLI tool](https://docs.ngc.nvidia.com/cli).  
 
-- Download Riva quickstart scripts to a local directory <RIVA_QUICKSTART_DIR>:
+- Download the Riva Quick Start scripts to a local `<RIVA_QUICKSTART_DIR>` directory:
 
 ```bash
 ngc registry resource download-version nvidia/riva/riva_quickstart:2.1.0
@@ -26,37 +26,37 @@ ngc registry resource download-version nvidia/riva/riva_quickstart:2.1.0
 
 - Prepare a local folder `<RIVA_MODEL_REPO>` to store deployed Riva models.
 
-### BYO models
-If bringing your own models, refer to the [training](./training) section of this guide for details on how to train your own custom models.
+### BYO Models
+If bringing your own models, refer to the [training](./training) section of this tutorial for details on how to train your own custom models.
 
-### Pre-trained models
+### Pretrained Models
 
-Alternatively, you can deploy pre-trained models. All Riva German assets are published on [NGC](https://ngc.nvidia.com) (including `.nemo`, `.riva`, `.tlt` and `.rmir` assets). You can use these models as starting points for your development or for deployment as-is.
+Alternatively, you can deploy pretrained models. All Riva German assets are published on [NGC](https://ngc.nvidia.com) (including `.nemo`, `.riva`, `.tlt` and `.rmir` assets). You can use these models as starting points for your development or for deployment as-is.
 
-Download the following models, either via the web interface or via the NGC CLI tool to the `<RIVA_MODEL_DIR>` directory.
+Download the following models, either using the web interface or using the NGC CLI tool to the `<RIVA_MODEL_DIR>` directory.
 
 **Acoustic models**:
 Select either:
 - Citrinet ASR German:     
-    - Download [Nemo version (.nemo format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_de_citrinet_1024) with 
+    - Download [NeMo version (`.nemo` format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_de_citrinet_1024) with: 
     
 ```bash
     ngc registry model download-version "nvidia/nemo/stt_de_citrinet_1024:1.5.0"
 ```
 - Conformer ASR German
-    - [Nemo version (.nemo format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_de_conformer_ctc_large)
+    - [NeMo version (`.nemo` format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_de_conformer_ctc_large) with:
 
 ```bash
     ngc registry model download-version "nvidia/nemo/stt_de_conformer_ctc_large:1.5.0_lm"
 ```
     
-**Inverse text normalization models**: This model is an [OpenFST finite state archive (.far)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/inverse_normalization_de_de) for use within the opensource Sparrowhawk normalization engine and Riva.   
+**Inverse text normalization models**: This model is an [OpenFST finite state archive (`.far`)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/inverse_normalization_de_de) for use within the opensource Sparrowhawk normalization engine and Riva.   
 
 ```bash
 ngc registry model download-version "nvidia/tao/inverse_normalization_de_de:deployable_v1.0"
 ```
 
-**Language model**:  These models are simple [4-gram language models](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_de_de_lm) trained with Kneser-Ney smoothing using KenLM. This directory also contains the decoder dictionary used by the Flashlight decoder.
+**Language model**:  These models are simply [4-gram language models](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_de_de_lm) trained with Kneser-Ney smoothing using KenLM. This directory also contains the decoder dictionary used by the Flashlight decoder.
 
 ```bash
 ngc registry model download-version "nvidia/tao/speechtotext_de_de_lm:deployable_v2.0"
@@ -70,9 +70,9 @@ ngc registry model download-version "nvidia/tao/punctuationcapitalization_de_de_
 
 ## Preparing Models 
 
-### Nemo to Riva conversion
+### NeMo to Riva Conversion
 
-Start Nemo container:
+1. Start the NeMo container, run:
 ```bash
 docker run --rm -it $PWD/:/models nvcr.io/nvidia/nemo:22.01 bash
 
@@ -81,14 +81,14 @@ pip3 install nvidia-pyindex
 pip3 install nemo2riva-2.0.0-py3-none-any.whl
 ```
 
-Converting acoustic model to Nemo format.
+2. Convert the acoustic model to NeMo format.
 ```bash
 nemo2riva --out /models/stt_de_citrinet_1024_v1.5.0/stt_de_citrinet_1024.riva /models/stt_de_citrinet_1024_v1.5.0/stt_de_citrinet_1024.nemo --max-dim=100000
 ```
 
-### Making service 
+### Making Service 
 
-The ServiceMaker container is responsible for preparing models for deployment. Start an interactive session with:
+The Riva ServiceMaker container is responsible for preparing models for deployment. Start an interactive session with:
 
 ```bash
 docker pull nvcr.io/nvidia/riva/riva-speech:2.0.0-servicemaker
@@ -99,8 +99,8 @@ docker run --gpus all -it --rm \
      nvcr.io/nvidia/riva/riva-speech:2.0.0-servicemaker
 ```
 
-#### Build and deploy an offline ASR pipeline
-The ASR pipeline including the acoustic model, language model and inverse text normalization model is built as follows: 
+#### Build and Deploy an Offline ASR Pipeline
+The ASR pipeline including the acoustic model, language model, and inverse text normalization model is built as follows: 
 
 ```bash
 riva-build speech_recognition -f \
@@ -128,13 +128,13 @@ riva-build speech_recognition -f \
 riva-deploy -f /servicemaker-dev/citrinet-1024-de-DE-asr-offline.rmir /data/models
 ```
 
-The `riva-build` command takes in an acoustic model in `.riva` format, the inverse text normalization models in `.far` format, and a n-gram binary language model file.
+The `riva-build` command takes in an acoustic model in `.riva` format, the inverse text normalization models in `.far` format, and an n-gram binary language model file.
 
-Note: See Riva documentation for build commands for streaming ASR services.
+Note: Refer to the [Riva ASR Pipeline Configuration documentation](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-pipeline-configuration.html#asr-pipeline-configuration) for build commands for streaming ASR services.
 
-#### Build and deploy and punctuation and capitalization model
+#### Build and Deploy and Punctuation and Capitalization Model
 
-When doing ASR, the Riva server will look for a punctuator model that matches the language in the ASR request config.
+When doing ASR, the Riva server looks for a punctuator model that matches the language in the ASR request config.
 The punctuator model can be built and deployed with:
 
 ```bash
@@ -146,6 +146,6 @@ riva-build punctuation -f \
 riva-deploy -f /servicemaker-dev/de_punctuation_1_0.rmir /data/models 
 ```
 
-## Start Riva server
+## Start the Riva Server
 
-That concludes the building and deployment of the Riva German ASR service. Now you can start the Riva server.
+That concludes the building and deployment of the Riva German ASR service. 
