@@ -4,7 +4,7 @@
 
 In this tutorial, we will go through the steps to download raw public speech data and proprocess that for NeMo training.
 
-## 1. Data collection
+## Data Collection
 When adapting Riva to a whole new language, a large amount of high-quality transcribed audio data is critical for training high-quality acoustic models. 
 
 For German, there are several significant sources of public datasets that we can readily leverage:
