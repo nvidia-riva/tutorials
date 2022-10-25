@@ -1,6 +1,14 @@
  #!/usr/bin/env python
 # coding: utf-8
 
+# This notebook can be run from within the NeMo container, such as:
+
+# ```
+# docker run  --ipc=host --gpus=all --net=host --rm -it -v $PWD:/myworkspace nvcr.io/nvidia/nemo:22.08 bash
+# ```
+
+# Note:  PyTorch uses shared memory to share data between processes, so if torch multiprocessing is used (e.g. for multithreaded data loaders) the default shared memory segment size that container runs with is not enough, and you should increase shared memory size either with --ipc=host or --shm-size command line options to nvidia-docker run.
+    
 import nemo
 import nemo.collections.asr as nemo_asr
 
@@ -96,4 +104,4 @@ trainer = pl.Trainer(precision=16,
 )
 
 trainer.fit(asr_model)
-trainer.save_to('de-asr-model.nemo')
+asr_model.save_to('de-asr-model.nemo')
