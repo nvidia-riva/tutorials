@@ -19,7 +19,6 @@ The best way to get started with Riva is to start with the tutorials.
 | ASR | The Making of RIVA Hindi ASR Service | ASR, New Language Adaptation, Hindi | [Riva ASR - Hindi](New-language-adaptation/Hindi) |
 | ASR | The Making of RIVA Mandarin ASR Service | ASR, New Language Adaptation, Mandarin | [Riva ASR - Mandarin](New-language-adaptation/Mandarin) |
 | TTS | How do I use Riva TTS APIs with out-of-the-box models? | TTS, API Basics, Customization, SSML, Pitch, Rate, Pronunciation, emphasis, sub | [Riva TTS - API Basics and Customization with SSML](tts-python-basics-and-customization-with-ssml.ipynb) |
-| TTS | How to train Riva TTS models (FastPitch and HiFiGAN) with TAO Toolkit | TTS, Customization, FastPitch, HiFiGAN, Training, TAO Toolkit | [Riva TTS - Customization - FastPitch and HiFiGAN training with TAO Toolkit](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/resources/texttospeech_notebook/files) |
 | TTS | How to Deploy a custom TTS Models (FastPitch and HiFi-GAN) trained with TAO Toolkit Riva | TTS, Customization, FastPitch, HiFiGAN, Deployment | [Riva TTS - Customization - FastPitch and HiFiGAN deployment on Riva](tts-python-tao-deployment.ipynb) |
 | Deploy | How to Deploy Riva at Scale on AWS with EKS | Deploy, AWS EKS | [Riva - Deploy - AWS EKS](deploy-eks.md) |
 
