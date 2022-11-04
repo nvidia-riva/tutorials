@@ -76,7 +76,7 @@ class TTSPipe(object):
                     self.current_tts_duration = 0
 
                     # <---------- EXERCISE: Fill-in the line of code below ----------->
-                    # responses = self.self.riva_tts.synthesize(xx) ?
+                    # responses = self.riva_tts.synthesize_online(xx) ?
 
                     for resp in responses:
                         datalen = len(resp.audio) // 2
