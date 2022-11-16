@@ -8,9 +8,7 @@
 import sys
 import re
 import grpc
-import riva_api.riva_audio_pb2 as ra
-import riva_api.riva_asr_pb2 as rasr
-import riva_api.riva_asr_pb2_grpc as rasr_srv
+import riva.client
 from six.moves import queue
 from config import riva_config, asr_config
 
@@ -37,14 +35,14 @@ class ASRPipe(object):
     def start(self):
         if self.verbose:
             print('[Riva ASR] Creating Stream ASR channel: {}'.format(riva_config["RIVA_SPEECH_API_URL"]))
-        self.channel = grpc.insecure_channel(riva_config["RIVA_SPEECH_API_URL"])
-        self.asr_client = rasr_srv.RivaSpeechRecognitionStub(self.channel)
+        self.auth = riva.client.Auth(uri=riva_config["RIVA_SPEECH_API_URL"])
+        self.riva_asr = riva.client.ASRService(self.auth)
 
     def close(self):
         self.closed = True
         self._buff.queue.clear()
         self._buff.put(None) # means the end
-        del(self.channel)
+        del(self.auth)
 
     def empty_asr_buffer(self):
         """Clears the audio buffer."""
@@ -150,43 +148,27 @@ class ASRPipe(object):
         # for a list of supported languages.
         self.start()
 
-        config = rasr.RecognitionConfig(
-            encoding=ra.AudioEncoding.LINEAR_PCM,
-            sample_rate_hertz=self.sampling_rate,
-            language_code=self.language_code,
-            max_alternatives=1,
-            enable_automatic_punctuation=self.enable_automatic_punctuation,
-            verbatim_transcripts=True
-        )
-        streaming_config = rasr.StreamingRecognitionConfig(
-            config=config,
-            interim_results=self.stream_interim_results)
+        config = riva.client.RecognitionConfig()
+        config.sample_rate_hertz = self.sampling_rate
+        config.language_code = self.language_code
+        config.max_alternatives = 1    
+        config.enable_automatic_punctuation = self.enable_automatic_punctuation
+        config.verbatim_transcripts = True
+        config.audio_channel_count = 1 
+        config.encoding = riva.client.AudioEncoding.LINEAR_PCM
+
+        streaming_config = riva.client.StreamingRecognitionConfig(config=config, interim_results=True)
 
         if self.verbose:
             print("[Riva ASR] Starting Background ASR process")
 
         self.request_generator = self.build_request_generator()
 
-        requests = (rasr.StreamingRecognizeRequest(audio_content=content)
-                    for content in self.request_generator)
-
-        def build_generator(cfg, gen):
-            # First message sent must include only a StreamingRecognitionConfig.
-            yield rasr.StreamingRecognizeRequest(streaming_config=cfg)
-
-            # Subsequent messages sent in the stream must contain only raw bytes
-            # of the audio to be recognized.
-            for x in gen:
-                yield x
-            yield cfg
-
-        streaming_recognize_input = build_generator(streaming_config, requests)
-
         if self.verbose:
             print("[Riva ASR] StreamingRecognize Start")
 
         # <------------ EXERCISE: Fill in the line of code below ------------->
-        # responses = self.asr_client.xx ?
+        # responses = self.riva_asr.streaming_response_generator(xx) ?
 
         # Now, put the transcription responses to use.
         self.listen_print_loop(responses)

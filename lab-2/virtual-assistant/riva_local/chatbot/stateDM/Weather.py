@@ -5,8 +5,8 @@
 # README.md file.
 # ==============================================================================
 
-from riva.chatbot.stateDM.state import State
-from riva.chatbot.stateDM.Util import WeatherService
+from riva_local.chatbot.stateDM.state import State
+from riva_local.chatbot.stateDM.Util import WeatherService
 
 DEFAULT_MESSAGE = "Unfortunately the weather service is not available at this time. Check your connection to weatherstack.com, set a different API key in your configuration or else try again later."
 

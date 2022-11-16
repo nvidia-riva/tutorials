@@ -18,14 +18,14 @@ from os import listdir
 from config import client_config
 from engineio.payload import Payload
 
-from riva.chatbot.chatbots_multiconversations_management import create_chatbot, get_new_user_conversation_index, get_chatbot
+from riva_local.chatbot.chatbots_multiconversations_management import create_chatbot, get_new_user_conversation_index, get_chatbot
 
 ''' Flask Initialization 
 '''
 app = Flask(__name__)
 cors = CORS(app)
-log = logging.getLogger('werkzeug')
-log.setLevel(logging.ERROR)
+log = logging.logging.getLogger('werkzeug')
+log.setLevel(logging.logging.ERROR)
 Payload.max_decode_packets = 500  # https://github.com/miguelgrinberg/python-engineio/issues/142
 sio = SocketIO(app, logger=False)
 verbose = client_config['VERBOSE']
