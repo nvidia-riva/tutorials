@@ -54,6 +54,7 @@ You will have to explicitly specify the list of boosted words at every request. 
 Pay attention to the followings while implementing word boosting:
 - Word boosting can improve the chance of recognition of the desired words, but at the same time can increase false positives. As such, start with a small positive weight and gradually increase till you see positive effects. As a general guide, start with a boosted score of 20 and increase up to 100 if needed.
 - Word boosting is most suitable as a temporary fix for a new situation. However, if you wish to use it as a permanent adaptation, you can attempt binary search for the boosted weights while monitoring the accuracy metrics on a test set. The accuracy metrics should include both the word error rate (WER) and/or a form of term error rate (TER) focusing on the terms of interest.
+- Word Boosting is supported only with flashlight decoder.
 
 
 ## 2. Custom vocabulary
