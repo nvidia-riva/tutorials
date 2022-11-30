@@ -7,8 +7,8 @@ This tutorial walks you through the step-by-step, end-to-end process that NVIDIA
 ## Overview
 
 The below diagram provides a high-level overview of the end-to-end engineering workflow required to realize the Riva German ASR service.
-  
-![png](./imgs/german-workflow.PNG)
+
+![png](./imgs/German-workflow.png)
 
 Beyond the data collection phase, the Riva new language workflow is divided into 3 major stages:
 - Data preparation
@@ -18,7 +18,7 @@ Beyond the data collection phase, the Riva new language workflow is divided into
 In the next sections, we look deeper into each of these stages.
 
 ## 1. Data collection
-When adapting Riva to a whole new language, a large amount of high-quality transcribed audio data is critical for training high-quality acoustic models. 
+When adapting Riva to a whole new language, a large amount of high-quality transcribed audio data is critical for training high-quality acoustic models.
 
 For German, there are several significant sources of public datasets that we can readily leverage:
 
@@ -26,7 +26,7 @@ For German, there are several significant sources of public datasets that we can
 - [Multilingual LibriSpeech](http://www.openslr.org/94/) (MLS), `DE` subset: 1918 hours, ~115 GBs.
 - [Voxpopuli](https://ai.facebook.com/blog/voxpopuli-the-largest-open-multilingual-speech-corpus-for-ai-translation-and-more/), `DE` subset: 214 hours, 4.6 Gbs.
 
-The total amount of public datasets is thus ~2700 hours of transcribed German speech audio data. 
+The total amount of public datasets is thus ~2700 hours of transcribed German speech audio data.
 
 In addition, to train Riva [world-class models](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-overview.html#language-support), we acquired proprietary datasets, bringing the total number of data to ~3500 hours.
 
@@ -42,30 +42,30 @@ The data preparation phase carries out a series of preparation steps required to
 - Sample rate of 16 Khz
 - Single audio channel
 
-**Text data**: 
+**Text data**:
 
 - Text Normalization converts text from written form into its verbalized form. It is used as a preprocessing step for preprocessing Automatic Speech Recognition (ASR) training transcripts. For German text normalization, we primarily leverage NeMo text normalization [library](https://github.com/NVIDIA/NeMo/tree/main/nemo_text_processing/text_normalization/de). In addition, we also also tried to convert all outdated German word spellings to modern spelling.
 
 Dataset ingestion scripts are used to convert the various datasets into the standard manifest format expected by NeMo. Next, we build a text tokenizer.
 
 
-**Tokenizer**: There are two popular encoding choices: character encoding and sub-word encoding. Sub-word encoding models are almost nearly identical to the character encoding models. The primary difference lies in the fact that a sub-word encoding model accepts a sub-word tokenized text corpus and emits sub-word tokens in its decoding step. 
+**Tokenizer**: There are two popular encoding choices: character encoding and sub-word encoding. Sub-word encoding models are almost nearly identical to the character encoding models. The primary difference lies in the fact that a sub-word encoding model accepts a sub-word tokenized text corpus and emits sub-word tokens in its decoding step.
 Preparation of the tokenizer is made simple by the [process_asr_text_tokenizer.py script](https://github.com/NVIDIA/NeMo/blob/main/scripts/tokenizers/process_asr_text_tokenizer.py) in NeMo. We leverage this script to build the text corpus from the manifest directly, then create a tokenizer using that corpus.
 
 
 
 ### 2.2. Data cleaning/filtering
 
-This step is carried out to filter out some outlying samples in the datasets. 
+This step is carried out to filter out some outlying samples in the datasets.
 
 - Samples that are too long (>20 s), too short (<0.1 s) or empty are filtered out.
 
-- In addition, we also filter out samples that are considered 'noisy', that is, samples having very high WER (word error rate) or CER (character error rate) w.r.t. a previously trained German models. 
+- In addition, we also filter out samples that are considered 'noisy', that is, samples having very high WER (word error rate) or CER (character error rate) w.r.t. a previously trained German models.
 
 
 ### 2.3. Binning
 
-For training ASR models, audios with different lengths may be grouped into a batch. It would make it necessary to use paddings to make all the same length. These extra paddings is a significant source of computation waste. Splitting the training samples into buckets with different lengths and sampling from the same bucket for each batch would increase the computation efficiency. It may result into training speeedup of more than 2X. 
+For training ASR models, audios with different lengths may be grouped into a batch. It would make it necessary to use paddings to make all the same length. These extra paddings is a significant source of computation waste. Splitting the training samples into buckets with different lengths and sampling from the same bucket for each batch would increase the computation efficiency. It may result into training speeedup of more than 2X.
 
 We leverage NeMo conversion [script](https://github.com/NVIDIA/NeMo/blob/v1.0.2/scripts/speech_recognition/convert_to_tarred_audio_dataset.py) to carry out this step.
 
@@ -83,7 +83,7 @@ If experiments are run on a cluster with datasets stored on a distributed file s
 The models in an ASR pipeline include:
 
 - An **acoustic model**, that maps raw audio input to probabilities over text tokens at each time step.  This matrix of probabilities is fed into a decoder, that convert probabilities into a sequence of text tokens.
-- A **language model**, that is optionally used in the decoding phase of the acoustic model output. 
+- A **language model**, that is optionally used in the decoding phase of the acoustic model output.
 - A **punctuation and capitalization (P&C) model**, that formats the raw transcript, augmenting with punctuation and capitalization.
 - An **inverse text normalization (ITN) model**, that produces a desired written format from a spoken format.
 
@@ -101,18 +101,18 @@ Conformer-CTC is a CTC-based variant of the Conformer model introduced in this [
 We started the training of the final model from a [Nemo DE Conformer-CTC large model](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_de_conformer_ctc_large) (trained on MCV7.0 567 hours, MLS 1524 hours and VoxPopuli 214 hours), which itself was trained using an [English Conformer model](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_enes_conformer_ctc_large) as initialization. The process is illustrated as in the below figure.
 
 
-![png](./imgs/transfer-learning.PNG)
+![png](./imgs/German-transfer-learning.png)
 
 
 **Training script**: We leverage NeMo training [scripts](https://github.com/NVIDIA/NeMo/blob/v1.0.2/examples/asr/speech_to_text.py). You may find the example config files of Conformer-CTC model with character-based encoding at `<NeMo_git_root>/examples/asr/conf/conformer/conformer_ctc_char.yaml` and with sub-word encoding at `<NeMo_git_root>/examples/asr/conf/conformer/conformer_ctc_bpe.yaml`.
 
-**Hyper-parameter setting**: For model fine-tuning, we employed an Adam optimizer with learning rate 1.0, beta parameters [0.8, 0.25], 0 weight decay for 250 epochs. 
+**Hyper-parameter setting**: For model fine-tuning, we employed an Adam optimizer with learning rate 1.0, beta parameters [0.8, 0.25], 0 weight decay for 250 epochs.
 
 **Training environment**: We trained the models on a GPU cluster comprising 64 GPUs.
 
 ### 3.2. Language model
 
-Language model, combined with beam search in the decoding phase can further improve the quality of the ASR pipeline. In our experiments, we generally observe an additional 1-2% of WER reduction by using a simple n-gram model. 
+Language model, combined with beam search in the decoding phase can further improve the quality of the ASR pipeline. In our experiments, we generally observe an additional 1-2% of WER reduction by using a simple n-gram model.
 
 The language models supported by Riva are n-gram model, which can be trained with the Kenlm toolkit. See Riva [documentation](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html#training-language-models) for details on how to train and deploy a custom language model.
 
@@ -120,7 +120,7 @@ The language models supported by Riva are n-gram model, which can be trained wit
 
 ### 3.3. Punctuation and capitalization model
 
-The Punctuation and Capitalization model consists of the pre-trained Bidirectional Encoder Representations from Transformers (BERT) followed by two token classification heads. One classification head is responsible for the punctuation task, the other one handles the capitalization task. 
+The Punctuation and Capitalization model consists of the pre-trained Bidirectional Encoder Representations from Transformers (BERT) followed by two token classification heads. One classification head is responsible for the punctuation task, the other one handles the capitalization task.
 
 The model was trained with BERT base multilingual cased checkpoint on a subset of data from the following sources:
 
@@ -128,7 +128,7 @@ The model was trained with BERT base multilingual cased checkpoint on a subset o
 - MCV Corpus
 - Proprietary datasets.
 
-We employed a BERT-base model for the task and leverage NeMo [script](https://github.com/NVIDIA/NeMo/blob/main/examples/nlp/token_classification/punctuation_capitalization_train_evaluate.py) for the training part. 
+We employed a BERT-base model for the task and leverage NeMo [script](https://github.com/NVIDIA/NeMo/blob/main/examples/nlp/token_classification/punctuation_capitalization_train_evaluate.py) for the training part.
 
 See also NeMo [tutorial](https://github.com/NVIDIA/NeMo/blob/main/tutorials/nlp/Punctuation_and_Capitalization.ipynb) on the topic.
 
@@ -168,7 +168,7 @@ Given the final `.nemo` models that you have trained upon completing the previou
 
 - Download RIVA Quickstart scripts (see [instructions](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/quick-start-guide.html#local-deployment-using-quick-start-scripts)) – it provides `nemo2riva` conversion tool, and scripts (`riva_init.sh`, `riva_start.sh` and `riva_start_client.sh`) to download the `servicemaker`, `riva-speech-server` and `riva-speech-client` Docker images.
 
-- Build `.riva` assets: using `nemo2riva` command in the `servicemaker` container. 
+- Build `.riva` assets: using `nemo2riva` command in the `servicemaker` container.
 
 - Build `RMIR` assets: use the `riva-build` tool in the `servicemaker` container. See examples of build commands for different models and for offline and online ASR pipelines in the [Riva build documentation page](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html).
 
@@ -185,7 +185,7 @@ All Riva German assets are published on NGC (including `.nemo`, `.riva`, `.tlt` 
 
 **Acoustic models**:
 
-- Citrinet ASR German: 
+- Citrinet ASR German:
     - [Riva deployable version (.riva format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_de_de_citrinet/files?version=deployable_v2.0)
     - [Tao trainable version (.tlt format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_de_de_citrinet/files?version=trainable_v2.0)
     - [Nemo version (.nemo format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_de_citrinet_1024)
@@ -193,16 +193,16 @@ All Riva German assets are published on NGC (including `.nemo`, `.riva`, `.tlt` 
     - [Riva deployable version (.riva format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_de_de_conformer/files?version=deployable_v2.0)
     - [Tao trainable version (.tlt format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_de_de_conformer/files?version=trainable_v2.0)
     - [Nemo version (.nemo format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_de_conformer_ctc_large)
-    
-**Inverse text normalization models**: This model is an [OpenFST finite state archive (.far)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/inverse_normalization_de_de) for use within the opensource Sparrowhawk normalization engine and Riva.    
+
+**Inverse text normalization models**: This model is an [OpenFST finite state archive (.far)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/inverse_normalization_de_de) for use within the opensource Sparrowhawk normalization engine and Riva.
 
 **Language model**:  These models are simple [4-gram language models](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_de_de_lm) trained with Kneser-Ney smoothing using KenLM. This directory also contains the decoder dictionary used by the Flashlight decoder.
 
-**Punctuation and capitalization model:** [Riva Punctuation and Capitalization model for German](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/punctuationcapitalization_de_de_bert_base). 
+**Punctuation and capitalization model:** [Riva Punctuation and Capitalization model for German](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/punctuationcapitalization_de_de_bert_base).
 
 # Conclusion
 
-In this tutorial, we have guided you through the steps that are needed to realize the Riva German ASR service, from raw data to a ready-to-use service. 
+In this tutorial, we have guided you through the steps that are needed to realize the Riva German ASR service, from raw data to a ready-to-use service.
 
 You can follow the same process to setup a whole new German ASR service using your own data, or use the resources herein to fine-tune parts of the pipeline with your own model and data.
 
