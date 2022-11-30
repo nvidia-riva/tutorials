@@ -97,7 +97,7 @@ def create_manifest(data: List[tuple], output_name: str, manifest_path: str, dat
                                 'text_original': row['text_original'],
                                 "age": row['age'],
                                 "gender": row['gender'],
-                                "accent": row['accent'],
+                                "accent": row['accent'], #change the latter to row['accents']
                                 "data_type": data_type}) + '\n'
                 )
             else:
@@ -166,7 +166,7 @@ def process_files(csv_file, data_out, data_temp, num_workers):
         row['path'] = output_wav_path
         row['gender'] = row['gender']
         row['age'] = row['age']
-        row['accent'] = row['accent']
+        row['accent'] = row['accent'] #change the latter to row['accents']
         row['text_original'] = row['sentence'].lower().strip()
         return row
 
