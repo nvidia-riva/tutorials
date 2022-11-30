@@ -56,13 +56,13 @@ Text normalization converts text from written form into its verbalized form. It 
 
 We've developed text normalization script for Hindi language which performs:
 
-* Filtering of the character set - many characters (more than 50%) do not belong to the Hindi alphabet set. 
+* Filtering of the character set - many characters (more than 50%) do not belong to the Hindi alphabet set.
 * Convert numbers to their text counterparts - "200" is converted to "दो सौ"
 * Transliteration - English to Hindi
 
 Dataset ingestion scripts convert various datasets into the standard manifest format expected by NeMo. Next, we build a text tokenizer.
 
-**Tokenizer**: There are two popular encoding choices: character encoding and sub-word encoding. Sub-word encoding models are almost nearly identical to the character encoding models. The primary difference lies in the fact that a sub-word encoding model accepts a sub-word tokenized text corpus and emits sub-word tokens in its decoding step. 
+**Tokenizer**: There are two popular encoding choices: character encoding and sub-word encoding. Sub-word encoding models are almost nearly identical to the character encoding models. The primary difference lies in the fact that a sub-word encoding model accepts a sub-word tokenized text corpus and emits sub-word tokens in its decoding step.
 Preparation of the tokenizer is made simple by the [process_asr_text_tokenizer.py script](https://github.com/NVIDIA/NeMo/blob/main/scripts/tokenizers/process_asr_text_tokenizer.py) in NeMo. We leverage this script to build the text corpus from the manifest directly, then create a tokenizer using that corpus.
 
 ### 2.2. Data cleaning and filtering
@@ -75,7 +75,7 @@ This step is to filter outlying samples in the datasets. The data cleaning and f
 
 ### 2.3. Train and Test splitting
 
-This step is a staple of any deep learning and machine learning development pipeline to ensure that the model is learning to generalize without overfitting the training data. We used a 90:10 ratio for train and test split. 
+This step is a staple of any deep learning and machine learning development pipeline to ensure that the model is learning to generalize without overfitting the training data. We used a 90:10 ratio for train and test split.
 
 ### 2.4. Tarring
 
@@ -105,13 +105,13 @@ We started the training of the Hindi Conformer-CTC medium model from a [NeMo En 
 
 While training the previous models, Conformer-Medium converged the best. Conformer-Large also converged but started to overfit after 100k steps. Unfortunately, Citrinet-1024 didn't converge in our experiments.
 
-![png](images/transfer-learning.png)
+![png](images/Hindi-transfer-learning.png)
 
 **Training script**:\
 We leveraged the NeMo training [scripts](https://github.com/NVIDIA/NeMo/blob/v1.7.2/examples/asr/speech_to_text_eval.py). Feel free to check-out the configuration files for [Citrinet](https://github.com/NVIDIA/NeMo/blob/v1.7.2/examples/asr/conf/citrinet/citrinet_1024.yaml) and [Conformer](https://github.com/NVIDIA/NeMo/blob/v1.7.2/examples/asr/conf/conformer/conformer_ctc_bpe.yaml).
 
 **Hyper-parameter setting**:\
-For model fine-tuning, we employed an Adam optimizer with learning rate 5.0 and spec augmentation time 5.0. 
+For model fine-tuning, we employed an Adam optimizer with learning rate 5.0 and spec augmentation time 5.0.
 
 **Training environment**: We trained the models on a GPU cluster comprising of 8 x A100 40 GB GPUs.
 
@@ -151,7 +151,7 @@ Given the final `.nemo` models that you have trained upon completing the previou
 
 - Download RIVA Quickstart scripts (see [instructions](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/quick-start-guide.html#local-deployment-using-quick-start-scripts)) – it provides `nemo2riva` conversion tool, and scripts (`riva_init.sh`, `riva_start.sh` and `riva_start_client.sh`) to download the `servicemaker`, `riva-speech-server` and `riva-speech-client` Docker images.
 
-- Build `.riva` assets: using `nemo2riva` command in the `servicemaker` container. 
+- Build `.riva` assets: using `nemo2riva` command in the `servicemaker` container.
 
 - Build `RMIR` assets: use the `riva-build` tool in the `servicemaker` container. See examples of build commands for different models and for offline and online ASR pipelines in the [Riva build documentation page](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html).
 
@@ -165,7 +165,7 @@ After the server successfully starts up, you can query the service, measuring ac
 
 All Riva Hindi assets are published on NGC (including `.nemo`, `.riva`, `.tlt` and `.rmir` assets). You can use these models as starting points for your development.
 
-**Acoustic models** - 
+**Acoustic models** -
 
 * Conformer-Medium ASR Hindi:
     * [NeMo version (`.nemo` format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_hi_conformer_ctc_medium)
