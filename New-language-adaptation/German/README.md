@@ -205,8 +205,3 @@ All Riva German assets are published on NGC (including `.nemo`, `.riva`, `.tlt` 
 In this tutorial, we have guided you through the steps that are needed to realize the Riva German ASR service, from raw data to a ready-to-use service.
 
 You can follow the same process to setup a whole new German ASR service using your own data, or use the resources herein to fine-tune parts of the pipeline with your own model and data.
-
-
-```python
-
-```
