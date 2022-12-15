@@ -163,7 +163,7 @@ After the server successfully starts up, you can query the service, measuring ac
 
 ### Riva pretrained Hindi models on NGC
 
-All Riva Hindi assets are published on NGC (including `.nemo`, `.riva`, `.tlt` and `.rmir` assets). You can use these models as starting points for your development.
+All Riva Hindi assets are published on NGC (including `.nemo`, `.riva` and `.rmir` assets). You can use these models as starting points for your development.
 
 **Acoustic models** - 
 

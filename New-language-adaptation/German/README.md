@@ -181,17 +181,15 @@ After the server successfully starts up, you can query the service, measuring ac
 
 ### Riva pretrained German models on NGC
 
-All Riva German assets are published on NGC (including `.nemo`, `.riva`, `.tlt` and `.rmir` assets). You can use these models as starting points for your development.
+All Riva German assets are published on NGC (including `.nemo`, `.riva` and `.rmir` assets). You can use these models as starting points for your development.
 
 **Acoustic models**:
 
 - Citrinet ASR German: 
     - [Riva deployable version (.riva format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_de_de_citrinet/files?version=deployable_v2.0)
-    - [Tao trainable version (.tlt format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_de_de_citrinet/files?version=trainable_v2.0)
     - [Nemo version (.nemo format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_de_citrinet_1024)
 - Conformer ASR German
     - [Riva deployable version (.riva format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_de_de_conformer/files?version=deployable_v2.0)
-    - [Tao trainable version (.tlt format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_de_de_conformer/files?version=trainable_v2.0)
     - [Nemo version (.nemo format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_de_conformer_ctc_large)
     
 **Inverse text normalization models**: This model is an [OpenFST finite state archive (.far)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/inverse_normalization_de_de) for use within the opensource Sparrowhawk normalization engine and Riva.    
