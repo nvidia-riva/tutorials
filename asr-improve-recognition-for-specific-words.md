@@ -1,4 +1,4 @@
-<img src="http://developer.download.nvidia.com/notebooks/dlsw-notebooks/riva_asr_asr-how-to-improve-recognition-for-specific-words/nvidia_logo.png" style="width: 90px; float: right;">
+<img src="http://developer.download.nvidia.com/notebooks/dlsw-notebooks/rivaasrasr-improve-recognition-for-specific-words/nvidia_logo.png" style="width: 90px; float: right;">
 
 # How to Improve Recognition of Specific Words
 
