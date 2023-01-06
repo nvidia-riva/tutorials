@@ -66,7 +66,7 @@ There are two decoders supported in Riva.
 
 For the default Flashlight decoder, there are two ways to expand the decoder vocabulary:
 - At Riva build time: When building a custom model. Passing the extended vocabulary file to the `--decoding_vocab=<vocabulary_file>` parameter of the `riva-build` command.
-Out of the box vocabulary files  for Riva languages can be found on NGC, for example, for English, the vocabulary file named `flashlight_decoder_vocab.txt` can be found at this [link](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_en_us_lm/files?version=deployable_v1.1).
+Out of the box vocabulary files for Riva languages can be found on NGC, for example, for English, the vocabulary file named `flashlight_decoder_vocab.txt` can be found at this [link](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_en_us_lm/files?version=deployable_v4.1).
 
 - After deployment: For a production Riva system, the lexicon file can be modified, extended and will take effect after a server restart. See the next section. 
 
@@ -104,7 +104,7 @@ In case of smaller datasets, such as ~10 hours, appropriate precautions should b
 
 If fine-tuning is completed on a small dataset, mix it with other larger datasets (“base”).  For English for example, Nemo has a list of [public datasets](https://github.com/NVIDIA/NeMo/blob/main/docs/source/asr/datasets.rst) that it can be mixed with.
 
-If using NeMo to fine-tune ASR models, refer to this Nemo [tutorial](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/resources/punctuationcapitalization_notebook). 
+If using NeMo to fine-tune ASR models, refer to this Nemo [tutorial](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/resources/punctuationcapitalization_notebook) (https://github.com/NVIDIA/NeMo/blob/stable/tutorials/nlp/Punctuation_and_Capitalization.ipynb). 
 
 ### Data quality and augmentation
 
