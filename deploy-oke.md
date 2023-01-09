@@ -18,7 +18,7 @@ Before continuing, ensure you have:
 - The [OCI command-line tool](https://docs.oracle.com/en-us/iaas/Content/API/SDKDocs/cliinstall.htm#Quickstart), configured for your account
 - Access to [NGC](https://ngc.nvidia.com/signin) and the associated [command-line](https://ngc.nvidia.com/setup/installers/cli) interface
 - Cluster management tools [`helm`](https://helm.sh/docs/intro/install/) and [`kubectl`](https://kubernetes.io/docs/tasks/tools/)
-- An [`API Signing Key Pair`](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm#two) to enable an ssh connection to the Kubernetes worker nodes
+- An [API Signing Key Pair](https://docs.oracle.com/en-us/iaas/Content/API/Concepts/apisigningkey.htm#two) to enable an ssh connection to the Kubernetes worker nodes
 
 ## Creating the OKE Cluster
 
@@ -35,7 +35,7 @@ After selecting the *Quick create* option, you can customize the cluster shape, 
 > **Note**
 >  You may want to increase the boot volume for each node or the Riva pods will not start up. For this example we increased it to 500 GB. You can specify this during cluster creation.
 
-Since we are using the *Quick create* option, we can only choose the shape for one node pool initially. A node pool is a group of nodes within a cluster that all have the same configuration. You will be able to [`add more node pools`](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengscalingclusters.htm) once you create the cluster. After reviewing the resources, click ‘Create cluster.’ It’ll take around 15 min for the cluster creation to complete.
+Since we are using the *Quick create* option, we can only choose the shape for one node pool initially. A node pool is a group of nodes within a cluster that all have the same configuration. You will be able to [add more node pools](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengscalingclusters.htm) once you create the cluster. After reviewing the resources, click ‘Create cluster.’ It’ll take around 15 min for the cluster creation to complete.
 
 > **Note**
 >  For testing purposes the worker nodes in this example were created as ‘Public workers’ to `ssh` into the nodes easily. The shape of the worker nodes tested in this example included 2 GPU Nodes of shape `VM.GPU3.1`
@@ -245,7 +245,7 @@ Riva provides a container with a set of pre-built sample clients to test the Riv
 
 As deployed above, the OKE cluster only provisions a single GPU node, although the given configuration permits up to 8 nodes. While a single GPU can handle a [large volume of requests](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-performance.html), the cluster can easily be scaled with more nodes.
 
-1. Scale the GPU nodegroup to the desired number of compute nodes (4 in this case) through the [`Console`](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengscalingnodepools.htm#contengscalingnodepools)
+1. Scale the GPU nodegroup to the desired number of compute nodes (4 in this case) through the [Console](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengscalingnodepools.htm#contengscalingnodepools)
 
 2. Scale the `riva-api` deployment to use the additional nodes.
     ```bash
