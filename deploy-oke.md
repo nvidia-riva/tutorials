@@ -22,13 +22,9 @@ Before continuing, ensure you have:
 
 ## Creating the OKE Cluster
 
-Navigate and sign in to the [OCI webpage](https://www.oracle.com/cloud/). Go to the hamburger menu on the top left. Under the Developer Services tab, navigate to Kubernetes Clusters (OKE)
-
-<!-- <img src="imgs/oke_menu.png" style="width: 70%;"> -->
+Navigate and sign in to the [OCI webpage](https://www.oracle.com/cloud/). Go to the hamburger menu on the top left. Under the Developer Services tab, navigate to Kubernetes Clusters (OKE).
 
 On the left hand side make sure you are in the compartment with the approriate privileges. Click ‘Create cluster’ to start the cluster creation. There will be two options for creating a Kubernetes Cluster: *Quick create* or *Custom create*. To make this tutorial as simple as possible, we will be using the *Quick create* option.
-
-<!-- <img src="imgs/oke_create_options.png" style="width: 50%;"> -->
 
 After selecting the *Quick create* option, you can customize the cluster shape, number of nodes, etc. 
 
@@ -47,7 +43,7 @@ The ideal cluster configuration for this example includes:
 
 To access the cluster locally, navigate to the OKE page and click on the cluster name. From there press 'Access Cluster' and then 'Local Access'. From there you can follow the prompts to get local access to the cluster.
 
-You can verify the cluster creation on the OCI Console by navigating to ‘Kubernetes Clusters (OKE)’ under ‘Developer Services’. You will see your cluster name on the webpage. You can go to the 'Instances' section, to see your worker node instances
+You can verify the cluster creation on the OCI Console by navigating to ‘Kubernetes Clusters (OKE)’ under ‘Developer Services’. You will see your cluster name on the webpage. You can go to the 'Instances' section, to see your worker node instances.
 
 Verify that the nodes now appear in Kubernetes. If so, the cluster was successfully created and you can access the cluster locally.
 
@@ -66,14 +62,14 @@ Verify that the nodes now appear in Kubernetes. If so, the cluster was successfu
       sudo systemctl restart kubelet
     ```
 
-- To `ssh` into a worker node, you will need the private key you downloaded when you created an API Signing Key Pair. You can `ssh` into each worker node by using the IP address and hostname. You can find the IP Address and hostname by going to the Console and clicking on each instance you want to access
+- To `ssh` into a worker node, you will need the private key you downloaded when you created an API Signing Key Pair. You can `ssh` into each worker node by using the IP address and hostname. You can find the IP Address and hostname by going to the Console and clicking on each instance you want to access.
 
   ```bash
     chmod 600 private_key.key
     ssh -i private_key.key opc@ip_address
   ```
 
-- When accessing the cluster for the first time, any GPU nodes that you create will be tainted by default to make sure that pods are not scheduled onto inappropriate nodes (non-gpu loads should not be scheduled on gpu nodes). With a node taint, no pod will be able to schedule onto that node unless you either remove the taint or add a matching toleration
+- When accessing the cluster for the first time, any GPU nodes that you create will be tainted by default to make sure that pods are not scheduled onto inappropriate nodes (non-gpu loads should not be scheduled on gpu nodes). With a node taint, no pod will be able to schedule onto that node unless you either remove the taint or add a matching toleration.
 
   To remove the taint:
 
@@ -124,6 +120,7 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
     ```
 
 5. The Helm chart runs two containers in order: a `riva-model-init` container that downloads and deploys the models, followed by a `riva-speech-api` container to start the speech service API. Depending on the number of models, the initial model deployment could take an hour or more. To monitor the deployment, use `kubectl` to describe the `riva-api` pod and to watch the container logs.
+
     ```bash
     export pod=`kubectl get pods | cut -d " " -f 1 | grep riva-api`
     kubectl describe pod $pod
