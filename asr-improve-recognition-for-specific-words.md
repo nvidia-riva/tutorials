@@ -84,7 +84,7 @@ See the [notebook on lexicon mapping](asr-python-advanced-customize-vocabulary-a
 
 
 ## 4. Retrain language model
-A language model (LM) estimates the likelihood of observing a text sequence in the text corpus it is trained on. Introducing a new language model to an existing ASR pipeline is another approach to improve accuracy for niche settings. Riva supports n-gram language models trained and exported from either NVIDIA NeMo or KenLM. See Riva [documentation](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html#training-language-models) for details.
+A language model (LM) estimates the likelihood of observing a text sequence in the text corpus it is trained on. Introducing a new language model to an existing ASR pipeline is another approach to improve accuracy for niche settings. Riva supports n-gram language models trained and exported from either NVIDIA NeMo or KenLM. For more information, refer to the [Riva documentation](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html#training-language-models).
 
 An n-gram language model estimates the probability distribution over groups of n or less consecutive words. By altering or biasing the data on which a language model is trained on, and thus the distribution it is estimating, it can be used to predict different transcriptions as more likely, and thus alter the prediction without changing the acoustic model. A language model must be used in conjunction with an advanced decoder, like Flashlight, which inspects multiple hypotheses and use the language model score in conjunction with the acoustic model score to weight these hypotheses.
 
