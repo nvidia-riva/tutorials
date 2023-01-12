@@ -20,7 +20,7 @@ All stages except for the last "Riva deployment" are carried out in the [NeMo](h
 There is an extended [example](https://github.com/andrusenkoau/NeMo/blob/esperanto_example_v1/docs/source/asr/examples/esperanto_asr/esperanto_asr.rst)
 for obtaining an Esperanto ASR model (Conformer-CTC) from scratch in NeMo. We recommend use this example for first two stages of The Riva new language workflow.
 
-## 3. Riva deployment
+## Riva deployment
 
 With all the models trained, now it's the time to deploy the Riva service.
 
