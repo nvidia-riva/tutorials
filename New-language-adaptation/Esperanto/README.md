@@ -8,21 +8,19 @@ This tutorial walks you through the step-by-step, end-to-end process that NVIDIA
 
 The below diagram provides a high-level overview of the end-to-end engineering workflow required to realize the Riva Esperanto ASR service.
 
-![png](./imgs/Esperanto-workflow.png)
+![png](./Esperanto-workflow.png)
 
-The Riva new language workflow is divided into 5 major stages:
-- Data collection
+The Riva new language workflow is divided into 3 major stages:
 - Data preparation
 - Training and validation
-- Model testing
 - Riva deployment
 
 All stages except for the last "Riva deployment" are carried out in the [NeMo](https://github.com/NVIDIA/NeMo) toolkit.
 
 The is an extended [example](https://github.com/andrusenkoau/NeMo/blob/esperanto_example_v1/docs/source/asr/examples/esperanto_asr/esperanto_asr.rst)
-for obtaining an Esperanto ASR model (Conformer-CTC) from scratch in NeMo. We recomend use this example for first four stages of The Riva new language workflow.
+for obtaining an Esperanto ASR model (Conformer-CTC) from scratch in NeMo. We recommend use this example for first two stages of The Riva new language workflow.
 
-## 5. Riva deployment
+## 3. Riva deployment
 
 With all the models trained, now it's the time to deploy the Riva service.
 
@@ -43,7 +41,7 @@ Given the final `.nemo` models that you have trained upon completing the previou
 After the server successfully starts up, you can query the service, measuring accuracy, latency and throughput.
 
 
-### Riva pretrained German models on NGC
+### Riva pretrained Esperanto model on NGC
 
 You can use the NGC pretrained Esperanto model as starting point for your development.
 
