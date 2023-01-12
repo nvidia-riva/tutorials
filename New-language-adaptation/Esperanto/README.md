@@ -41,14 +41,13 @@ Given the final `.nemo` models that you have trained upon completing the previou
 After the server successfully starts up, you can query the service, measuring accuracy, latency and throughput.
 
 
-### Riva pretrained Esperanto model on NGC
+### NeMo pretrained Esperanto model on NGC
 
 You can use the NGC pretrained Esperanto model as starting point for your development.
 
 **Acoustic model**:
 
-- Conformer-CTC ASR Esperanto
-    - [Nemo version (.nemo format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_eo_conformer_ctc_large)
+- Conformer-CTC ASR Esperanto [NeMo version (.nemo format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_eo_conformer_ctc_large)
 
 # Conclusion
 
