@@ -24,7 +24,7 @@ for obtaining an Esperanto ASR model (Conformer-CTC) from scratch in NeMo. We re
 
 With all the models trained, now it's the time to deploy the Riva service.
 
-### BYO Esperanto model
+### Esperanto model
 
 Given the final `.nemo` models that you have trained upon completing the previous training step, here are the steps that need to be done to deploy on Riva:
 
