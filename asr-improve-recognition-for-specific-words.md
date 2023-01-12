@@ -1,4 +1,4 @@
-<img src="http://developer.download.nvidia.com/notebooks/dlsw-notebooks/riva_asr_asr-how-to-improve-recognition-for-specific-words/nvidia_logo.png" style="width: 90px; float: right;">
+<img src="http://developer.download.nvidia.com/notebooks/dlsw-notebooks/rivaasrasr-improve-recognition-for-specific-words/nvidia_logo.png" style="width: 90px; float: right;">
 
 # How to Improve Recognition of Specific Words
 
@@ -22,11 +22,11 @@ To improve the recognition of specific words, use the following customizations. 
 
 |              Techniques              |    Difficulty   |                                                  What it does                                                  |                                         When to use                                        |       How to use       |
 |:------------------------------------:|:---------------:|:--------------------------------------------------------------------------------------------------------------:|:------------------------------------------------------------------------------------------:|:----------------------:|
-| 1. Word boosting                        | Quick and easy  | Temporarily extend the vocabulary while increasing the chance of recognition for a provided list of words.              | When you know that certain words or phrases are important.                                 | [Tutorial](asr-python-advanced-wordboosting.ipynb) |
-| 2. Custom vocabulary                    | Easy            | Permanently extend the default vocabulary to cover novel words of interest.                                             | When the default model vocabulary does not sufficiently cover the domain of interest.      | [Tutorial](asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) |
-| 3. Custom pronunciation (Lexicon mapping)                      | Easy            | Explicitly guide the decoder to map one or more pronunciations (sequences of tokens) to a specific word                                          | When you know a word can have one or several pronunciations.                            | [Tutorial](asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) |
-| 4. Retrain language model               | Moderate        | Train a new language model for the application domain to improve the recognition of domain specific terms.     | When domain text data is available.                        | [Training Tutorial](asr-python-advanced-tao-ngram-pretrain.ipynb) |
-| 5. Fine tune an existing acoustic model | Moderately hard | Fine tune an existing acoustic model using a small amount of domain data to better suit the domain. | When transcribed domain audio data is available (10h-100h), and other easier approaches fall short.   | [Citrinet - Training Tutorial](asr-python-advanced-finetune-am-citrinet-tao-finetuning.ipynb), [Citrinet - Deployment Tutorial](asr-python-advanced-finetune-am-citrinet-tao-deployment.ipynb),<br> [Jasper and Quartznet](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/resources/speechtotext_notebook) |
+| 1. Word boosting                        | Quick and easy  | Temporarily extend the vocabulary while increasing the chance of recognition for a provided list of words.              | When you know that certain words or phrases are important.                                 | [Tutorial](https://github.com/nvidia-riva/tutorials/blob/main/asr-wordboosting.ipynb) |
+| 2. Custom vocabulary                    | Easy            | Permanently extend the default vocabulary to cover novel words of interest.                                             | When the default model vocabulary does not sufficiently cover the domain of interest.      | [Tutorial](https://github.com/nvidia-riva/tutorials/blob/main/asr-customize-vocabulary-and-lexicon.ipynb) |
+| 3. Custom pronunciation (Lexicon mapping)                      | Easy            | Explicitly guide the decoder to map one or more pronunciations (sequences of tokens) to a specific word.                                          | When you know a word can have multiple pronunciations.                            | [Tutorial](https://github.com/nvidia-riva/tutorials/blob/main/asr-customize-vocabulary-and-lexicon.ipynb) |
+| 4. Retrain language model               | Moderate        | Train a new language model for the application domain to improve the recognition of domain specific terms.     | When domain text data is available.                        | [Training Tutorial]() |
+| 5. Fine-tune an existing acoustic model | Moderately hard | Fine-tune an existing acoustic model using a small amount of domain data to better suit the domain. | When transcribed domain audio data is available (10h-100h), and other easier approaches fall short.   | [Citrinet - Training Tutorial](https://github.com/nvidia-riva/tutorials/blob/main/asr-finetuning-citrinet-nemo.ipynb), [Citrinet - Deployment Tutorial](https://github.com/nvidia-riva/tutorials/blob/main/asr-deployment-citrinet.ipynb),<br> [Conformer-CTC - Training Tutorial](https://github.com/nvidia-riva/tutorials/blob/main/asr-finetuning-conformer-ctc-nemo.ipynb), [Conformer-CTC - Deployment Tutorial](https://github.com/nvidia-riva/tutorials/blob/main/asr-deployment-conformer-ctc.ipynb) |
 
 In the next section, we will give a more detailed discussions of each technique. For a how-to step-by-step guide, consult the notebooks linked in the table.
 
@@ -66,7 +66,7 @@ There are two decoders supported in Riva.
 
 For the default Flashlight decoder, there are two ways to expand the decoder vocabulary:
 - At Riva build time: When building a custom model. Passing the extended vocabulary file to the `--decoding_vocab=<vocabulary_file>` parameter of the `riva-build` command.
-Out of the box vocabulary files  for Riva languages can be found on NGC, for example, for English, the vocabulary file named `flashlight_decoder_vocab.txt` can be found at this [link](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_en_us_lm/files?version=deployable_v1.1).
+Out of the box vocabulary files for Riva languages can be found on NGC, for example, for English, the vocabulary file named `flashlight_decoder_vocab.txt` can be found at this [link](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_en_us_lm/files?version=deployable_v4.1).
 
 - After deployment: For a production Riva system, the lexicon file can be modified, extended and will take effect after a server restart. See the next section. 
 
@@ -84,16 +84,16 @@ See the [notebook on lexicon mapping](asr-python-advanced-customize-vocabulary-a
 
 
 ## 4. Retrain language model
-A language model (LM) estimates the likelihood of observing a text sequence in the text corpus it is trained on. Introducing a new language model to an existing ASR pipeline is another approach to improve accuracy for niche settings. Riva supports n-gram language models trained and exported from either NVIDIA TAO Toolkit or KenLM. See Riva [documentation](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html#training-language-models) for details.
+A language model (LM) estimates the likelihood of observing a text sequence in the text corpus it is trained on. Introducing a new language model to an existing ASR pipeline is another approach to improve accuracy for niche settings. Riva supports n-gram language models trained and exported from either NVIDIA NeMo or KenLM. For more information, refer to the [Riva documentation](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html#training-language-models).
 
 An n-gram language model estimates the probability distribution over groups of n or less consecutive words. By altering or biasing the data on which a language model is trained on, and thus the distribution it is estimating, it can be used to predict different transcriptions as more likely, and thus alter the prediction without changing the acoustic model. A language model must be used in conjunction with an advanced decoder, like Flashlight, which inspects multiple hypotheses and use the language model score in conjunction with the acoustic model score to weight these hypotheses.
 
-Note that currently TAO and Nemo only trains LM from scratch, as such, you should ensure a substantial amount of domain text is available for training. In addition, when the text belongs to a narrow, niche domain, there might be an impact to the overall ASR pipeline in recognizing general domain language, as a trade-off. Therefore, you should experiment with mixing domain text with general text for a more balanced representation.
+Note that NeMo does not currently support fine-tuning LMs, though this ability is expected to be added in the future. As such, you should ensure a substantial amount of domain text is available for training. In addition, when the text belongs to a narrow, niche domain, there might be an impact to the overall ASR pipeline in recognizing general domain language, as a trade-off. Therefore, you should experiment with mixing domain text with general text for a more balanced representation.
 
 You should limit vocabulary size if using scraped text. Many online sources contain typos or ancillary pronouns and uncommon words. Removing these can improve the language model.
 
 
-## 5. Fine tune the acoustic model
+## 5. Fine-tune the acoustic model
 
 When other easier approaches have failed to address accuracy issues in challenging situations brought about by significant acoustic factors, such as different accents, noisy environments or audio quality, fine-tuning acoustic models should be attempted.
 
@@ -102,9 +102,9 @@ We recommend fine-tuning ASR models with sufficient data approximately on the or
 ### Low-resource domain adaptation
 In case of smaller datasets, such as ~10 hours, appropriate precautions should be taken to avoid overfitting to the domain and hence sacrificing significant accuracy in the general domains, aka. “catastrophic forgetting”. In transfer learning, continual learning is a sub-problem wherein models that are trained with new domain data should still retain good performance on the original source domain.
 
-If fine-tuning is completed on a small dataset, mix it with other larger datasets (“base”).  For English for example, Nemo has a list of [public datasets](https://github.com/NVIDIA/NeMo/blob/main/docs/source/asr/datasets.rst) that it can be mixed with.
+If fine-tuning is completed on a small dataset, mix it with other larger datasets (“base”).  For English for example, NeMo has a list of [public datasets](https://github.com/NVIDIA/NeMo/blob/main/docs/source/asr/datasets.rst) that it can be mixed with.
 
-If using NeMo to fine-tune ASR models, refer to this Nemo [tutorial](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/resources/punctuationcapitalization_notebook). 
+If using NeMo to fine-tune ASR models, refer to this [tutorial](https://github.com/NVIDIA/NeMo/blob/main/tutorials/asr/ASR_CTC_Language_Finetuning.ipynb). 
 
 ### Data quality and augmentation
 
