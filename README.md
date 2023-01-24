@@ -8,10 +8,10 @@ The best way to get started with Riva is to start with the tutorials.
 
 | Domain | Tutorial | Key Words | Github URL |
 |--------|----------|-----------|------------|
-| ASR | How do I use Riva ASR APIs with out-of-the-box models? | ASR, API Basics | [Riva ASR - API Basics](asr-python-basics.ipynb) |
-| ASR | How to Improve Recognition of Specific Words | ASR, Customization | [Riva ASR - Customization Overview](asr-how-to-improve-recognition-for-specific-words.md) |
-| ASR | How do I boost specific words at runtime with word boosting? | ASR, Customization, Word Boosting | [Riva ASR - Customization - Word Boosting](asr-python-advanced-wordboosting.ipynb) |
-| ASR | How to Customize Riva ASR Vocabulary and Pronunciation with Lexicon Mapping | ASR, Customization, Custom Vocab, Lexicon Mapping | [Riva ASR - Customization - Vocab and Lexicon Mapping](asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) |
+| ASR | How do I use Riva ASR APIs with out-of-the-box models? | ASR, API Basics | [Riva ASR - API Basics](asr-basics.ipynb) |
+| ASR | How to Improve Recognition of Specific Words | ASR, Customization | [Riva ASR - Customization Overview](asr-improve-recognition-for-specific-words.md) |
+| ASR | How do I boost specific words at runtime with word boosting? | ASR, Customization, Word Boosting | [Riva ASR - Customization - Word Boosting](asr-wordboosting.ipynb) |
+| ASR | How to Customize Riva ASR Vocabulary and Pronunciation with Lexicon Mapping | ASR, Customization, Custom Vocab, Lexicon Mapping | [Riva ASR - Customization - Vocab and Lexicon Mapping](asr-customize-vocabulary-and-lexicon.ipynb) |
 | ASR | How to pretrain a Riva ASR Language Modeling (n-gram) with TAO Toolkit | ASR, Customization, Language Model pretraining, n-gram, TAO Toolkit | [Riva ASR - Customization - Language Model (n-gram) pretraining with TAO Toolkit](asr-python-advanced-tao-ngram-pretrain.ipynb) |
 | ASR | How to fine-tune a Riva ASR Acoustic Model with NVIDIA NeMo | ASR, Customization, Acoustic Model fine-tuning, NVIDIA NeMo | [Riva ASR - Customization - Acoustic Model fine-tuning with NVIDIA NeMo](asr-python-finetuning-nemo.ipynb) |
 | ASR | How to deploy custom Acoustic Model (Citrinet) trained with TAO Toolkit on Riva | ASR, Customization, Acoustic Model deployment, Citrinet | [Riva ASR - Customization - Acoustic Model (Citrinet) deployment on Riva](asr-python-advanced-finetune-am-citrinet-tao-deployment.ipynb) |
