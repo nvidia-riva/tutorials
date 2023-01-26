@@ -43,9 +43,7 @@ After the server successfully starts up, you can query the service, measuring ac
 
 ### NeMo pretrained Esperanto model on NGC
 
-You can use the NGC pretrained Esperanto model as starting point for your development.
-
-**Acoustic model**:
+You can use the NGC pretrained Esperanto model as starting point for your development:
 
 - Conformer-CTC ASR Esperanto [NeMo version (.nemo format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_eo_conformer_ctc_large)
 
