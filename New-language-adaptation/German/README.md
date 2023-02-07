@@ -186,17 +186,17 @@ All Riva German assets are published on NGC (including `.nemo`, `.riva` and `.rm
 **Acoustic models**:
 
 - Citrinet ASR German:
-    - [Riva deployable version (.riva format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_de_de_citrinet/files?version=deployable_v2.0)
+    - [Riva deployable version (.riva format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/models/speechtotext_de_de_citrinet/files?version=deployable_v2.0)
     - [Nemo version (.nemo format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_de_citrinet_1024)
 - Conformer ASR German
-    - [Riva deployable version (.riva format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_de_de_conformer/files?version=deployable_v2.0)
+    - [Riva deployable version (.riva format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/models/speechtotext_de_de_conformer/files?version=deployable_v2.0)
     - [Nemo version (.nemo format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_de_conformer_ctc_large)
 
-**Inverse text normalization models**: This model is an [OpenFST finite state archive (.far)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/inverse_normalization_de_de) for use within the opensource Sparrowhawk normalization engine and Riva.
+**Inverse text normalization models**: This model is an [OpenFST finite state archive (.far)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/models/inverse_normalization_de_de) for use within the opensource Sparrowhawk normalization engine and Riva.
 
-**Language model**:  These models are simple [4-gram language models](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_de_de_lm) trained with Kneser-Ney smoothing using KenLM. This directory also contains the decoder dictionary used by the Flashlight decoder.
+**Language model**:  These models are simple [4-gram language models](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/models/speechtotext_de_de_lm) trained with Kneser-Ney smoothing using KenLM. This directory also contains the decoder dictionary used by the Flashlight decoder.
 
-**Punctuation and capitalization model:** [Riva Punctuation and Capitalization model for German](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/punctuationcapitalization_de_de_bert_base).
+**Punctuation and capitalization model:** [Riva Punctuation and Capitalization model for German](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/models/punctuationcapitalization_de_de_bert_base).
 
 # Conclusion
 
