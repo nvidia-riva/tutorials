@@ -43,7 +43,7 @@ After the server successfully starts, query the service to measure the accuracy,
 
 ### NeMo pretrained Esperanto model on NGC
 
-You can use the NGC pretrained Esperanto model as starting point for your development:
+You can use the NGC pretrained Esperanto model as a starting point for your development:
 
 - Conformer-CTC ASR Esperanto [NeMo version (.nemo format)](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/nemo/models/stt_eo_conformer_ctc_large)
 
