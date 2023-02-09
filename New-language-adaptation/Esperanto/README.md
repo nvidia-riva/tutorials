@@ -28,7 +28,7 @@ With all the models trained, it's the time to deploy the Riva service.
 
 Now that you've completed training the `.nemo` models, perform the following steps to deploy these models on Riva:
 
-- Download RIVA Quickstart scripts (see [instructions](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/quick-start-guide.html#local-deployment-using-quick-start-scripts)) – it provides `nemo2riva` conversion tool, and scripts (`riva_init.sh`, `riva_start.sh` and `riva_start_client.sh`) to download the `servicemaker`, `riva-speech-server` and `riva-speech-client` Docker images.
+- Download the Riva Quick Start resource folder (refer to the [instructions](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/quick-start-guide.html#local-deployment-using-quick-start-scripts)), which provides a `nemo2riva` conversion tool and scripts (`riva_init.sh`, `riva_start.sh` and `riva_start_client.sh`) to download the `servicemaker`, `riva-speech-server`, and `riva-speech-client` Docker images.
 
 - Build `.riva` assets: using `nemo2riva` command in the `servicemaker` container.
 
