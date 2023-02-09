@@ -30,7 +30,7 @@ Now that you've completed training the `.nemo` models, perform the following ste
 
 - Download the Riva Quick Start resource folder (refer to the [instructions](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/quick-start-guide.html#local-deployment-using-quick-start-scripts)), which provides a `nemo2riva` conversion tool and scripts (`riva_init.sh`, `riva_start.sh` and `riva_start_client.sh`) to download the `servicemaker`, `riva-speech-server`, and `riva-speech-client` Docker images.
 
-- Build `.riva` assets: using `nemo2riva` command in the `servicemaker` container.
+- Build `.riva` assets using the `nemo2riva` command in the `servicemaker` container.
 
 - Build `.rmir` assets using the `riva-build` tool in the `servicemaker` container. For examples of build commands for different models and for offline and online ASR pipelines, refer to the [Riva build documentation page](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html).
 
