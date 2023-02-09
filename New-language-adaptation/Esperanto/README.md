@@ -22,7 +22,7 @@ for obtaining an Esperanto ASR model (Conformer-CTC) from scratch in NeMo. We re
 
 ## Riva deployment
 
-With all the models trained, now it's the time to deploy the Riva service.
+With all the models trained, it's the time to deploy the Riva service.
 
 ### Esperanto model
 
