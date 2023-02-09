@@ -10,7 +10,7 @@ The following diagram provides a high-level overview of the end-to-end engineeri
 
 ![png](./Esperanto-workflow.png)
 
-The Riva new language workflow is divided into 3 major stages:
+The Riva new language workflow is divided into three major stages:
 - Data preparation
 - Training and validation
 - Riva deployment
