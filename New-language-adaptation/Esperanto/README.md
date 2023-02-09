@@ -32,7 +32,7 @@ Now that you've completed training the `.nemo` models, perform the following ste
 
 - Build `.riva` assets: using `nemo2riva` command in the `servicemaker` container.
 
-- Build `RMIR` assets: use the `riva-build` tool in the `servicemaker` container. See examples of build commands for different models and for offline and online ASR pipelines in the [Riva build documentation page](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html).
+- Build `.rmir` assets using the `riva-build` tool in the `servicemaker` container. For examples of build commands for different models and for offline and online ASR pipelines, refer to the [Riva build documentation page](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html).
 
 - Deploy the model in `.rmir` format with `riva-deploy`.
 
