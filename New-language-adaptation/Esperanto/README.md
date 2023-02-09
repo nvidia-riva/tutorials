@@ -38,7 +38,7 @@ Now that you've completed training the `.nemo` models, perform the following ste
 
 - Start the server with `riva-start.sh`.
 
-After the server successfully starts up, you can query the service, measuring accuracy, latency and throughput.
+After the server successfully starts, query the service to measure the accuracy, latency, and throughput.
 
 
 ### NeMo pretrained Esperanto model on NGC
