@@ -18,7 +18,7 @@ The Riva new language workflow is divided into three major stages:
 Except for Riva deployment, all stages are carried out in the [NeMo toolkit](https://github.com/NVIDIA/NeMo).
 
 There is an extended [example](https://github.com/NVIDIA/NeMo/blob/main/docs/source/asr/examples/esperanto_asr/esperanto_asr.rst)
-for obtaining an Esperanto ASR model (Conformer-CTC) from scratch in NeMo. We recommend use this example for first two stages of The Riva new language workflow.
+for obtaining an Esperanto ASR model (Conformer-CTC) from scratch in NeMo. We recommend you use this example for the first two stages of the Riva new language workflow.
 
 ## Riva deployment
 
