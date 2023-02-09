@@ -1,6 +1,6 @@
 <img src="http://developer.download.nvidia.com/notebooks/dlsw-notebooks/riva_asr_new-language-adaptation-german-readme/nvidia_logo.png" style="width: 90px; float: right;">
 
-# The Making of RIVA Esperanto ASR Service
+# The Making of Riva Esperanto ASR Service
 
 This tutorial walks you through the step-by-step, end-to-end process that NVIDIA engineers and data scientists employed to develop the Riva Esperanto Automatic Speech Recognition (ASR) service, from raw transcribed audio data to a ready-to-serve Riva ASR service.
 
