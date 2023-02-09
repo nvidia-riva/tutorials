@@ -26,7 +26,7 @@ With all the models trained, it's the time to deploy the Riva service.
 
 ### Esperanto model
 
-Given the final `.nemo` models that you have trained upon completing the previous training step, here are the steps that need to be done to deploy on Riva:
+Now that you've completed training the `.nemo` models, perform the following steps to deploy these models on Riva:
 
 - Download RIVA Quickstart scripts (see [instructions](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/quick-start-guide.html#local-deployment-using-quick-start-scripts)) – it provides `nemo2riva` conversion tool, and scripts (`riva_init.sh`, `riva_start.sh` and `riva_start_client.sh`) to download the `servicemaker`, `riva-speech-server` and `riva-speech-client` Docker images.
 
