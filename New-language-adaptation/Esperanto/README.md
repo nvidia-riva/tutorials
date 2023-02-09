@@ -6,7 +6,7 @@ This tutorial walks you through step-by-step how to develop the Riva Esperanto A
 
 ## Overview
 
-The below diagram provides a high-level overview of the end-to-end engineering workflow required to realize the Riva Esperanto ASR service.
+The following diagram provides a high-level overview of the end-to-end engineering workflow required to realize the Riva Esperanto ASR service.
 
 ![png](./Esperanto-workflow.png)
 
