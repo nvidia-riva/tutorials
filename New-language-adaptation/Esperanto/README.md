@@ -2,7 +2,7 @@
 
 # The Making of Riva Esperanto ASR Service
 
-This tutorial walks you through the step-by-step, end-to-end process that NVIDIA engineers and data scientists employed to develop the Riva Esperanto Automatic Speech Recognition (ASR) service, from raw transcribed audio data to a ready-to-serve Riva ASR service.
+This tutorial walks you through step-by-step how to develop the Riva Esperanto Automatic Speech Recognition (ASR) service, from raw transcribed audio data to a ready-to-serve Riva ASR service.
 
 ## Overview
 
