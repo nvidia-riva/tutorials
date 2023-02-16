@@ -12,7 +12,7 @@ Various customization techniques can assist when out-of-the-box Riva models fall
 
 ## Overview of Riva customization techniques
 
-The following flow diagram shows the Riva speech recognition pipeline along with the possible customizations. 
+The following flow diagram shows the Riva speech recognition pipeline along with the possible customizations.
 
 Raw temporal audio signals first pass through a feature extraction block, which segments the data into blocks (say, of 80 ms each), then converts the blocks from temporal domain to frequency domain (MFCC). This data is then fed into an acoustic model, which outputs probabilities over text tokens at each time step. A decoder converts this matrix of probabilities into a sequence of text tokens, which is then `detokenized` into an actual sentence (or character sequence). An advanced decoder can also do beam search and score multiple possible hypotheses (i.e. sentences) in conjunction with a language model. The decoder output comes without punctuation and capitalization, which is the job of the Punctuation and Capitalization model. Finally, Inverse Text Normalization (ITN) rules are applied to transform the text in verbal format into a desired written format.
 
@@ -47,9 +47,9 @@ config.speech_contexts.append(speech_context)
 # Creating StreamingRecognitionConfig instance with config
 streaming_config = rasr.StreamingRecognitionConfig(config=config, interim_results=True)
 ```
-Word boosting provides a quick and temporary, on-the-spot adaptation for the model to cope with new scenarios, such as recognizing proper names and products, or domain specific terminologies. Word boosting also supports out-of-vocabulary (OOV) words, in such cases, it temporarily extends the vocabulary and provide boosting for the new words. 
+Word boosting provides a quick and temporary, on-the-spot adaptation for the model to cope with new scenarios, such as recognizing proper names and products, or domain specific terminologies. Word boosting also supports out-of-vocabulary (OOV) words, in such cases, it temporarily extends the vocabulary and provide boosting for the new words.
 
-You will have to explicitly specify the list of boosted words at every request. Other adaptation methods such as custom vocabulary and lexicon mapping provide a more permanent solution, which affects every subsequent request. 
+You will have to explicitly specify the list of boosted words at every request. Other adaptation methods such as custom vocabulary and lexicon mapping provide a more permanent solution, which affects every subsequent request.
 
 Pay attention to the followings while implementing word boosting:
 - Word boosting can improve the chance of recognition of the desired words, but at the same time can increase false positives. As such, start with a small positive weight and gradually increase till you see positive effects. As a general guide, start with a boosted score of 20 and increase up to 100 if needed.
@@ -58,17 +58,17 @@ Pay attention to the followings while implementing word boosting:
 
 
 ## 2. Custom vocabulary
-There are two decoders supported in Riva. 
+There are two decoders supported in Riva.
 
 - The greedy decoder (available during the riva-build process under the flag `--decoder_type=greedy`) is a simple decoder, that simply outputs the token with the largest probability at each time step. It is not vocabulary based and hence can produce any character sequence or word.
 
-- The Flashlight decoder, deployed by default in Riva, is a more advanced decoder, that can perform beam search. It is a lexicon-based decoder and only emits words that are present in the provided vocabulary file. That means, domain specific words that are not present in the vocabulary file will have no chance of being generated. 
+- The Flashlight decoder, deployed by default in Riva, is a more advanced decoder, that can perform beam search. It is a lexicon-based decoder and only emits words that are present in the provided vocabulary file. That means, domain specific words that are not present in the vocabulary file will have no chance of being generated.
 
 For the default Flashlight decoder, there are two ways to expand the decoder vocabulary:
 - At Riva build time: When building a custom model. Passing the extended vocabulary file to the `--decoding_vocab=<vocabulary_file>` parameter of the `riva-build` command.
-Out of the box vocabulary files for Riva languages can be found on NGC, for example, for English, the vocabulary file named `flashlight_decoder_vocab.txt` can be found at this [link](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/tao/models/speechtotext_en_us_lm/files?version=deployable_v4.1).
+Out of the box vocabulary files for Riva languages can be found on NGC, for example, for English, the vocabulary file named `flashlight_decoder_vocab.txt` can be found at this [link](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/models/speechtotext_en_us_lm/files).
 
-- After deployment: For a production Riva system, the lexicon file can be modified, extended and will take effect after a server restart. See the next section. 
+- After deployment: For a production Riva system, the lexicon file can be modified, extended and will take effect after a server restart. See the next section.
 
 
 
@@ -104,7 +104,7 @@ In case of smaller datasets, such as ~10 hours, appropriate precautions should b
 
 If fine-tuning is completed on a small dataset, mix it with other larger datasets (“base”).  For English for example, NeMo has a list of [public datasets](https://github.com/NVIDIA/NeMo/blob/main/docs/source/asr/datasets.rst) that it can be mixed with.
 
-If using NeMo to fine-tune ASR models, refer to this [tutorial](https://github.com/NVIDIA/NeMo/blob/main/tutorials/asr/ASR_CTC_Language_Finetuning.ipynb). 
+If using NeMo to fine-tune ASR models, refer to this [tutorial](https://github.com/NVIDIA/NeMo/blob/main/tutorials/asr/ASR_CTC_Language_Finetuning.ipynb).
 
 ### Data quality and augmentation
 
