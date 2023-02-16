@@ -24,22 +24,25 @@ Before continuing, ensure you have:
 
 Navigate and sign in to the [OCI webpage](https://www.oracle.com/cloud/). Go to the hamburger menu on the top left. Under the Developer Services tab, navigate to Kubernetes Clusters (OKE).
 
-On the left hand side make sure you are in the compartment with the approriate privileges. Click ‘Create cluster’ to start the cluster creation. There will be two options for creating a Kubernetes Cluster: *Quick create* or *Custom create*. To make this tutorial as simple as possible, we will be using the *Quick create* option.
+On the left hand side make sure you are in the compartment with the appropriate privileges. Click ‘Create cluster’ to start the cluster creation. There will be two options for creating a Kubernetes Cluster: *Quick create* or *Custom create*. To make this tutorial as simple as possible, we will be using the *Quick create* option.
 
 After selecting the *Quick create* option, you can customize the cluster shape, number of nodes, etc. 
 
 > **Note**
->  You may want to increase the boot volume for each node or the Riva pods will not start up. For this example we increased it to 500 GB. You can specify this during cluster creation.
-
-Since we are using the *Quick create* option, we can only choose the shape for one node pool initially. A node pool is a group of nodes within a cluster that all have the same configuration. You will be able to [add more node pools](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengscalingclusters.htm) once you create the cluster. After reviewing the resources, click ‘Create cluster.’ It’ll take around 15 min for the cluster creation to complete.
+>  You may want to increase the boot volume for each node or the Riva pods will not start up. For this example we increased it to 500 GB. You can specify this during cluster creation by clicking ‘Show advanced options’, checking the ‘Specify a custom boot volume size’, and typing in your desired boot volume size.
 
 > **Note**
->  For testing purposes the worker nodes in this example were created as ‘Public workers’ to `ssh` into the nodes easily. The shape of the worker nodes tested in this example included 2 GPU Nodes of shape `VM.GPU3.1`
+>  For testing purposes the worker nodes in this example were created as ‘Public workers’ to `ssh` into the nodes easily. The shape of the worker nodes tested in this example included 2 GPU Nodes of shape `VM.GPU3.1`.
 
 The ideal cluster configuration for this example includes: 
 - A GPU-equipped node where the main Riva service will run. 
 - A general-purpose compute node for the Traefik load balancer.
 - Another general-purpose node for client applications accessing the Riva service. 
+
+Since we are using the *Quick create* option, we can only choose the shape for one node pool initially. A node pool is a group of nodes within a cluster that all have the same configuration. You will be able to [add more node pools](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengscalingclusters.htm) once you create the cluster. After reviewing the resources, click ‘Create cluster.’ It’ll take around 15 min for the cluster creation to complete.
+
+> **Note**
+>  Once you click the ‘Create cluster’ button, it may say that the cluster is active, but it won't actually be ready until the node pool status is active..
 
 To access the cluster locally, navigate to the OKE page and click on the cluster name. From there press 'Access Cluster' and then 'Local Access'. From there you can follow the prompts to get local access to the cluster.
 
@@ -69,7 +72,7 @@ Verify that the nodes now appear in Kubernetes. If so, the cluster was successfu
     ssh -i private_key.key opc@ip_address
   ```
 
-- When accessing the cluster for the first time, any GPU nodes that you create will be tainted by default to make sure that pods are not scheduled onto inappropriate nodes (non-gpu loads should not be scheduled on gpu nodes). With a node taint, no pod will be able to schedule onto that node unless you either remove the taint or add a matching toleration.
+- When accessing the cluster for the first time, any GPU nodes that you create will be tainted by default to make sure that pods are not scheduled onto inappropriate nodes (non-gpu loads should not be scheduled on gpu nodes). With a node taint, no pod will be able to schedule onto that node unless you either remove the taint or add a matching toleration. If you run `kubectl get pods -A ` and see that the CoreDNS pod is not running, this is usually due to a taint on the node.
 
   To remove the taint:
 
@@ -148,9 +151,6 @@ In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was se
 
     Change `service.type` from `LoadBalancer` to `ClusterIP`. This exposes the service on a cluster-internal IP.
 
-    <!-- 2. Set `nodeSelector` to `{ eks.amazonaws.com/nodegroup: cpu-linux-lb }`. Similar to what you did for the Riva API service,
-    this tells the Traefik service to run on the `cpu-linux-lb` nodegroup. -->
-
 3.  Deploy the modified `traefik` Helm chart.
     ```bash
     helm install traefik traefik/
@@ -193,7 +193,7 @@ The Riva service is now able to serve gRPC requests from within the cluster at t
 
 Riva provides a container with a set of pre-built sample clients to test the Riva services. The [clients](https://github.com/nvidia-riva/cpp-clients) are also available on GitHub for those interested in adapting them.
 
-1.  Create the `client-deployment.yaml` file that defines the deployment and contains the following:
+1.  Create the `client-deployment.yaml` file that defines the deployment. For the image path, check out [NGC](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/containers/riva-speech-client) for the latest tag:
     ```yaml
     apiVersion: apps/v1
     kind: Deployment
