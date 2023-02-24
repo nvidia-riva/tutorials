@@ -16,7 +16,7 @@ The following flow diagram shows the Riva speech recognition pipeline along with
 
 Raw temporal audio signals first pass through a feature extraction block, which segments the data into blocks (say, of 80 ms each), then converts the blocks from temporal domain to frequency domain (MFCC). This data is then fed into an acoustic model, which outputs probabilities over text tokens at each time step. A decoder converts this matrix of probabilities into a sequence of text tokens, which is then `detokenized` into an actual sentence (or character sequence). An advanced decoder can also do beam search and score multiple possible hypotheses (i.e. sentences) in conjunction with a language model. The decoder output comes without punctuation and capitalization, which is the job of the Punctuation and Capitalization model. Finally, Inverse Text Normalization (ITN) rules are applied to transform the text in verbal format into a desired written format.
 
-![alt text](./imgs/Riva-customizations.PNG "Title")
+![alt text](https://github.com/nvidia-riva/tutorials/blob/main/imgs/Riva-customizations.PNG "Title")
 
 To improve the recognition of specific words, use the following customizations. These customizations are listed in increasing order of difficulty and efforts:
 
@@ -26,7 +26,7 @@ To improve the recognition of specific words, use the following customizations. 
 | 2. Custom vocabulary                    | Easy            | Permanently extend the default vocabulary to cover novel words of interest.                                             | When the default model vocabulary does not sufficiently cover the domain of interest.      | [Tutorial](https://github.com/nvidia-riva/tutorials/blob/main/asr-customize-vocabulary-and-lexicon.ipynb) |
 | 3. Custom pronunciation (Lexicon mapping)                      | Easy            | Explicitly guide the decoder to map one or more pronunciations (sequences of tokens) to a specific word.                                          | When you know a word can have multiple pronunciations.                            | [Tutorial](https://github.com/nvidia-riva/tutorials/blob/main/asr-customize-vocabulary-and-lexicon.ipynb) |
 | 4. Retrain language model               | Moderate        | Train a new language model for the application domain to improve the recognition of domain specific terms.     | When domain text data is available.                        | [Training Tutorial]() |
-| 5. Fine-tune an existing acoustic model | Moderately hard | Fine-tune an existing acoustic model using a small amount of domain data to better suit the domain. | When transcribed domain audio data is available (10h-100h), and other easier approaches fall short.   | [Citrinet - Training Tutorial](https://github.com/nvidia-riva/tutorials/blob/main/asr-finetuning-citrinet-nemo.ipynb), [Citrinet - Deployment Tutorial](https://github.com/nvidia-riva/tutorials/blob/main/asr-deployment-citrinet.ipynb),<br> [Conformer-CTC - Training Tutorial](https://github.com/nvidia-riva/tutorials/blob/main/asr-finetuning-conformer-ctc-nemo.ipynb), [Conformer-CTC - Deployment Tutorial](https://github.com/nvidia-riva/tutorials/blob/main/asr-deployment-conformer-ctc.ipynb) |
+| 5. Fine-tune an existing acoustic model | Moderately hard | Fine-tune an existing acoustic model using a small amount of domain data to better suit the domain. | When transcribed domain audio data is available (10h-100h), and other easier approaches fall short.   | [Conformer-CTC - Fine-Tuning Tutorial](https://github.com/nvidia-riva/tutorials/blob/main/asr-finetune-conformer-ctc-nemo.ipynb), [Conformer-CTC - Deployment Tutorial](https://github.com/nvidia-riva/tutorials/blob/main/asr-deploy-conformer-ctc.ipynb) |
 
 In the next section, we will give a more detailed discussions of each technique. For a how-to step-by-step guide, consult the notebooks linked in the table.
 
@@ -80,7 +80,7 @@ Modifying the lexicon file serves two purposes:
 - Extend the vocabulary.
 - Provide one or more explicit custom pronunciations for a specific word.
 
-See the [notebook on lexicon mapping](asr-python-advanced-customize-vocabulary-and-lexicon.ipynb) for a step-by-step procedure and case studies.
+See the [notebook on lexicon mapping](https://github.com/nvidia-riva/tutorials/blob/main/asr-customize-vocabulary-and-lexicon.ipynb) for a step-by-step procedure and case studies.
 
 
 ## 4. Retrain language model
