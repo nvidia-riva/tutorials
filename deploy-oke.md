@@ -58,6 +58,14 @@ Verify that the nodes now appear in Kubernetes. If so, the cluster was successfu
 
 ### Tips
 
+- To `ssh` into a worker node, you will need the private key you downloaded when you created an API Signing Key Pair. You can `ssh` into each worker node by using the IP address and hostname. You can find the IP Address and hostname by going to the Console and clicking on each instance you want to access.
+
+  ```bash
+    chmod 600 private_key.key
+    ssh -i private_key.key opc@ip_address
+  ```
+
+
 -  If a compute instance is created with a boot volume that is greater than or equal to 50 GB, the instance does not automatically use the entire volume. Use the `oci-growfs` utility to expand the root partition to fully utilize the allocated boot volume size. You'll want to ssh into each worker node and run the following commands:
 
     ```bash
@@ -65,12 +73,7 @@ Verify that the nodes now appear in Kubernetes. If so, the cluster was successfu
       sudo systemctl restart kubelet
     ```
 
-- To `ssh` into a worker node, you will need the private key you downloaded when you created an API Signing Key Pair. You can `ssh` into each worker node by using the IP address and hostname. You can find the IP Address and hostname by going to the Console and clicking on each instance you want to access.
-
-  ```bash
-    chmod 600 private_key.key
-    ssh -i private_key.key opc@ip_address
-  ```
+    If you are seeing an 'Unable to expand /dev/sda3', go to the OCI console and click hamburger menu on the top left. Under the Storage tab, navigate to 'Block Storage' and click on 'Boot Volumes' on the left hand column. From here you can click on each boot volume associated with a worker node and click 'Edit'. Change the volume size in the window that just opened and click Save Changes. A message will pop up with rescan commands. You will need to ssh into each worker node and input the rescan commands given. From there you can run the `oci-growfs` commands above.
 
 - When accessing the cluster for the first time, any GPU nodes that you create will be tainted by default to make sure that pods are not scheduled onto inappropriate nodes (non-gpu loads should not be scheduled on gpu nodes). With a node taint, no pod will be able to schedule onto that node unless you either remove the taint or add a matching toleration. If you run `kubectl get pods -A ` and see that the CoreDNS pod is not running, this is usually due to a taint on the node.
 
@@ -111,6 +114,18 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
         * In `modelRepoGenerator.ngcModelConfigs.[asr,nlp,tts]`, comment or uncomment specific models or languages as needed.
         * Change `service.type` from `LoadBalancer` to `ClusterIP`. This directly exposes the service only to other services within the cluster, such as the proxy service to be installed below.
     
+3. Enable the cluster to run containers needing NVIDIA GPUs using the nvidia device plugin:
+
+    ```bash
+    helm repo add nvdp https://nvidia.github.io/k8s-device-plugin
+    helm repo update
+    helm install \
+        --namespace nvidia-device-plugin \
+        --create-namespace nvidia-device-plugin \
+        --set failOnInitError=false \
+        nvdp/nvidia-device-plugin
+    ```
+
 4. Ensure you are in a working directory with `riva-api` as a subdirectory, then install the Riva Helm chart. You can explicitly override variables from the `values.yaml` file, such as the `riva.speechServices.[asr,nlp,tts]` settings.
 
     ```bash
