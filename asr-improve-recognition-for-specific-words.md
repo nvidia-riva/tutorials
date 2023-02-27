@@ -80,7 +80,7 @@ Modifying the lexicon file serves two purposes:
 - Extend the vocabulary.
 - Provide one or more explicit custom pronunciations for a specific word.
 
-See the [notebook on lexicon mapping](https://github.com/nvidia-riva/tutorials/blob/main/asr-customize-vocabulary-and-lexicon.ipynb) for a step-by-step procedure and case studies.
+Refer to the [tutorial on lexicon mapping](https://github.com/nvidia-riva/tutorials/blob/main/asr-customize-vocabulary-and-lexicon.ipynb) for step-by-step instructions and case studies.
 
 
 ## 4. Retrain language model
