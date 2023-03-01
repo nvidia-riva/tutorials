@@ -59,25 +59,25 @@ You can verify the cluster creation on the OCI Console by navigating to ‘Kuber
 
 Verify that the node now appears in Kubernetes. If so, the cluster was successfully created and you can access the cluster locally.
 
-  ```bash
-    cat .kube/config
-    kubectl get pods -A
-    kubectl get nodes
-  ```
+```bash
+  cat .kube/config
+  kubectl get pods -A
+  kubectl get nodes
+```
 
 To `ssh` into a worker node, you will need the private key you downloaded when you created an API Signing Key Pair. You can `ssh` into each worker node by using the IP address and hostname. You can find the IP Address and hostname by going to the Console and clicking on each instance you want to access.
 
-  ```bash
-    chmod 600 private_key.key
-    ssh -i private_key.key opc@ip_address
-  ```
+```bash
+  chmod 600 private_key.key
+  ssh -i private_key.key opc@ip_address
+```
 
 If a compute instance is created with a boot volume that is greater than or equal to 50 GB, the instance does not automatically use the entire volume. Use the `oci-growfs` utility to expand the root partition to fully utilize the allocated boot volume size. You'll want to ssh into each worker node and run the following commands:
 
-    ```bash
-      sudo /usr/libexec/oci-growfs -y
-      sudo systemctl restart kubelet
-    ```
+```bash
+  sudo /usr/libexec/oci-growfs -y
+  sudo systemctl restart kubelet
+```
 
 > **Note** If you are seeing an 'Unable to expand /dev/sda3', go to the OCI console and click hamburger menu on the top left. Under the Storage tab, navigate to 'Block Storage' and click on 'Boot Volumes' on the left hand column. From here you can click on each boot volume associated with a worker node and click 'Edit'. Change the volume size in the window that just opened and click Save Changes. A message will pop up with rescan commands. You will need to ssh into each worker node and input the rescan commands given. From there, you can run the `oci-growfs` commands above.
 
