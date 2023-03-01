@@ -22,33 +22,42 @@ Before continuing, ensure you have:
 
 ## Creating the OKE Cluster
 
-Navigate and sign in to the [OCI webpage](https://www.oracle.com/cloud/). Go to the hamburger menu on the top left. Under the Developer Services tab, navigate to Kubernetes Clusters (OKE).
+1. Navigate and sign in to the [OCI webpage](https://www.oracle.com/cloud/). Go to the hamburger menu on the top left. Under the Developer Services tab, navigate to Kubernetes Clusters (OKE).
 
-On the left hand side make sure you are in the compartment with the appropriate privileges. Click ‘Create cluster’ to start the cluster creation. There will be two options for creating a Kubernetes Cluster: *Quick create* or *Custom create*. To make this tutorial as simple as possible, we will be using the *Quick create* option.
+2. Click ‘Create cluster’ to start the cluster creation. 
 
-After selecting the *Quick create* option, you can customize the cluster shape, number of nodes, etc. 
+    There will be two options for creating a Kubernetes Cluster: *Quick create* or *Custom create*. To make this tutorial as simple as possible, we will be using the *Quick create* option.
 
-> **Note**
->  You may want to increase the boot volume for each node or the Riva pods will not start up. For this example we increased it to 500 GB. You can specify this during cluster creation by clicking ‘Show advanced options’, checking the ‘Specify a custom boot volume size’, and typing in your desired boot volume size.
+3. After selecting the *Quick create* option, you can customize the cluster shape, number of nodes, etc. Set the Kubernetes worker nodes to 'Public Workers' to `ssh` into easily. 
 
-> **Note**
->  For testing purposes the worker nodes in this example were created as ‘Public workers’ to `ssh` into the nodes easily. The shape of the worker nodes tested in this example included 2 GPU Nodes of shape `VM.GPU3.1`.
+    Private worker nodes have private IP addresses and can only be accessed by other resources inside the VCN.
 
-The ideal cluster configuration for this example includes: 
-- A GPU-equipped node where the main Riva service will run. 
-- A general-purpose compute node for the Traefik load balancer.
-- Another general-purpose node for client applications accessing the Riva service. 
-
-Since we are using the *Quick create* option, we can only choose the shape for one node pool initially. A node pool is a group of nodes within a cluster that all have the same configuration. You will be able to [add more node pools](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengscalingclusters.htm) once you create the cluster. After reviewing the resources, click ‘Create cluster.’ It’ll take around 15 min for the cluster creation to complete.
+4. To get the simplest deployment, create one GPU Node. The shape of the worker node tested in this example was one GPU Node of shape `VM.GPU3.1` which has one V100 GPU. You will learn how to scale up to multiple nodes later.
 
 > **Note**
->  Once you click the ‘Create cluster’ button, it may say that the cluster is active, but it won't actually be ready until the node pool status is active..
+>Since we are using the *Quick create* option, we can only choose the shape for one node pool initially. A node pool is a group of nodes within a cluster that all have the same configuration. You will be able to [add more node pools](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengscalingclusters.htm) once you create the cluster.
+
+> **Note**
+> The ideal cluster configuration for this example includes: 
+> - A GPU-equipped node where the main Riva service will run. 
+> - A general-purpose compute node for the Traefik load balancer.
+> - Another general-purpose node for client applications accessing the Riva service.
+
+5. Increase the boot volume for each node or the Riva pods will not start up. For this example we increased it to 500 GB. You can specify this during cluster creation by clicking ‘Show advanced options’, checking the ‘Specify a custom boot volume size’, and typing in your desired boot volume size. 
+
+ 6. After reviewing the resources, click ‘Create cluster.’ It’ll take around 15 min for the cluster creation to complete.
+
+> **Note**
+>  Once you click the ‘Create cluster’ button, it may say that the cluster is active, but it won't actually be ready until the node pool status is active.
+
+
+## Accessing the OKE Cluster
 
 To access the cluster locally, navigate to the OKE page and click on the cluster name. From there press 'Access Cluster' and then 'Local Access'. From there you can follow the prompts to get local access to the cluster.
 
-You can verify the cluster creation on the OCI Console by navigating to ‘Kubernetes Clusters (OKE)’ under ‘Developer Services’. You will see your cluster name on the webpage. You can go to the 'Instances' section, to see your worker node instances.
+You can verify the cluster creation on the OCI Console by navigating to ‘Kubernetes Clusters (OKE)’ under ‘Developer Services’. You will see your cluster name on the webpage. You can go to the 'Instances' section, to see your worker node instance.
 
-Verify that the nodes now appear in Kubernetes. If so, the cluster was successfully created and you can access the cluster locally.
+Verify that the node now appears in Kubernetes. If so, the cluster was successfully created and you can access the cluster locally.
 
   ```bash
     cat .kube/config
@@ -56,26 +65,23 @@ Verify that the nodes now appear in Kubernetes. If so, the cluster was successfu
     kubectl get nodes
   ```
 
-### Tips
-
-- To `ssh` into a worker node, you will need the private key you downloaded when you created an API Signing Key Pair. You can `ssh` into each worker node by using the IP address and hostname. You can find the IP Address and hostname by going to the Console and clicking on each instance you want to access.
+To `ssh` into a worker node, you will need the private key you downloaded when you created an API Signing Key Pair. You can `ssh` into each worker node by using the IP address and hostname. You can find the IP Address and hostname by going to the Console and clicking on each instance you want to access.
 
   ```bash
     chmod 600 private_key.key
     ssh -i private_key.key opc@ip_address
   ```
 
-
--  If a compute instance is created with a boot volume that is greater than or equal to 50 GB, the instance does not automatically use the entire volume. Use the `oci-growfs` utility to expand the root partition to fully utilize the allocated boot volume size. You'll want to ssh into each worker node and run the following commands:
+If a compute instance is created with a boot volume that is greater than or equal to 50 GB, the instance does not automatically use the entire volume. Use the `oci-growfs` utility to expand the root partition to fully utilize the allocated boot volume size. You'll want to ssh into each worker node and run the following commands:
 
     ```bash
       sudo /usr/libexec/oci-growfs -y
       sudo systemctl restart kubelet
     ```
 
-    If you are seeing an 'Unable to expand /dev/sda3', go to the OCI console and click hamburger menu on the top left. Under the Storage tab, navigate to 'Block Storage' and click on 'Boot Volumes' on the left hand column. From here you can click on each boot volume associated with a worker node and click 'Edit'. Change the volume size in the window that just opened and click Save Changes. A message will pop up with rescan commands. You will need to ssh into each worker node and input the rescan commands given. From there you can run the `oci-growfs` commands above.
+> **Note** If you are seeing an 'Unable to expand /dev/sda3', go to the OCI console and click hamburger menu on the top left. Under the Storage tab, navigate to 'Block Storage' and click on 'Boot Volumes' on the left hand column. From here you can click on each boot volume associated with a worker node and click 'Edit'. Change the volume size in the window that just opened and click Save Changes. A message will pop up with rescan commands. You will need to ssh into each worker node and input the rescan commands given. From there, you can run the `oci-growfs` commands above.
 
-- When accessing the cluster for the first time, any GPU nodes that you create will be tainted by default to make sure that pods are not scheduled onto inappropriate nodes (non-gpu loads should not be scheduled on gpu nodes). With a node taint, no pod will be able to schedule onto that node unless you either remove the taint or add a matching toleration. If you run `kubectl get pods -A ` and see that the CoreDNS pod is not running, this is usually due to a taint on the node.
+When accessing the cluster for the first time, any GPU nodes that you create will be tainted by default to make sure that pods are not scheduled onto inappropriate nodes (non-gpu loads should not be scheduled on gpu nodes). With a node taint, no pod will be able to schedule onto that node unless you either remove the taint or add a matching toleration. If you run `kubectl get pods -A ` and see that the CoreDNS pod is not running, this is usually due to a taint on the node.
 
   To remove the taint:
 
@@ -91,13 +97,13 @@ Verify that the nodes now appear in Kubernetes. If so, the cluster was successfu
       operator: "Equal"
       value: "value1"
       effect: "NoSchedule"
-    ```
+  ```
     
 ## Deploying the Riva API
 
-The Riva Speech Skills Helm chart is designed to automate deployment to a Kubernetes cluster. After downloading the Helm chart, minor adjustments will adapt the chart to the way Riva will be used in the remainder of this tutorial.
+The Riva Speech Skills Helm chart is designed to automate deployment to a Kubernetes cluster. After downloading the Helm chart, minor adjustments will adapt the chart to the way Riva will be used in the remainder of this tutorial. Depending on the number of models, this initial model deployment could take an hour or more.
 
-1.  Download and untar the Riva API Helm chart. Replace `VERSION_TAG` with the specific version needed.
+1.  Download and untar the Riva API Helm chart. Replace `VERSION_TAG` with the desired specific version. Check out the latest on [NGC](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/helm-charts/riva-api).
 
     ```bash
     export NGC_CLI_API_KEY=<your NGC API key>
@@ -137,7 +143,7 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
         --set riva.speechServices.tts=true
     ```
 
-5. The Helm chart runs two containers in order: a `riva-model-init` container that downloads and deploys the models, followed by a `riva-speech-api` container to start the speech service API. Depending on the number of models, the initial model deployment could take an hour or more. To monitor the deployment, use `kubectl` to describe the `riva-api` pod and to watch the container logs.
+5. The Helm chart runs two containers in order: a `riva-model-init` container that downloads and deploys the models, followed by a `riva-speech-api` container to start the speech service API. To monitor the deployment, use `kubectl` to describe the `riva-api` pod and to watch the container logs.
 
     ```bash
     export pod=`kubectl get pods | cut -d " " -f 1 | grep riva-api`
@@ -151,7 +157,7 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
 
 Now that the Riva service is running, the cluster needs a mechanism to route requests into Riva.
 
-In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was set to `LoadBalancer`, which would have created an OCI Load Balancer to direct traffic into the Riva service. Instead, the open-source [Traefik](https://doc.traefik.io/traefik/) edge router will serve this purpose.
+In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was set to `LoadBalancer`, which would have created an [OCI Load Balancer](https://docs.oracle.com/en-us/iaas/Content/Balance/Concepts/balanceoverview.htm) to direct traffic into the Riva service. Instead, the open-source [Traefik](https://doc.traefik.io/traefik/) edge router will serve this purpose.
 
 1.  Download and untar the Traefik Helm chart.
 
@@ -208,7 +214,7 @@ The Riva service is now able to serve gRPC requests from within the cluster at t
 
 Riva provides a container with a set of pre-built sample clients to test the Riva services. The [clients](https://github.com/nvidia-riva/cpp-clients) are also available on GitHub for those interested in adapting them.
 
-1.  Create the `client-deployment.yaml` file that defines the deployment. For the image path, check out [NGC](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/containers/riva-speech-client) for the latest tag:
+1.  Create the `client-deployment.yaml` file that defines the deployment. Replace the image path in the file below. Check out [NGC](https://catalog.ngc.nvidia.com/orgs/nvidia/teams/riva/containers/riva-speech-client) for the latest image tag:
     ```yaml
     apiVersion: apps/v1
     kind: Deployment
@@ -253,11 +259,60 @@ Riva provides a container with a set of pre-built sample clients to test the Riv
        --riva_uri=traefik.default.svc.cluster.local:80
     ```
 
+    Depending on what audio file you choose, you will see an output similar to this:
+    ```
+    filename: /opt/riva/wav/en-US_sample.wav
+    Done loading 1 files
+    what
+    what
+    what is
+    what is
+    what is
+    what is now
+    what is natural
+    what is natural
+    what is natural language
+    what is natural language
+    what is natural language
+    what is natural language
+    what is natural language Processing
+    what is natural language Processing
+    what is natural language Processing
+    what is natural language Processing
+    what is natural language Processing
+    what is language Processing
+    what is language Processing
+    What is Natural Language Processing?
+    -----------------------------------------------------------
+    File: /opt/riva/wav/en-US_sample.wav
+
+    Final transcripts:
+    0 : What is Natural Language Processing?
+
+    Timestamps:
+    Word                                    Start (ms)      End (ms)
+
+    What                                    840             880
+    is                                      1160            1200
+    Natural                                 1800            2080
+    Language                                2200            2520
+    Processing?                             2720            3200
+
+    Audio processed: 4 sec.
+    -----------------------------------------------------------
+
+    Not printing latency statistics because the client is run without the --simulate_realtime option and/or the number of requests sent is not equal to number of requests received. To get latency statistics, run with --simulate_realtime and set the --chunk_duration_ms to be the same as the server chunk duration
+    Run time: 0.108666 sec.
+    Total audio processed: 4.152 sec.
+    Throughput: 38.2087 RTFX
+    ```
+
+
 ## Scaling the cluster
 
-As deployed above, the OKE cluster only provisions a single GPU node, although the given configuration permits up to 8 nodes. While a single GPU can handle a [large volume of requests](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-performance.html), the cluster can easily be scaled with more nodes.
+As deployed above, the OKE cluster only provisions a single GPU node. While a single GPU can handle a [large volume of requests](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-performance.html), the cluster can easily be scaled with more nodes.
 
-1. Scale the GPU nodegroup to the desired number of compute nodes (4 in this case) through the [Console](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengscalingnodepools.htm#contengscalingnodepools)
+1. [Scale the GPU nodegroup](https://docs.oracle.com/en-us/iaas/Content/ContEng/Tasks/contengscalingnodepools.htm#contengscalingnodepools) to the desired number of compute nodes (4 in this case) through the Console.
 
 2. Scale the `riva-api` deployment to use the additional nodes.
     ```bash
