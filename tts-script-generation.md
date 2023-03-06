@@ -52,7 +52,7 @@ The [phoneme distribution analysis notebook](https://github.com/nvidia-riva/tuto
 - **Length**: Each line of the script should take the voice actor between 10 seconds and 20 seconds to read aloud. Most people speak at 100 to 130 words per minute so this is around 16 to 26 words, as a rough heuristic (for English, other languages will vary).
 - **Phonetic distribution**: Phonemes are the building blocks of words. There are 44 phonemes in the English language, and they appear at different frequencies in English speech. The Harvard sentence is a reference distribution. It’s a good idea to run a phoneme comparison on your lines of text to understand how they compare to Harvard sentences.
 - **Normalization**: Normalization is the process of converting numbers, abbreviations, datetime, units, etc into their spoken form. Normalization is required to reduce ambiguity between the characters in the script eventually reducing the ambiguity in the input data to the model. For English, there is a normalization script in Nemo, but it won’t catch everything, and a manual review is required.
-- **Grammar**: Each line of text that is a question should end with a question mark. This is so the model can learn the pronunciation of sentences that are questions (they often rise in pitch at the end). Other end-of-line punctuation - periods, exclamation marks - is less important, but valuable.
+- **Grammar**: Each line of text that is a question should end with a question mark. This is so the model can learn the pronunciation of sentences that are questions (they often rise in pitch at the end). Other punctuation, such as periods, exclamation marks, commas, and quotation marks, are also important.
 
 
 ## Heuristics for manually normalizing
@@ -64,10 +64,10 @@ The [phoneme distribution analysis notebook](https://github.com/nvidia-riva/tuto
 - Search for the degree symbol “°”. This is often not caught in normalization and has to be manually normalized.
 - Search for the character “/” (slash). It is often not normalized properly, and you want words like “bar/lounge” pronounced as “bar lounge”, so remove the slash.
 - Capitalized proper nouns like New York City instead of new york city, or Paris instead of Paris, make it a lot easier for the voice actor to read the script.
-- Ensure questions end with a question mark. A good heuristic for this is searching for pipe, and then a question word (as the pipe | will precede the start of the sentence) - such as how, what, when, where, do you etc.
-- Search for calendar months - January”, Februaryy” etc - and ensure that the names of the months are capitalized - this makes the text easier for the voice actors to read.
-- Search for three periods (ellipsis) “...” as this is often used to denote pauses in speech. It’s often ambiguous to pronounce.
-- Capitalization of acronyms - acronyms such as “GPU” and “CPU” should be left in capitals, but space should be added between them - such as “G P U”.
+- Ensure questions end with a question mark. A good heuristic for this is searching for field delimiter, and then a question word (as the field delimiter will precede the start of the sentence) - such as how, what, when, where, do you etc.
+- Search for calendar months - January, February etc - and ensure that the names of the months are capitalized - this makes the text easier for the voice actors to read.
+- Search for three periods (ellipsis) ... as this is often used to denote pauses in speech. It’s often ambiguous to pronounce.
+- Initialism - Intialisms should be left in capitals, but space should be added between them - such as "GPU" -> "G P U"
 - Sometimes if the text is processed into a script from Unicode format, Unicode escape sequences need to be searched for and corrected. Unicode escape sequences convert a single character to the format of a 4-digit hexadecimal code point, such as \uXXXX. For example, "A" becomes "\u0041". Search for “\u” to identify if there are any in your lines of text.
 - Sometimes if the text is processed from HTML, ISO 8859-1 Characters will be in text and need to be replaced, for example - &#160;. You will need to search for “&#” to find them. Use this [table](https://www.html.am/reference/html-special-characters.cfm) to determine what to replace them with, or use a plugin in your IDE.
 - Run a spell checker over the lines of text. This will usually find several spelling errors. Spelling errors make it harder for the voice actor to read the script.
