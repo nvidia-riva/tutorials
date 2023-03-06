@@ -45,7 +45,7 @@ After the script is acquired. It should comply with two requirements listed belo
  Datasets like the Harvard Sentences have complete phoneme coverage, and phoneme distribution matching American English, and serve as a good reference point. The script must have good coverage (many samples) of frequently occurring phonemes - fewer samples of phonemes mean that the model is less likely to generate that phoneme well.
 
 
-The [phoneme distribution analysis notebook](https://github.com/nvidia-riva/tutorials/blob/main/tts-phoneme-distribution.ipynb) shows how to do an analysis of the phoneme coverage and phoneme distribution.
+The [phoneme distribution analysis notebook](https://github.com/nvidia-riva/tutorials/blob/main/tts-phoneme-distribution.ipynb) shows how to analyze phoneme coverage and phoneme distribution.
 
 
 ## Technical requirements
