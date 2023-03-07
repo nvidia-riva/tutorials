@@ -13,7 +13,7 @@ In this document, we will cover the outline to create a script for the voice act
 - The content that the voice actor will read needs to be aligned with the use case of the synthesized voice. If the voice is used for questions, have questions in the script. If the voice is going to be used for emotion, then have emotion in the script.
 
 
-- Another option is to synthetically generate text to be read, using a large language model like Megatron, BERT, or GPT-3. Since the data is coming from an LLM, it requires more manual normalization compared to other datasets.
+- Another option is to synthetically generate text to be read, using a large language model like Megatron, BERT, or GPT-3. Since the data is coming from an large language model (LLM), it requires more manual normalization compared to other datasets.
 
 
 - The data source must contain enough sentences to meet the training requirement. Rule of thumb calculation for the number of sentences: 20k sentences = 60 hours of studio time = 20 hours of useable audio. Currently, that 20 hours is enough audio for a voice trained from scratch in NeMo.
@@ -22,7 +22,7 @@ In this document, we will cover the outline to create a script for the voice act
 - Eliminate foreign or difficult-to-pronounce words. Ensure correct punctuation, correct spelling, and consistent normalization. This helps in improving the usable audio time.
 
 
-- Make the process easier for the voice actor. The smoother things are for the voice actor the more high-quality usable audio is obtained.
+- Make the process easier for the voice actor. The smoother things are for the voice actor, the more high-quality usable audio is obtained.
 
 
 ## Phoneme coverage and distribution
@@ -64,10 +64,10 @@ The [phoneme distribution analysis notebook](https://github.com/nvidia-riva/tuto
 - Search for the degree symbol “°”. This is often not caught in normalization and has to be manually normalized.
 - Search for the character “/” (slash). It is often not normalized properly, and you want words like “bar/lounge” pronounced as “bar lounge”, so remove the slash.
 - Capitalized proper nouns like New York City instead of new york city, or Paris instead of Paris, make it a lot easier for the voice actor to read the script.
-- Ensure questions end with a question mark. A good heuristic for this is searching for field delimiter, and then a question word (as the field delimiter will precede the start of the sentence) - such as how, what, when, where, do you etc.
+- Ensure questions end with a question mark. A good heuristic for this is searching for start of sentence, and then a question word - such as how, what, when, where, do you etc.
 - Search for calendar months - January, February etc - and ensure that the names of the months are capitalized - this makes the text easier for the voice actors to read.
 - Search for three periods (ellipsis) ... as this is often used to denote pauses in speech. It’s often ambiguous to pronounce.
-- Initialism - Intialisms should be left in capitals, but space should be added between them - such as "GPU" -> "G P U"
+- Initialism - Initialisms, such as "GPU", should be made clear to voice actors. For example, a suggestion would be to leave them in capitals and insert a space between them: "GPU" -> "G P U"
 - Sometimes if the text is processed into a script from Unicode format, Unicode escape sequences need to be searched for and corrected. Unicode escape sequences convert a single character to the format of a 4-digit hexadecimal code point, such as \uXXXX. For example, "A" becomes "\u0041". Search for “\u” to identify if there are any in your lines of text.
 - Sometimes if the text is processed from HTML, ISO 8859-1 Characters will be in text and need to be replaced, for example - &#160;. You will need to search for “&#” to find them. Use this [table](https://www.html.am/reference/html-special-characters.cfm) to determine what to replace them with, or use a plugin in your IDE.
 - Run a spell checker over the lines of text. This will usually find several spelling errors. Spelling errors make it harder for the voice actor to read the script.
