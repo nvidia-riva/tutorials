@@ -65,11 +65,11 @@ Verify that the node now appears in Kubernetes. If so, the cluster was successfu
   kubectl get nodes
 ```
 
-To `ssh` into a worker node, you will need the private key you downloaded when you created an API Signing Key Pair. You can `ssh` into each worker node by using the IP address and hostname. You can find the IP Address and hostname by going to the Console and clicking on each instance you want to access.
+To `ssh` into a worker node, you will need the private key you downloaded when you created the cluster. You can `ssh` into each worker node by using the IP address and hostname. You can find the IP Address and hostname by going to the Console and clicking on each instance you want to access.
 
 ```bash
   chmod 600 private_key.key
-  ssh -i private_key.key opc@ip_address
+  ssh -i private_key.key username@ip_address
 ```
 
 If a compute instance is created with a boot volume that is greater than or equal to 50 GB, the instance does not automatically use the entire volume. Use the `oci-growfs` utility to expand the root partition to fully utilize the allocated boot volume size. You'll want to ssh into each worker node and run the following commands:
