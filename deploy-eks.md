@@ -77,7 +77,7 @@ The cluster contains three separate nodegroups:
     ```
 
     This may take 30 minutes or more for AWS to provision all the necessary resources. When complete, you should see some changes in your default Kubernetes configuration file.
-    
+
 3. Verify that the nodes now appear in Kubernetes. If so, the cluster was successfully created.
 
     ```bash
@@ -109,11 +109,11 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
         * Set `riva.speechServices.[asr,nlp,tts]` to `true` or `false` as needed to enable or disable those services. For example, if only ASR is needed, then set the NLP and TTS values to `false`.
         * In `modelRepoGenerator.ngcModelConfigs.[asr,nlp,tts]`, comment or uncomment specific models or languages as needed.
         * Change `service.type` from `LoadBalancer` to `ClusterIP`. This directly exposes the service only to other services within the cluster, such as the proxy service to be installed below.
-    
+
     2. **`templates/deployment.yaml`**
 
         * Add a node selector constraint to ensure that Riva is only deployed on the correct GPU resources. In `spec.template.spec`, add:
-          
+
           ```yaml
           nodeSelector:
             eks.amazonaws.com/nodegroup: gpu-linux-workers
@@ -181,7 +181,7 @@ In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was se
 
   An [IngressRoute](https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/) enables the Traefik load balancer to
   recognize incoming requests and distribute them across multiple `riva-api` services.
-  
+
   When you deployed the `traefik` Helm chart above, Kubernetes automatically created a local DNS entry for that service: `traefik.default.svc.cluster.local`. The IngressRoute definition below matches these DNS entries and directs requests to the `riva-api` service. You can modify the entries to support a different DNS arrangement, depending on your requirements.
 
   1. Create the following `riva-ingress.yaml` file:
@@ -212,7 +212,7 @@ The Riva service is now able to serve gRPC requests from within the cluster at t
 
 ## Deploying a Sample Client
 
-Riva provides a container with a set of pre-built sample clients to test the Riva services. The [clients](https://github.com/nvidia-riva/cpp-clients) are also available on GitHub for those interested in adapting them.
+Riva provides a container with a set of pre-built sample clients to test the Riva services. The [Riva C++ clients](https://github.com/nvidia-riva/cpp-clients) and [Riva Python clients](https://github.com/nvidia-riva/python-clients) are also available on GitHub for those interested in adapting them.
 
 1.  Create the `client-deployment.yaml` file that defines the deployment and contains the following:
     ```yaml
@@ -238,7 +238,7 @@ Riva provides a container with a set of pre-built sample clients to test the Riv
           - name: imagepullsecret
           containers:
           - name: riva-client
-            image: "nvcr.io/{NgcOrgTeam}/riva-speech-client:{VersionNum}"
+            image: "nvcr.io/{NgcOrgTeam}/riva-speech:{VersionNum}"
             command: ["/bin/bash"]
             args: ["-c", "while true; do sleep 5; done"]
     ```
@@ -256,7 +256,7 @@ Riva provides a container with a set of pre-built sample clients to test the Riv
 4.  From inside the shell of the client pod, run the sample ASR client on an example `.wav` file. Specify the `traefik.default.svc.cluster.local` endpoint, with port 80, as the service address.
     ```bash
     riva_streaming_asr_client \
-       --audio_file=/work/wav/sample.wav \
+       --audio_file=/opt/riva/wav/en-US_sample.wav \
        --automatic_punctuation=true \
        --riva_uri=traefik.default.svc.cluster.local:80
     ```
