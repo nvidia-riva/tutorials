@@ -14,7 +14,7 @@ with Traefik-based load balancing. It includes the following steps:
 ## Prerequisites
 
 Before continuing, ensure you have:
-- An Google account with the appropriate user/role privileges to manage [AKS](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli)
+- An Azure account with the appropriate user/role privileges to manage [AKS](https://learn.microsoft.com/en-us/azure/aks/learn/quick-kubernetes-deploy-cli)
 - The azure command-line tool, [Configured](https://learn.microsoft.com/en-us/cli/azure/azure-cli-configuration) for your account
 - Access to [NGC](https://ngc.nvidia.com/signin) and the associated [command-line](https://docs.ngc.nvidia.com/cli/) interface
 - Cluster management tools [`az`](https://learn.microsoft.com/en-us/cli/azure/install-azure-cli), [`helm`](https://helm.sh/) and [`kubectl`](https://kubernetes.io/docs/reference/kubectl/)
@@ -22,7 +22,7 @@ Before continuing, ensure you have:
 
 ## Creating the AKS Cluster
 
-The cluster contains three separate nodegroups:
+The cluster contains three separate nodepools:
 - `rivaserver`:  A GPU-equipped node where the main Riva service runs. `Standard_NC8as_T4_v3` instances, each using an Tesla T4 GPU, provide good value and sufficient capacity for many applications.
 
 - `loadbalancer`: A general-purpose compute node for the Traefik load balancer, using an `Standard_D4s_v3` instance.
@@ -162,7 +162,7 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
 
 Now that the Riva service is running, the cluster needs a mechanism to route requests into Riva.
 
-In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was set to `LoadBalancer`, which would have automatically created an AWS Classic Load Balancer to direct traffic into the Riva service. Instead, the open-source [Traefik](https://doc.traefik.io/traefik/) edge router will serve this purpose.
+In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was set to `LoadBalancer`, which would have automatically created an Azure Classic Load Balancer to direct traffic into the Riva service. Instead, the open-source [Traefik](https://doc.traefik.io/traefik/) edge router will serve this purpose.
 
 1.  Download and untar the Traefik Helm chart.
 
@@ -246,7 +246,7 @@ Riva provides a container with a set of pre-built sample clients to test the Riv
           - name: imagepullsecret
           containers:
           - name: riva-client
-            image: "nvcr.io/{NgcOrgTeam}/riva-speech-client:{VersionNum}"
+            image: "nvcr.io/{NgcOrgTeam}/riva-speech:{VersionNum}"
             command: ["/bin/bash"]
             args: ["-c", "while true; do sleep 5; done"]
     ```

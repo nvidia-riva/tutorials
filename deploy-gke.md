@@ -22,7 +22,7 @@ Before continuing, ensure you have:
 
 ## Creating the GKE Cluster
 
-The cluster contains three separate nodegroups:
+The cluster contains three separate nodepools:
 - `gpu-linux-workers`:  A GPU-equipped node where the main Riva service runs. `n1-standard-16` instances, each using an Tesla T4 GPU, provide good value and sufficient capacity for many applications.
 
 - `cpu-linux-lb`: A general-purpose compute node for the Traefik load balancer, using an `n1-standard-4` instance.
@@ -151,7 +151,7 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
 
 Now that the Riva service is running, the cluster needs a mechanism to route requests into Riva.
 
-In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was set to `LoadBalancer`, which would have automatically created an AWS Classic Load Balancer to direct traffic into the Riva service. Instead, the open-source [Traefik](https://doc.traefik.io/traefik/) edge router will serve this purpose.
+In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was set to `LoadBalancer`, which would have automatically created an Google Load Balancer to direct traffic into the Riva service. Instead, the open-source [Traefik](https://doc.traefik.io/traefik/) edge router will serve this purpose.
 
 1.  Download and untar the Traefik Helm chart.
 
@@ -167,7 +167,7 @@ In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was se
     1. Change `service.type` from `LoadBalancer` to `ClusterIP`. This exposes the service on a cluster-internal IP.
 
     2. Set `nodeSelector` to `{  cloud.google.com/gke-nodepool: cpu-linux-lb }`. Similar to what you did for the Riva API service,
-    this tells the Traefik service to run on the `cpu-linux-lb` nodegroup.
+    this tells the Traefik service to run on the `cpu-linux-lb` nodepool.
 
 3.  Deploy the modified `traefik` Helm chart.
     ```bash
@@ -235,7 +235,7 @@ Riva provides a container with a set of pre-built sample clients to test the Riv
           - name: imagepullsecret
           containers:
           - name: riva-client
-            image: "nvcr.io/{NgcOrgTeam}/riva-speech-client:{VersionNum}"
+            image: "nvcr.io/{NgcOrgTeam}/riva-speech:{VersionNum}"
             command: ["/bin/bash"]
             args: ["-c", "while true; do sleep 5; done"]
     ```
