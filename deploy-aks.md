@@ -126,7 +126,9 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
     helm install \
         --generate-name \
         --set failOnInitError=false \
-        nvdp/nvidia-device-plugin
+        nvdp/nvidia-device-plugin \
+        --namespace nvidia-device-plugin \
+        --create-namespace
     ```
 
 5. Verify the gpu plugin installation:
@@ -177,7 +179,7 @@ In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was se
 
     1. Change `service.type` from `LoadBalancer` to `ClusterIP`. This exposes the service on a cluster-internal IP.
 
-    2. Set `nodeSelector` to `{  Kubernetes.azure.com/agentpool: loadbalancer}`. Similar to what you did for the Riva API service,
+    2. Set `nodeSelector` to `{  kubernetes.azure.com/agentpool: loadbalancer}`. Similar to what you did for the Riva API service,
     this tells the Traefik service to run on the `loadbalancer` nodepool.
 
 3.  Deploy the modified `traefik` Helm chart.
@@ -246,7 +248,7 @@ Riva provides a container with a set of pre-built sample clients to test the Riv
           - name: imagepullsecret
           containers:
           - name: riva-client
-            image: "nvcr.io/{NgcOrgTeam}/riva-speech:{VersionNum}"
+            image: "nvcr.io/{NgcOrg}/{NgcTeam}/riva-speech:{VersionNum}"
             command: ["/bin/bash"]
             args: ["-c", "while true; do sleep 5; done"]
     ```
@@ -264,7 +266,7 @@ Riva provides a container with a set of pre-built sample clients to test the Riv
 4.  From inside the shell of the client pod, run the sample ASR client on an example `.wav` file. Specify the `traefik.default.svc.cluster.local` endpoint, with port 80, as the service address.
     ```bash
     riva_streaming_asr_client \
-       --audio_file=/work/wav/sample.wav \
+       --audio_file=wav/en-US_sample.wav \
        --automatic_punctuation=true \
        --riva_uri=traefik.default.svc.cluster.local:80
     ```

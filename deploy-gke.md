@@ -107,27 +107,24 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
             cloud.google.com/gke-nodepool: gpu-linux-workers
           ```
 
-3. Nvidia gpu device plugin should be already running, It should be setup by google, Verify with any of the following command:
+3. If you see that gpu driver plugin is not Enabled by GCP, Then deploy it using below command:
+
+    ```bash
+    kubectl apply -f https://raw.githubusercontent.com/GoogleCloudPlatform/container-engine-accelerators/master/nvidia-driver-installer/cos/daemonset-preloaded.yaml
+    ```
+
+4. Verify gpu plugin installation with any of the following command:
     ```bash
     kubectl get pod -A | grep nvidia
     
-    kubectl get nodes "-o=custom-columns=NAME:.metadata.name,GPU:.status. allocatable.nvidia\.com/gpu "
+    kubectl get nodes "-o=custom-columns=NAME:.metadata.name,GPU:.status.allocatable.nvidia\.com/gpu"
     ```
 
  
 
-4. If you see that gpu plugin is not Enabled by GCP, Then install it using below commands:
 
-    ```bash
-    helm repo add nvdp https://nvidia.github.io/k8s-device-plugin
-    helm repo update
-    helm install \
-        --generate-name \
-        --set failOnInitError=false \
-        nvdp/nvidia-device-plugin
-    ```
 
-4. Ensure you are in a working directory with `riva-api` as a subdirectory, then install the Riva Helm chart. You can explicitly override variables from the `values.yaml` file, such as the `riva.speechServices.[asr,nlp,tts]` settings.
+5. Ensure you are in a working directory with `riva-api` as a subdirectory, then install the Riva Helm chart. You can explicitly override variables from the `values.yaml` file, such as the `riva.speechServices.[asr,nlp,tts]` settings.
 
     ```bash
     helm install riva-api riva-api/ \
@@ -235,7 +232,7 @@ Riva provides a container with a set of pre-built sample clients to test the Riv
           - name: imagepullsecret
           containers:
           - name: riva-client
-            image: "nvcr.io/{NgcOrgTeam}/riva-speech:{VersionNum}"
+            image: "nvcr.io/{NgcOrg}/{NgcTeam}/riva-speech:{VersionNum}"
             command: ["/bin/bash"]
             args: ["-c", "while true; do sleep 5; done"]
     ```
@@ -253,7 +250,7 @@ Riva provides a container with a set of pre-built sample clients to test the Riv
 4.  From inside the shell of the client pod, run the sample ASR client on an example `.wav` file. Specify the `traefik.default.svc.cluster.local` endpoint, with port 80, as the service address.
     ```bash
     riva_streaming_asr_client \
-       --audio_file=/work/wav/sample.wav \
+       --audio_file=wav/en-US_sample.wav \
        --automatic_punctuation=true \
        --riva_uri=traefik.default.svc.cluster.local:80
     ```
