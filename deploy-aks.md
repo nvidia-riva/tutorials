@@ -1,6 +1,6 @@
 <img src="http://developer.download.nvidia.com/notebooks/dlsw-notebooks/riva_asr_deploy-eks/nvidia_logo.png" style="width: 90px; float: right;">
 
-# How to Deploy Riva at Scale on Azure Cloud with AKS
+# How do I Deploy Riva at Scale on Azure Cloud with AKS?
 
 This is an example of deploying and scaling Riva Speech Skills on Azure Cloud's Azure Kuberenetes Service (AKS)
 with Traefik-based load balancing. It includes the following steps:
@@ -22,14 +22,14 @@ Before continuing, ensure you have:
 
 ## Creating the AKS Cluster
 
-The cluster contains three separate nodepools:
-- `rivaserver`:  A GPU-equipped node where the main Riva service runs. `Standard_NC8as_T4_v3` instances, each using an Tesla T4 GPU, provide good value and sufficient capacity for many applications.
+The cluster contains three separate node pools:
+- `rivaserver`:  A GPU-equipped node where the main Riva service runs. `Standard_NC8as_T4_v3` instances, each using a Tesla T4 GPU, which provides good value and sufficient capacity for many applications.
 
 - `loadbalancer`: A general-purpose compute node for the Traefik load balancer, using an `Standard_D4s_v3` instance.
 
-- `rivaclient`: A general-purpose node with an `Standard_D8s_v3` instance for client applications accessing the Riva service
+- `rivaclient`: A general-purpose node with an `Standard_D8s_v3` instance for client applications accessing the Riva service.
 
-1. Create Azure Resource Group as all the resources created for AKS cluster will be part of this resource group:
+1. Create an Azure Resource Group as all the resources created for the AKS cluster will be part of this resource group:
 
     ```bash
     AKS_RESOURCE_GROUP=riva-resource
@@ -41,33 +41,33 @@ The cluster contains three separate nodepools:
     ```
 
 
- 2. Create the AKS cluster, It will take some time as it will spin nodes and setup master in backend.
+ 2. Create the AKS cluster. This will take some time as it will spin nodes and setup master in backend.
 
     ```bash
     az aks create  --resource-group  ${AKS_RESOURCE_GROUP}  --name ${AKS_CLUSTER_NAME}  --node-count 1 --generate-ssh-keys
     ```
 
-3. Once the cluster creation is complete, Let's pull the cluster config to local machine so that kubectl can connect to the cluster:
+3. After the cluster creation is complete, pull the cluster config to the local machine so that `kubectl` can connect to the cluster:
 
     ```bash
     az aks get-credentials --resource-group ${AKS_RESOURCE_GROUP}  --name ${AKS_CLUSTER_NAME} --admin
     ```
 
-4. Verify if we are able to connect cluster using kubectl, you should see nodes & pods should be running.
+4. Verify if you are able to connect to the cluster using `kubectl`. You should see nodes and pods running.
 
     ```bash
     kubectl get nodes
     kubectl get po -A
     ```
 
-5. Create the 3 nodepools for GPU workers, Loadbalancers & Clients:
+5. Create the three node pools for GPU workers, load balancers, and clients:
 
       - **GPU LINUX WORKERS:**
 
         ```bash
         az aks nodepool add --name rivaserver --resource-group ${AKS_RESOURCE_GROUP} --cluster-name ${AKS_CLUSTER_NAME} --node-vm-size Standard_NC8as_T4_v3 --node-count 1 --labels role=workers
         ```
-      - **CPU LINUX LOADBALANCERS:**
+      - **CPU LINUX LOAD BALANCERS:**
 
         ```bash
         az aks nodepool add --name loadbalancer --resource-group ${AKS_RESOURCE_GROUP} --cluster-name ${AKS_CLUSTER_NAME} --node-vm-size Standard_D4s_v3 --node-count 1 --labels role=loadbalancers
@@ -77,7 +77,7 @@ The cluster contains three separate nodepools:
         az aks nodepool add --name rivaclient --resource-group ${AKS_RESOURCE_GROUP} --cluster-name ${AKS_CLUSTER_NAME} --node-vm-size Standard_D8s_v3 --node-count 1 --labels role=clients
         ```
 
-6. Verify that the newly added nodes now appear in Kubernetes cluster.
+6. Verify that the newly added nodes now appear in the Kubernetes cluster.
     ```bash   
     kubectl get nodes --show-labels
     kubectl get nodes --selector role=workers
@@ -104,8 +104,8 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
 
     1. **`values.yaml`**
 
-        * Set `riva.speechServices.[asr,nlp,tts]` to `true` or `false` as needed to enable or disable those services. For example, if only ASR is needed, then set the NLP and TTS values to `false`.
-        * In `modelRepoGenerator.ngcModelConfigs.[asr,nlp,tts]`, comment or uncomment specific models or languages as needed.
+        * Set `riva.speechServices.[asr,nlp,tts]` to `true` or `false`, as needed, to enable or disable those services. For example, if only ASR is needed, then set the NLP and TTS values to `false`.
+        * In `modelRepoGenerator.ngcModelConfigs.[asr,nlp,tts]`, comment or uncomment specific models or languages, as needed.
         * Change `service.type` from `LoadBalancer` to `ClusterIP`. This directly exposes the service only to other services within the cluster, such as the proxy service to be installed below.
         * Set `persistentVolumeClaim.usePVC` to `true` , `persistentVolumeClaim.storageClassName` to `azurefile` , `persistentVolumeClaim.storageAccessMode` to `ReadWriteOnce`, This will store the riva models in Created Persistent Volume.
 
@@ -119,7 +119,7 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
             kubernetes.azure.com/agentpool: rivaserver
           ```
 
-4. Install nvidia gpu device plugin, Azure will not install it by default, Verify the installation with the following command:
+4. Install the NVIDIA GPU device plugin. Azure will not install it by default. Verify the installation with the following command:
     ```bash
     helm repo add nvdp https://nvidia.github.io/k8s-device-plugin
     helm repo update
@@ -131,7 +131,7 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
         --create-namespace
     ```
 
-5. Verify the gpu plugin installation:
+5. Verify the GPU plugin installation with either of the following commands:
     ```bash
     kubectl get pod -A | grep nvidia
                        
@@ -151,7 +151,7 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
         --set riva.speechServices.tts=true
     ```
 
-5. The Helm chart runs two containers in order: a `riva-model-init` container that downloads and deploys the models, followed by a `riva-speech-api` container to start the speech service API. Depending on the number of models, the initial model deployment could take an hour or more. To monitor the deployment, use `kubectl` to describe the `riva-api` pod and to watch the container logs.
+5. The Helm chart runs two containers in order: a `riva-model-init` container that downloads and deploys the models, followed by a `riva-speech-api` container to start the speech service API. Depending on the number of models, the initial model deployment could take an hour or more. To monitor the deployment, use `kubectl` to describe the `riva-api` pod and watch the container logs.
     ```bash
     export pod=`kubectl get pods | cut -d " " -f 1 | grep riva-api`
     kubectl describe pod $pod
@@ -160,7 +160,7 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
     kubectl logs -f $pod -c riva-speech-api
     ```
 
-## Deploying the Traefik edge router
+## Deploying the Traefik Edge Router
 
 Now that the Riva service is running, the cluster needs a mechanism to route requests into Riva.
 
@@ -180,7 +180,7 @@ In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was se
     1. Change `service.type` from `LoadBalancer` to `ClusterIP`. This exposes the service on a cluster-internal IP.
 
     2. Set `nodeSelector` to `{  kubernetes.azure.com/agentpool: loadbalancer}`. Similar to what you did for the Riva API service,
-    this tells the Traefik service to run on the `loadbalancer` nodepool.
+    this tells the Traefik service to run on the `loadbalancer` node pool.
 
 3.  Deploy the modified `traefik` Helm chart.
     ```bash
@@ -271,11 +271,11 @@ Riva provides a container with a set of pre-built sample clients to test the Riv
        --riva_uri=traefik.default.svc.cluster.local:80
     ```
 
-## Scaling the cluster
+## Scaling the Cluster
 
 As deployed above, the AKS cluster only provisions a single GPU node, although we can scale the nodes. While a single GPU can handle a [large volume of requests](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-performance.html), the cluster can easily be scaled with more nodes.
 
-1. Scale the GPU nodepool to the desired number of compute nodes (2 in this case).
+1. Scale the GPU node pool to the desired number of compute nodes (2 in this case).
     ```bash
     az aks nodepool scale --name rivaserver --resource-group ${AKS_RESOURCE_GROUP} --cluster-name ${AKS_CLUSTER_NAME} --node-count 2
 
