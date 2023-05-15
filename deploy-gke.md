@@ -29,7 +29,7 @@ The cluster contains three separate node pools:
 
 - `cpu-linux-clients`: A general-purpose node with an `n1-standard-8` instance for client applications accessing the Riva service.
 
-1. Create the GKE cluster. This will take some time as it will spin nodes and setup master in backend.
+1. Create the GKE cluster. This will take some time as it will spin nodes and setup kubernetes control plane in backend.
 
     ```bash
     gcloud container clusters create riva-gke --machine-type n1-standard-2 --num-nodes 1 --zone us-central1-c
@@ -116,6 +116,8 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
 4. Verify the GPU plugin installation with either of the following commands:
     ```bash
     kubectl get pod -A | grep nvidia
+
+                      OR
     
     kubectl get nodes "-o=custom-columns=NAME:.metadata.name,GPU:.status.allocatable.nvidia\.com/gpu"
     ```

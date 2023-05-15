@@ -41,7 +41,7 @@ The cluster contains three separate node pools:
     ```
 
 
- 2. Create the AKS cluster. This will take some time as it will spin nodes and setup master in backend.
+ 2. Create the AKS cluster. This will take some time as it will spin nodes and setup kubernetes control plane in backend.
 
     ```bash
     az aks create  --resource-group  ${AKS_RESOURCE_GROUP}  --name ${AKS_CLUSTER_NAME}  --node-count 1 --generate-ssh-keys
