@@ -29,7 +29,7 @@ The best way to get started with Riva is to start with the tutorials.
 | TTS    | Evaluate a TTS Pipeline | TTS, Evaluate Pipeline | [Riva TTS - Evaluate a TTS Pipeline](tts-evaluate.ipynb) |
 | TTS    | TTS Fine-Tune using NeMo | TTS, Fine-Tuning, NVIDIA NeMo | [Riva TTS - Fine-Tuning using NeMo](tts-finetune-nemo.ipynb) |
 | TTS    | Calculate and Plot the Distribution of Phonemes in a TTS Dataset | TTS, Phonemes | [Riva TTS - Phonemes in a TTS Dataset](tts-phoneme-distribution.ipynb) |
-| NMT    | How to perform Language Translation using Riva NMT APIs with Out-Of-The-Box Models | NMT, API Basics, Translation | [Riva NMT - API Basics](nmt-python-basics.ipynb) |
+| NMT    | How to Perform Language Translation using Riva NMT APIs with Out-Of-The-Box Models | NMT, API Basics, Translation | [Riva NMT - API Basics](nmt-python-basics.ipynb) |
 | NMT    | NMT Fine-Tune using NeMo | NMT, Fine-Tuning, NVIDIA NeMo | [Riva NMT - Fine-Tuning using NeMo](nmt-python-advanced-finetune-nmt-model-with-nemo.ipynb) |
 | NMT    | How to deploy a NeMo-finetuned NMT model on Riva | NMT, Customization, Translation model Deployment | [Riva NMT - Customization - Translation Model Deployment on Riva](nmt-python-advanced-deploy-nemo-nmt-model-on-riva.ipynb) |
 
