@@ -1,11 +1,11 @@
-# Support for class based n-gram language models
+# Support for class based n-gram language models in Riva (WFST Decoder)
 Language models are used in speech recognition tasks to help disambiguate 
 which word is more likely to occur given it is preceded by a sequence of words.
 Conventional n-gram models, model the probability of a word occurring given it 
 is preceded by a sequence of (n-1) words.
 
-However, in many domains, there is a likelihood of a 
-sequence of words that may be similar i nature. 
+However, in many domains, there is a likelihood of a having a 
+sequence of words that may be similar in nature. 
 
 Consider for example the phrases *"I would like to fly from New York to Seattle"*
 and *"I would like to fly from London to Paris"*, the probabilities of these two 
@@ -110,13 +110,49 @@ When run successfully, the above command will generate a graph folder in
 all the files relevant for decoding with WFST
 
 
-## Testing this out 
+## Evaluation
 The `evaluate_nemo_wfst.py` script can help evaluate the WFST decoder before 
 being used in the Riva service maker build. This would be useful to 
 debug any issues with `TLG.fst`
 
 The script can be run as follows
 `./evaluate_nemo_wfst.py <model_path> <graph_path> <path_containing_audio_files> <results_txt_file:output>`
+
+## Deploying in Riva
+The generated `TLG.fst` can be used with the kaldi decoder in riva. To build the riva ASR service using the generated
+`TLG.fst` the following command can be used
+
+```shell
+# Syntax: riva-build <task-name> output-dir-for-rmir/model.rmir:key dir-for-riva/model.riva:key
+! docker run --rm --gpus 0 -v $MODEL_LOC:/data $RIVA_SM_CONTAINER -- \
+    riva-build speech_recognition \
+        /data/rmir/asr_offline_conformer_ctc.rmir:$KEY \
+        /data/$MODEL_NAME:$KEY \
+        --offline \
+        --name=asr_offline_conformer_wfst_pipeline \
+        --ms_per_timestep=40 \
+        --chunk_size=4.8 \
+        --left_padding_size=1.6 \
+        --right_padding_size=1.6 \
+        --nn.fp16_needs_obey_precision_pass \
+        --featurizer.use_utterance_norm_params=False \
+        --featurizer.precalc_norm_time_steps=0 \
+        --featurizer.precalc_norm_params=False \
+        --featurizer.max_batch_size=512 \
+        --featurizer.max_execution_batch_size=512 \
+        --decoder_type=kaldi \
+        --decoding_language_model_fst=/data/graph/TLG.fst \
+        --decoding_language_model_words=/data/graph/words.txt \
+        --kaldi_decoder.asr_model_delay=5 \
+        --kaldi_decoder.default_beam=17.0 \
+        --kaldi_decoder.max_active=7000 \
+        --kaldi_decoder.determinize_lattice=true \
+        --kaldi_decoder.max_batch_size=1  \
+        --language_code=en-US \
+        --wfst_tokenizer_model=<far_tokenizer_file> \
+        --wfst_verbalizer_model=<far_verbalizer_file> \
+        --speech_hints_model=<far_speech_hints_file>
+```
 
 
 
