@@ -120,7 +120,7 @@ The script can be run as follows
 
 ## Deploying in Riva
 The generated `TLG.fst` can be used with the kaldi decoder in riva. To build the riva ASR service using the generated
-`TLG.fst` the following command can be used
+`TLG.fst`, run:
 
 ```shell
 # Syntax: riva-build <task-name> output-dir-for-rmir/model.rmir:key dir-for-riva/model.riva:key
