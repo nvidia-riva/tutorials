@@ -115,7 +115,7 @@ The `evaluate_nemo_wfst.py` script can help evaluate the WFST decoder before
 being used in the Riva service maker build. This would be useful to 
 debug any issues with `TLG.fst`
 
-The script can be run as follows
+The script can be run as follows:
 `./evaluate_nemo_wfst.py <model_path> <graph_path> <path_containing_audio_files> <results_txt_file:output>`
 
 ## Deploying in Riva
