@@ -66,7 +66,7 @@ This can be achieved in the following two ways:
 
 The latter option provides for better weighting between in-domain and out of 
 domain LMs. 
-Please refer to the tutorial ["How To Train, Evaluate, and Fine-Tune an n-gram Language Model"](asr-python-advanced-nemo-ngram-training-and-finetuning.ipynb) 
+Refer to the tutorial ["How To Train, Evaluate, and Fine-Tune an n-gram Language Model"](asr-python-advanced-nemo-ngram-training-and-finetuning.ipynb) 
 for LM model interpolation using KenLM. 
 Alternatively, [SRILM](http://www.speech.sri.com/projects/srilm/) (license required) can also be used here.
 
