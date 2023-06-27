@@ -112,7 +112,7 @@ all the files relevant for decoding with WFST
 
 ## Evaluation
 The `evaluate_nemo_wfst.py` script can help evaluate the WFST decoder before 
-being used in the Riva service maker build. This would be useful to 
+being used in the Riva ServiceMaker build. This would be useful to 
 debug any issues with `TLG.fst`
 
 The script can be run as follows:
