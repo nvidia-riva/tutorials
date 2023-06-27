@@ -119,7 +119,7 @@ The script can be run as follows
 `./evaluate_nemo_wfst.py <model_path> <graph_path> <path_containing_audio_files> <results_txt_file:output>`
 
 ## Deploying in Riva
-The generated `TLG.fst` can be used with the kaldi decoder in riva. To build the riva ASR service using the generated
+The generated `TLG.fst` can be used with the Kaldi decoder in Riva. To build the Riva ASR service using the generated
 `TLG.fst`, run:
 
 ```shell
