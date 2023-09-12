@@ -154,7 +154,7 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
 
 Now that the Riva service is running, the cluster needs a mechanism to route requests into Riva.
 
-In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was set to `LoadBalancer`, which would have automatically created an AWS Classic Load Balancer to direct traffic into the Riva service. Instead, the open-source [Traefik](https://doc.traefik.io/traefik/) edge router will serve this purpose.
+If the `service.type` is set to `LoadBalancer` in the `values.yaml` of the `riva-api` Helm chart, this would have automatically created an AWS Classic Load Balancer to direct traffic into the Riva service. Instead, the open-source [Traefik](https://doc.traefik.io/traefik/) edge router will serve this purpose.
 
 1.  Download and untar the Traefik Helm chart.
 
@@ -167,7 +167,8 @@ In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was se
 
 2.  Modify the `traefik/values.yaml` file.
 
-    1. Change `service.type` from `LoadBalancer` to `ClusterIP`. This exposes the service on a cluster-internal IP.
+    1. Set `service.type` to `LoadBalancer` to expose the service on a external IP accessible from outside the cluster.
+    If the `service.type` is set to `ClusterIP`, the service will only be exposed on a cluster-internal IP.
 
     2. Set `nodeSelector` to `{ eks.amazonaws.com/nodegroup: cpu-linux-lb }`. Similar to what you did for the Riva API service,
     this tells the Traefik service to run on the `cpu-linux-lb` nodegroup.
@@ -182,9 +183,11 @@ In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was se
   An [IngressRoute](https://doc.traefik.io/traefik/routing/providers/kubernetes-crd/) enables the Traefik load balancer to
   recognize incoming requests and distribute them across multiple `riva-api` services.
 
-  When you deployed the `traefik` Helm chart above, Kubernetes automatically created a local DNS entry for that service: `traefik.default.svc.cluster.local`. The IngressRoute definition below matches these DNS entries and directs requests to the `riva-api` service. You can modify the entries to support a different DNS arrangement, depending on your requirements.
+  If you deployed the above `traefik` Helm chart with `service.type` set to `ClusterIP`, Kubernetes automatically created a local DNS entry for that service: `traefik.default.svc.cluster.local`. If you deployed the above `traefik` Helm chart with `service.type` set to `LoadBalancer`, Kubernetes automatically created an external DNS entry for that service which can be obtained from `kubectl get svc` command, e.g. `a7153b60c6e7a44dab6f681d15e111b5-2140342794.us-west-2.elb.amazonaws.com`.
 
-  1. Create the following `riva-ingress.yaml` file:
+  The IngressRoute definition below matches these DNS entries and directs requests to the `riva-api` service. You can modify the entries to support a different DNS arrangement, depending on your requirements.
+
+  1. Create the following `riva-ingress.yaml` file. You need to replace `<local_or_external_IP>` with the local or external DNS entry mentioned in the above instruction.
 
       ```yaml
       apiVersion: traefik.containo.us/v1alpha1
@@ -195,7 +198,7 @@ In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was se
         entryPoints:
           - web
         routes:
-          - match: "Host(`traefik.default.svc.cluster.local`)"
+          - match: "Host(`<local_or_external_IP>`)"
             kind: Rule
             services:
               - name: riva-api
@@ -208,7 +211,7 @@ In the default `values.yaml` of the `riva-api` Helm chart, `service.type` was se
       kubectl apply -f riva-ingress.yaml
       ```
 
-The Riva service is now able to serve gRPC requests from within the cluster at the address `traefik.default.svc.cluster.local`. If you are planning to deploy your own client application in the cluster to communicate with Riva, you can send requests to that address. In the next section, you will deploy a Riva sample client and use it to test the deployment.
+The Riva service is now able to serve gRPC requests from within or outside the cluster, depending on the `service.type` field, at the local or external address as mentioned before. If you are planning to deploy your own client application in the cluster to communicate with Riva, you can send requests to that address. In the next section, you will deploy a Riva sample client and use it to test the deployment.
 
 ## Deploying a Sample Client
 
@@ -253,12 +256,12 @@ Riva provides a container with a set of pre-built sample clients to test the Riv
     kubectl exec --stdin --tty $cpod /bin/bash
     ```
 
-4.  From inside the shell of the client pod, run the sample ASR client on an example `.wav` file. Specify the `traefik.default.svc.cluster.local` endpoint, with port 80, as the service address.
+4.  From inside the shell of the client pod, run the sample ASR client on an example `.wav` file. Specify the `<local_or_external_IP>` endpoint as mentioned before, with port 80, as the service address.
     ```bash
     riva_streaming_asr_client \
        --audio_file=/opt/riva/wav/en-US_sample.wav \
        --automatic_punctuation=true \
-       --riva_uri=traefik.default.svc.cluster.local:80
+       --riva_uri=<local_or_external_IP>:80
     ```
 
 ## Scaling the cluster
