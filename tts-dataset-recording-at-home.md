@@ -85,19 +85,19 @@ This document focuses on [Audacity](https://www.audacityteam.org/): it’s free,
 7.  Do not change the microphone gain after you’ve adjusted it.
     
 ## What happens if you position yourself just right, too far or too close?
-- [1 fist away (just right)](https://drive.google.com/file/d/1XGYvD-WYv1Ids34djfQ1-oWMdyMDKdyK/view?usp=sharing) – no distortions, minimal room sound, good signal to noise ratio.
+- **1 fist away (just right)** – no distortions, minimal room sound, good signal to noise ratio.
     
 <img width="1000" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/1bb0dec4-2b35-4d35-8db2-e4a572ed6992">
     
 
     
-- [1 inch away](https://drive.google.com/file/d/1e8UAtp9ybmvGoTFURKV7BATQeqbqcEeX/view?usp=sharing) – muffled (proximity effect) and distortion from plosives like /b/ and /p/.
+- **1 inch away** – muffled (proximity effect) and distortion from plosives like /b/ and /p/.
     
 <img width="1000" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/cb082600-7323-4e39-9e3b-4b68a62f29a5">
     
 
     
-- [2 feet away](https://drive.google.com/file/d/1oSA7hywGRKX6re9__-SdmokveZdf3cig/view?usp=sharing) – lots of room sound and bad signal-to-noise ratio.
+- **2 feet away** – lots of room sound and bad signal-to-noise ratio.
     
 <img width="1000" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/3851e09e-b62b-4e71-8a3c-dda3ec65892b">
 
