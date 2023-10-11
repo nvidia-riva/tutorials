@@ -1,4 +1,4 @@
-# TTS dataset recording at home guidelines
+# Guidelines to Record a TTS Dataset at Home
 
 This section describes best practices for getting the best audio quality when recording TTS data at home.
 
