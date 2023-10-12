@@ -54,7 +54,7 @@ This document focuses on [Audacity](https://www.audacityteam.org/): it’s free,
     
 9.  Eliminate external sources of noise, for example, air conditioning, computer fan, and so on.
 
-## How to adjust microphone levels and body position before recording?
+## Adjusting the Microphone Level and Body Position Before Recording
 
 1.  Set your microphone gain to the direction of a clock's hour hand marking '9 o'clock.'
     
