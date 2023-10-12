@@ -56,7 +56,7 @@ This document focuses on [Audacity](https://www.audacityteam.org/): it’s free,
 
 ## How to adjust microphone levels and body position before recording?
 
-1.  Set your microphone gain to ‘9 hours.’
+1.  Set your microphone gain to the direction of a clock's hour hand marking '9 o'clock.'
     
 2.  Press the recording button on Audacity.
     
