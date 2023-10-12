@@ -102,7 +102,7 @@ This document focuses on [Audacity](https://www.audacityteam.org/): it’s free,
 <img width="1000" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/3851e09e-b62b-4e71-8a3c-dda3ec65892b">
 
 
-## How to record the TTS data?
+## Recording the TTS Data
 
 1.  Prepare your script such that you can easily read it.
     
