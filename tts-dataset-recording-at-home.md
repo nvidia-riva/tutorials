@@ -2,7 +2,7 @@
 
 This section describes how to get the best audio quality when recording TTS data at home.
 
-## Software Requirements
+## Recommended Data
 Start by recording the [Harvard sentences](http://www.cs.cmu.edu/afs/cs.cmu.edu/project/fgdata/OldFiles/Recorder.app/utterances/Type1/harvsents.txt), which should produce about 20 to 40 minutes of usable data for TTS.
 
 ## Hardware Requirements
@@ -11,7 +11,7 @@ Start by recording the [Harvard sentences](http://www.cs.cmu.edu/afs/cs.cmu.edu/
 
 * Get a boom filter or windscreen.
 
-## What audio recording software?
+## Software Requirements
 
 This document focuses on [Audacity](https://www.audacityteam.org/): it’s free, and it has a db meter and shortcuts for making recording easy.
 
