@@ -110,4 +110,4 @@ This document focuses on [Audacity](https://www.audacityteam.org/): it’s free,
     
 3.  Repeat Step 2 for each sentence in your dataset until you have completed the recording of the last one.
     
-4.  Export all files by clicking on File –> Export –> Export Multiple...
+4.  Export all files by clicking on **File** > **Export** > **Export Multiple...**.
