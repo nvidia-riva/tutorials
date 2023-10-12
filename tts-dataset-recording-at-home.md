@@ -19,7 +19,7 @@ This document focuses on [Audacity](https://www.audacityteam.org/): it’s free,
 
 <u>Do not use software that does not have a numbered db meter.</u>
 
-## How to set up for recording?
+## Recording Prerequisites
 
 1.  Connect your microphone to your computer.
     
