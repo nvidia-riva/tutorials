@@ -106,7 +106,7 @@ This document focuses on [Audacity](https://www.audacityteam.org/): it’s free,
 
 1.  Prepare your script such that you can easily read it.
     
-2.  Press Shift+R to record into a new track, read the first sentence, and press space bar to stop recording.
+2.  Press **Shift+R** to record into a new track, read the first sentence, and press space bar to stop recording.
     
 3.  Repeat Step 2 for each sentence in your dataset until you have completed the recording of the last one.
     
