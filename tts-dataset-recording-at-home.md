@@ -5,7 +5,7 @@ This section describes how to get the best audio quality when recording TTS data
 ## Software Requirements
 Start by recording the [Harvard sentences](http://www.cs.cmu.edu/afs/cs.cmu.edu/project/fgdata/OldFiles/Recorder.app/utterances/Type1/harvsents.txt), which should produce about 20 to 40 minutes of usable data for TTS.
 
-## What gear?
+## Hardware Requirements
 
 * Use a decent cheap microphone like the [Audio-Technica AT2020USB+](https://www.amazon.com/gp/product/B00B5ZX9FM/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1) or the [blue yeti usb mic](https://www.amazon.com/Blue-Yeti-USB-Microphone-Silver/dp/B002VA464S).
 
