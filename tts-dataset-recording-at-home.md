@@ -7,7 +7,7 @@ Start by recording the [Harvard sentences](http://www.cs.cmu.edu/afs/cs.cmu.edu/
 
 ## Hardware Requirements
 
-* Use a decent cheap microphone like the [Audio-Technica AT2020USB+](https://www.amazon.com/gp/product/B00B5ZX9FM/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1) or the [blue yeti usb mic](https://www.amazon.com/Blue-Yeti-USB-Microphone-Silver/dp/B002VA464S).
+* Use a microphone like the [Audio-Technica AT2020USB+](https://www.amazon.com/gp/product/B00B5ZX9FM/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1) or the [Blue Yeti USB mic](https://www.amazon.com/Blue-Yeti-USB-Microphone-Silver/dp/B002VA464S).
 
 * Get a boom filter or windscreen.
 
