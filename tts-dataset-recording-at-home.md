@@ -52,7 +52,7 @@ This document focuses on [Audacity](https://www.audacityteam.org/): it’s free,
     
 8.  Select the most quiet room in your environment, and close your windows and doors.
     
-9.  Eliminate external sources of noise, e. g. air conditioning, computer fan, kids, etc...
+9.  Eliminate external sources of noise, for example, air conditioning, computer fan, and so on.
 
 ## How to adjust microphone levels and body position before recording?
 
