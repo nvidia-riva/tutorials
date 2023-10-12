@@ -84,7 +84,7 @@ This document focuses on [Audacity](https://www.audacityteam.org/): it’s free,
     
 7.  Do not change the microphone gain after you’ve adjusted it.
     
-## What happens if you position yourself just right, too far or too close?
+## Positioning Yourself Just Right, Too Far or Too Close
 - **1 fist away (just right)** – no distortions, minimal room sound, good signal to noise ratio.
     
 <img width="1000" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/1bb0dec4-2b35-4d35-8db2-e4a572ed6992">
