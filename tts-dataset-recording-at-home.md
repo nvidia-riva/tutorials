@@ -27,27 +27,27 @@ This document focuses on [Audacity](https://www.audacityteam.org/): it’s free,
     
 3.  Select your audio interface.
     
-<img width="1000" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/7874fef9-4e34-400b-9e0c-2bd8a734111e">
+<img width="1000" alt="image" src="https://github.com/nvidia-riva/tutorials/imgs/tts-home-recording-1.png">
     
     
 4.  Set the bit depth to 24-bit preferably or 16-bit.
     
-<img width="1000" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/d3eb72fa-2842-49bb-93d1-a0d09f29c4a7">
+<img width="1000" alt="image" src="https://github.com/nvidia-riva/tutorials/imgs/tts-home-recording-2.png">
     
     
 5.  Set the sampling rate to 96 kHz preferably or 44 kHz.
     
-<img width="1000" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/c0067a97-3425-472e-8580-4e2648d3b894">
+<img width="1000" alt="image" src="https://github.com/nvidia-riva/tutorials/imgs/tts-home-recording-3.png">
     
     
 6.  On the microphone, set the microphone pattern to **Cardioid** if you have that option.
     
-<img width="450" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/6e5e7a0e-ab58-41fc-8c11-be6921642f52"> <img width="455" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/bb834106-ac03-4eb5-91dd-eb4d1918234a">
+<img width="450" alt="image" src="https://github.com/nvidia-riva/tutorials/imgs/tts-home-recording-4.png"> <img width="455" alt="image" src="https://github.com/nvidia-riva/tutorials/imgs/tts-home-recording-5.png">
     
   
 7.  Set up the boom filter or windscreen.
     
-<img width="450" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/c08c2fbd-0f3d-46e9-aa92-f51519d183d6">
+<img width="450" alt="image" src="https://github.com/nvidia-riva/tutorials/imgs/tts-home-recording-6.png">
     
     
 8.  Select the most quiet room in your environment, and close your windows and doors.
@@ -62,12 +62,12 @@ This document focuses on [Audacity](https://www.audacityteam.org/): it’s free,
     
 3.  Make sure you’re talking onto the side of the microphone that has the brand logo.
     
-<img width="450" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/700927ca-1a40-4a30-938a-b6330dba3a85">
+<img width="450" alt="image" src="https://github.com/nvidia-riva/tutorials/imgs/tts-home-recording-7.png">
     
       
 4.  Position yourself at least a fist away from the microphone and no more than a foot away.
     
-<img width="450" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/ee03a9ea-2207-48a5-85ae-0f7a939c066e">
+<img width="450" alt="image" src="https://github.com/nvidia-riva/tutorials/imgs/tts-home-recording-8.png">
     
     
 5.  Speak into the microphone with the voice you will use during the TTS data recording.
@@ -76,7 +76,7 @@ This document focuses on [Audacity](https://www.audacityteam.org/): it’s free,
     
 - If you’re recording with 24-bit, make sure the db meter is hitting between -24 db and -6 db while you’re recording.
     
-<img width="1000" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/21a99b40-523a-423b-8cd0-15ffd7dc7f8d">
+<img width="1000" alt="image" src="https://github.com/nvidia-riva/tutorials/imgs/tts-home-recording-9.png">
     
     
     
@@ -87,19 +87,19 @@ This document focuses on [Audacity](https://www.audacityteam.org/): it’s free,
 ## Positioning Yourself Just Right, Too Far or Too Close
 - **1 fist away (just right)** – no distortions, minimal room sound, good signal to noise ratio.
     
-<img width="1000" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/1bb0dec4-2b35-4d35-8db2-e4a572ed6992">
+<img width="1000" alt="image" src="https://github.com/nvidia-riva/tutorials/imgs/tts-home-recording-10.png">
     
 
     
 - **1 inch away** – muffled (proximity effect) and distortion from plosives like /b/ and /p/.
     
-<img width="1000" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/cb082600-7323-4e39-9e3b-4b68a62f29a5">
+<img width="1000" alt="image" src="https://github.com/nvidia-riva/tutorials/imgs/tts-home-recording-11.png">
     
 
     
 - **2 feet away** – lots of room sound and bad signal-to-noise ratio.
     
-<img width="1000" alt="image" src="https://github.com/mgrafu/tutorials/assets/47233618/3851e09e-b62b-4e71-8a3c-dda3ec65892b">
+<img width="1000" alt="image" src="https://github.com/nvidia-riva/tutorials/imgs/tts-home-recording-12.png">
 
 
 ## Recording the TTS Data
