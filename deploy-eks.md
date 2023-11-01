@@ -129,7 +129,7 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
         nvdp/nvidia-device-plugin
     ```
 
-4. Ensure you are in a working directory with `riva-api` as a subdirectory, then install the Riva Helm chart.
+4. Ensure you are in a working directory with `riva-api` as a subdirectory, then install the Riva Helm chart. You can explicitly override variables from the `values.yaml` file, such as the `modelRepoGenerator.modelDeployKey` settings.
 
     ```bash
     helm install riva-api riva-api/ \
