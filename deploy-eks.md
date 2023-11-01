@@ -106,8 +106,7 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
 
     1. **`values.yaml`**
 
-        * Set `riva.speechServices.[asr,nlp,tts]` to `true` or `false` as needed to enable or disable those services. For example, if only ASR is needed, then set the NLP and TTS values to `false`.
-        * In `modelRepoGenerator.ngcModelConfigs.[asr,nlp,tts]`, comment or uncomment specific models or languages as needed.
+        * In `modelRepoGenerator.ngcModelConfigs`, comment or uncomment specific models or languages, as needed.
         * Change `service.type` from `LoadBalancer` to `ClusterIP`. This directly exposes the service only to other services within the cluster, such as the proxy service to be installed below.
 
     2. **`templates/deployment.yaml`**
