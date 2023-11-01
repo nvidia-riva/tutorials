@@ -116,8 +116,7 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
 
     - **`values.yaml`**
 
-        * Set `riva.speechServices.[asr,nlp,tts]` to `true` or `false` as needed to enable or disable those services. For example, if only ASR is needed, then set the NLP and TTS values to `false`.
-        * In `modelRepoGenerator.ngcModelConfigs.[asr,nlp,tts]`, comment or uncomment specific models or languages as needed.
+        * In `modelRepoGenerator.ngcModelConfigs`, comment or uncomment specific models or languages, as needed.
         * Change `service.type` from `LoadBalancer` to `ClusterIP`. This directly exposes the service only to other services within the cluster, such as the proxy service to be installed below.
     
 3. Enable the cluster to run containers needing NVIDIA GPUs using the nvidia device plugin:
@@ -132,15 +131,12 @@ The Riva Speech Skills Helm chart is designed to automate deployment to a Kubern
         nvdp/nvidia-device-plugin
     ```
 
-4. Ensure you are in a working directory with `riva-api` as a subdirectory, then install the Riva Helm chart. You can explicitly override variables from the `values.yaml` file, such as the `riva.speechServices.[asr,nlp,tts]` settings.
+4. Ensure you are in a working directory with `riva-api` as a subdirectory, then install the Riva Helm chart. You can explicitly override variables from the `values.yaml` file, such as the `modelRepoGenerator.modelDeployKey` settings.
 
     ```bash
     helm install riva-api riva-api/ \
         --set ngcCredentials.password=`echo -n $NGC_CLI_API_KEY | base64 -w0` \
-        --set modelRepoGenerator.modelDeployKey=`echo -n tlt_encode | base64 -w0` \
-        --set riva.speechServices.asr=true \
-        --set riva.speechServices.nlp=true \
-        --set riva.speechServices.tts=true
+        --set modelRepoGenerator.modelDeployKey=`echo -n tlt_encode | base64 -w0`
     ```
 
 5. The Helm chart runs two containers in order: a `riva-model-init` container that downloads and deploys the models, followed by a `riva-speech-api` container to start the speech service API. To monitor the deployment, use `kubectl` to describe the `riva-api` pod and to watch the container logs.
