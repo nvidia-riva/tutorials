@@ -23,9 +23,9 @@ The best way to get started with Riva is to start with the tutorials.
 | ASR    | How to Fine-Tune a Riva ASR Acoustic Model (Conformer-CTC) with TAO Toolkit | ASR, Acoustic Model Fine-Tuning, Conformer-CTC | [Riva ASR - Fine-Tune Acoustic Model (Conformer-CTC)](asr-python-advanced-finetune-am-conformer-ctc-tao-finetuning-librispeech-nigerian.ipynb) |
 | ASR    | How to Pretrain a Riva ASR Language Modeling (n-gram) with TAO Toolkit | ASR, Customization, Language Model Pretraining, n-gram, TAO Toolkit | [Riva ASR - Customization - Language Model (n-gram) Pretraining with TAO Toolkit](asr-python-advanced-tao-ngram-pretrain.ipynb) |
 | ASR    | How to Boost Specific Words at Runtime with Word Boosting | ASR, Customization, Word Boosting | [Riva ASR - Customization - Word Boosting](asr-wordboosting.ipynb) |
-| ASR    | The Making of RIVA German ASR Service | ASR, New Language Adaptation, German | [Riva ASR - German](New-language-adaptation/German) |
-| ASR    | The Making of RIVA Hindi ASR Service | ASR, New Language Adaptation, Hindi | [Riva ASR - Hindi](New-language-adaptation/Hindi) |
-| ASR    | The Making of RIVA Mandarin ASR Service | ASR, New Language Adaptation, Mandarin | [Riva ASR - Mandarin](New-language-adaptation/Mandarin) |
+| ASR    | The Making of RIVA German ASR Service | ASR, New Language Adaptation, German | [Riva ASR - German](Language-Scaling/German) |
+| ASR    | The Making of RIVA Hindi ASR Service | ASR, New Language Adaptation, Hindi | [Riva ASR - Hindi](Language-Scaling/Hindi) |
+| ASR    | The Making of RIVA Mandarin ASR Service | ASR, New Language Adaptation, Mandarin | [Riva ASR - Mandarin](Language-Scaling/Mandarin) |
 | Deploy | How to Deploy Riva at Scale on AWS with EKS | Deploy, AWS EKS | [Riva - Deploy - AWS EKS](deploy-eks.md) |
 | TTS    | How to use Riva TTS APIs with Out-Of-The-Box Models | TTS, API Basics, Customization, SSML, Pitch, Rate, Pronunciation, Emphasis, Sub | [Riva TTS - API Basics and Customization with SSML](tts-basics-customize-ssml.ipynb) |
 | TTS    | TTS Deploy | TTS, Deployment | [Riva TTS - Deployment on TTS](tts-deploy.ipynb) |
