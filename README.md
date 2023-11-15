@@ -21,9 +21,9 @@ The best way to get started with Riva is to start with the tutorials.
 | ASR    | How to Improve Recognition of Specific Grammars and/or Words/Word Sequences (classes) using WFST | ASR, Customization, WFST, Class LM, Word Classes | [Riva ASR - Customization Overview](wfst_class_lm.md) |
 | ASR    | How to Improve the Accuracy on Noisy Speech by Fine-Tuning the Acoustic Model (Conformer-CTC) in the Riva ASR Pipeline | ASR, Accuracy, Acoustic Model Fine-Tuning | [Riva ASR - Improve Accuracy - Fine-Tuning the Acoustic Model (Conformer-CTC) in ASR Pipeline](asr-noise-augmentation.ipynb) |
 | ASR    | How to Boost Specific Words at Runtime with Word Boosting | ASR, Customization, Word Boosting | [Riva ASR - Customization - Word Boosting](asr-wordboosting.ipynb) |
-| ASR    | The Making of RIVA German ASR Service | ASR, New Language Adaptation, German | [Riva ASR - German](New-language-adaptation/German) |
-| ASR    | The Making of RIVA Hindi ASR Service | ASR, New Language Adaptation, Hindi | [Riva ASR - Hindi](New-language-adaptation/Hindi) |
-| ASR    | The Making of RIVA Mandarin ASR Service | ASR, New Language Adaptation, Mandarin | [Riva ASR - Mandarin](New-language-adaptation/Mandarin) |
+| ASR    | The Making of RIVA German ASR Service | ASR, New Language Adaptation, German | [Riva ASR - German](Language-Scaling/German) |
+| ASR    | The Making of RIVA Hindi ASR Service | ASR, New Language Adaptation, Hindi | [Riva ASR - Hindi](Language-Scaling/Hindi) |
+| ASR    | The Making of RIVA Mandarin ASR Service | ASR, New Language Adaptation, Mandarin | [Riva ASR - Mandarin](Language-Scaling/Mandarin) |
 | Deploy | How to Deploy Riva at Scale on AWS with EKS | Deploy, AWS EKS | [Riva - Deploy - AWS EKS](deploy-eks.md) |
 | TTS    | How to use Riva TTS APIs with Out-Of-The-Box Models | TTS, API Basics, Customization, SSML, Pitch, Rate, Pronunciation, Emphasis, Sub | [Riva TTS - API Basics and Customization with SSML](tts-basics-customize-ssml.ipynb) |
 | TTS    | TTS Deploy | TTS, Deployment | [Riva TTS - Deployment on TTS](tts-deploy.ipynb) |
