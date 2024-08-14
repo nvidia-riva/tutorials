@@ -1,2 +1,2 @@
-__riva_version__ = "2.16.0"
-__riva_release__ = "24.06"
+__riva_version__ = "2.17.0"
+__riva_release__ = "24.08"
