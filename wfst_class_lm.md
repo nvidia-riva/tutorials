@@ -124,7 +124,7 @@ The generated `TLG.fst` can be used with the Kaldi decoder in Riva. To build the
 
 ```shell
 # Syntax: riva-build <task-name> output-dir-for-rmir/model.rmir:key dir-for-riva/model.riva:key
-! docker run --rm --gpus 0 -v $MODEL_LOC:/data $RIVA_SM_CONTAINER -- \
+! docker run --rm --gpus 0 -v $MODEL_LOC:/data $RIVA_CONTAINER -- \
     riva-build speech_recognition \
         /data/rmir/asr_offline_conformer_ctc.rmir:$KEY \
         /data/$MODEL_NAME:$KEY \

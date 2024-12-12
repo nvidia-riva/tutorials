@@ -28,11 +28,11 @@ With all the models trained, it's the time to deploy the Riva service.
 
 Now that you've completed training the `.nemo` models, perform the following steps to deploy these models on Riva:
 
-- Download the Riva Quick Start resource folder (refer to the [instructions](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/quick-start-guide.html#local-deployment-using-quick-start-scripts)), which provides a `nemo2riva` conversion tool and scripts (`riva_init.sh`, `riva_start.sh` and `riva_start_client.sh`) to download the `servicemaker`, `riva-speech-server`, and `riva-speech-client` Docker images.
+- Download the Riva Quick Start resource folder (refer to the [instructions](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/quick-start-guide.html#local-deployment-using-quick-start-scripts)), which provides a `nemo2riva` conversion tool and scripts (`riva_init.sh`, `riva_start.sh` and `riva_start_client.sh`) to download the `riva-speech` Docker image.
 
-- Build `.riva` assets using the `nemo2riva` command in the `servicemaker` container.
+- Build `.riva` assets using the `nemo2riva` command in the `riva-speech` container.
 
-- Build `.rmir` assets using the `riva-build` tool in the `servicemaker` container. For examples of build commands for different models and for offline and online ASR pipelines, refer to the [Riva build documentation page](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html).
+- Build `.rmir` assets using the `riva-build` tool in the `riva-speech` container. For examples of build commands for different models and for offline and online ASR pipelines, refer to the [Riva build documentation page](https://docs.nvidia.com/deeplearning/riva/user-guide/docs/asr/asr-customizing.html).
 
 - Deploy the model in `.rmir` format with `riva-deploy`.
 
