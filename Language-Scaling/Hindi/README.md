@@ -139,7 +139,7 @@ In addition to evaluating our model on the train test split, we've also evaluate
 * [Hindi subtask-1](https://us.openslr.org/resources/103/subtask1_blindtest_wReadme.tar.gz) from [Interspeech MUCS Challenge](https://navana-tech.github.io/MUCS2021/challenge_details.html)
 * etc.
 
-We've observed very competetive WER, as low as 12.78, on these blind test sets.
+We've observed very competitive WER, as low as 12.78, on these blind test sets.
 
 ## 5. Riva Deployment
 

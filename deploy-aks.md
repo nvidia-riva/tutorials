@@ -2,7 +2,7 @@
 
 # How do I Deploy Riva at Scale on Azure Cloud with AKS?
 
-This is an example of deploying and scaling Riva Speech Skills on Azure Cloud's Azure Kuberenetes Service (AKS)
+This is an example of deploying and scaling Riva Speech Skills on Azure Cloud's Azure Kubernetes Service (AKS)
 with Traefik-based load balancing. It includes the following steps:
 1. Creating the AKS cluster
 2. Deploying the Riva API service
