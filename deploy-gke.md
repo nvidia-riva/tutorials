@@ -2,7 +2,7 @@
 
 # How do I Deploy Riva at Scale on Google Cloud with GKE?
 
-This is an example of deploying and scaling Riva Speech Skills on Google Cloud (GCP) Google Kuberenetes Engine (GKE)
+This is an example of deploying and scaling Riva Speech Skills on Google Cloud (GCP) Google Kubernetes Engine (GKE)
 with Traefik-based load balancing. It includes the following steps:
 1. Creating the GKE cluster
 2. Deploying the Riva API service
